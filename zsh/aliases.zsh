@@ -48,8 +48,10 @@ alias ydlx="youtube-dl --restrict-filenames -o '%(extractor)s_%(title)s-%(id)s.%
 
 # git aliases
 alias gst='git status'
+alias gstv='git status -v'
 alias gcm='git commit'
 alias gdf='git diff'
+alias gdfv='git diff -v'
 alias gsh='git stash'
 alias gaa='git add -A'
 
