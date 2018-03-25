@@ -1,6 +1,6 @@
 .stfolder
 .stversions
 .stignore
-extras/config
+extras/config/ranger
 extras/i3blocks/unused
 extras/vim
