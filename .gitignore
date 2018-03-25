@@ -1,12 +1,16 @@
 .stfolder
 .stversions
 .stignore
+
 extras/config/ranger
 extras/config/mpd/*
 !extras/config/mpd/mpd.conf
 extras/i3blocks/unused
 extras/vim
+
+i3/config
 i3/data/*
 !i3/data/README.txt
+i3/dynami3/data/*
 i3/dynami3/data/locks/*
 !i3/dynami3/data/locks/README.txt
