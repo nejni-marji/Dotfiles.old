@@ -284,11 +284,11 @@ set $purple1 #800080
 
 
 # {{{ dynami3: core/vars #
-	set $bar_mode hide
-	set $bar_hide hide
-	set $bar_key none
-	set $gaps_inner 0
-	set $gaps_outer 0
+	set $bar_mode dock
+	set $bar_hide show
+	set $bar_key Mod4
+	set $gaps_inner 15
+	set $gaps_outer 5
 	set $font monospace 6
 	set $borders normal 0
 # }}} core/vars
