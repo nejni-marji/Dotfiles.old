@@ -5,8 +5,8 @@
 # vim:fdm=marker:
 # i3 config file (v4)
 
-exec_always ~/i3ipc_nop.py
-bindsym $MOD+equal       nop ipc resize grow
+exec_always $i3b/i3ipc_nop.py
+bindsym $MOD+equal      nop ipc resize grow
 bindsym $MOD+$SHF+equal nop ipc resize shrink
 
 # {{{ i3-gaps only
@@ -215,7 +215,6 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym $MOD+$SHF+t     layout tabbed
 		bindsym $MOD+n          layout splitv
 		bindsym $MOD+$SHF+n     layout splith
-		#TODO
 		bindsym $MOD+m          layout toggle stacking tabbed
 		bindsym $MOD+$SHF+m     layout toggle splitv splith
 	# }}}
@@ -272,20 +271,6 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa get notify
 		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd player get
 	# }}}
-	# {{{ brightness
-		#TODO
-		#bind $MOD+87 $exec xbacklight -set 10
-		#bind $MOD+88 $exec xbacklight -set 20
-		#bind $MOD+89 $exec xbacklight -set 30
-		#bind $MOD+83 $exec xbacklight -set 40
-		#bind $MOD+84 $exec xbacklight -set 50
-		#bind $MOD+85 $exec xbacklight -set 60
-		#bind $MOD+79 $exec xbacklight -set 70
-		#bind $MOD+80 $exec xbacklight -set 80
-		#bind $MOD+81 $exec xbacklight -set 90
-		#bind $MOD+91 $exec xbacklight -set 0
-		#bind $MOD+90 $exec xbacklight -set 100
-	# }}}
 # }}}
 # {{{ nop
 	bindsym $MOD+$ALT+space        nop "Discord: push to talk"
@@ -304,7 +289,7 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 	set $bar_key none
 	set $gaps_inner 0
 	set $gaps_outer 0
-	set $font monospace 6
+	set $font monospace 0
 	set $borders normal 0
 # }}} core/vars
 # {{{ dynami3: normal_mode #
@@ -318,7 +303,7 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym Control+bracketleft mode "default"
 		bindsym $mod+$n_dk mode "default"
 		bindsym $n_dk mode "default"
-		bindsym equal       nop ipc resize grow
+		bindsym equal      nop ipc resize grow
 		bindsym $SHF+equal nop ipc resize shrink
 		bindsym b      bar mode toggle;         $lock bar_mode
 		bindsym $SHF+b bar hidden_state toggle; $lock bar_hide

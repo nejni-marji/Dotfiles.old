@@ -4,7 +4,6 @@ title_command_ignore=(cd echo cl ls)
 
 set_urxvt_title() {
 	echo -ne "\033]0;$1\007"
-	#echo -ne ''
 }
 
 set_urxvt_title_command() {

@@ -1,3 +1,1 @@
-#!/bin/bash
-ssh-add -l >/dev/null || ssh-add
-exec /usr/bin/ssh "$@"
+wrap/ssh

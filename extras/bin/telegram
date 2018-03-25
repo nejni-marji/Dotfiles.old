@@ -1,2 +1,1 @@
-#!/bin/bash
-exec /usr/bin/telegram-desktop
+wrap/telegram

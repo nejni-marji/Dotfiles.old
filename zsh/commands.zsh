@@ -12,25 +12,6 @@ cl() {
 	fi
 }
 
-ranger() {
-	if [ -z "$RANGER_LEVEL" ]; then
-		/usr/bin/ranger "$@"
-	else
-		exit
-	fi
-}
-
-loop() {
-	while true; do
-		$@
-		sleep 1
-	done
-}
-
-testfont() {
-	echo -e "\033]710;xft:$@\007"
-}
-
 timer() {
 	TIMER=$((60*$1))
 	echo $TIMER
@@ -69,13 +50,4 @@ hidehist() {
 			echo -n
 		fi
 	fi
-}
-
-randint() {
-	python -c 'from random import randint; print(randint('$1','$2'))'
-}
-
-nenmaj_add() {
-	telegram-cli -DWe "channel_invite $1 la_nenmaj_sampre"
-	telegram-cli -We "chat_add_user $1 la_nenmaj_sampre"
 }

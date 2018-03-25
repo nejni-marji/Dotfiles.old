@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: fix creation of dead symlinks
 cat << EOM
 # This script **MUST** be run from your home directory.
 # The Dotfiles folder **MUST** be in your home directory.

@@ -3,4 +3,3 @@ source ~/.vim/vimsrc/plugins.vim
 source ~/.vim/vimsrc/autocommand.vim
 source ~/.vim/vimsrc/mapping.vim
 source ~/.vim/vimsrc/interface.vim
-se showcmd

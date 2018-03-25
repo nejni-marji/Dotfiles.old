@@ -91,7 +91,6 @@ method_hex() {
 
 randomize_color() {
 	RANDOM=$(date +%Y%m%d)
-	#RANDOM=4730 #TODO
 	orders=('\1\2\3' '\1\3\2' '\2\1\3' '\2\3\1' '\3\1\2' '\3\2\1')
 	order=${orders[$(($RANDOM%6))]}
 	color=$(echo $color | perl -pe "s/^(..)(..)(..)$/$order/")

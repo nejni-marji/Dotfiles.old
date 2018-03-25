@@ -1,4 +1,0 @@
-#!/bin/bash
-mpcs clear;
-mpcs listall | grep "OC ReMix/OC ReMix - 1 to 3000 \[v20141015\]/$1" | mpcs add
-

@@ -8,9 +8,9 @@
 " status bar
 	set wildmenu
 	set laststatus=2
-	"set noshowmode
-	"set showcmd " unset by lightline?
-	set statusline=%F\ %m%r%y%=%-9(%l/%L,%)\ %-9(%c%V,%)\ %P
+	set showcmd
+	" disabled by lightline, but here for the record
+	"set statusline=%F\ %m%r%y%=%-9(%l/%L,%)\ %-9(%c%V,%)\ %P
 " buffers, windows
 	set splitbelow splitright
 	set hidden
@@ -19,10 +19,10 @@
 	set ignorecase smartcase
 " text
 	set foldmethod=indent
-	set number
+	set number relativenumber
 	set linebreak wrap list
 	set listchars=tab:>-,trail:~,extends:>,precedes:<
-	set nojoinspaces " insert `J` adds only 1 space for .?!
+	set nojoinspaces
 " tabs
 	set smarttab tabstop=4 shiftwidth=4
 " movement

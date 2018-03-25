@@ -21,6 +21,9 @@ init-laptop() {
 
 	# keyboard
 	setxkbmap -layout us -variant dvorak
+
+	# tray
+	cbatticon -i symbolic -l 25 -r 10 -c 'systemctl suspend' &
 }
 
 init-generic() {
@@ -35,7 +38,6 @@ init-generic() {
 	LOCK=~/.i3/data/"$(hostname)"_screenlock.lck
 	touch $LOCK && rm $LOCK
 
-	cbatticon -i symbolic -l 25 -r 10 -c 'systemctl suspend' &
 	redshift -O 4500
 	redshift-gtk &
 

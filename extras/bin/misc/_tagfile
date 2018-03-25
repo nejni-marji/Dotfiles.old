@@ -1,6 +1,0 @@
-#!/bin/bash
-for i in "$@"; do
-export DATE_PRE=$(date +%FT%T)
-export FILE=$(echo $PWD/"$i" | tr / %)
-echo cp -rv "$i" "$DATE_PRE""$FILE"
-done

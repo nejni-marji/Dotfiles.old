@@ -152,8 +152,7 @@ sound_mpd_volume() {
 	HOST=$2
 	[[ -z $HOST ]] && HOST=localhost
 
-	[[ -z $VOL ]] && VOL="+0" #TODO
-	#[[ -z $VOL ]] && exit 1
+	[[ -z $VOL ]] && VOL="+0"
 	mpc -h $HOST volume $VOL
 	[[ $HOST == localhost ]] && HOST="$(hostname)"
 	mpd_notify "Volume $VOL on $HOST"

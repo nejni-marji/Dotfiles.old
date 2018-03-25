@@ -1,1 +1,3 @@
-I'd explain this folder hierarchy stuff but it's not really that weird and is in fact fairly obvious. If you use a for loop to symlink the dotfiles in, remember to remove ~/.extras.
+The provided setup.sh script, when run from your home folder. should set
+everything up automatically. Be careful when you use it though, and check the
+output before dumping it into a shell pipe.

@@ -1,3 +1,1 @@
-#!/bin/bash
-[[ "$1" == "all" ]] && feh -F ~/Pictures/Screenshots/*
-[[ "$1" != "all" ]] && feh -F ~/Pictures/Screenshots/Latest.png
+wrap/feshot

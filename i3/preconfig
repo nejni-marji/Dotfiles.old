@@ -5,8 +5,8 @@
 # vim:fdm=marker:
 # i3 config file (v4)
 
-exec_always ~/i3ipc_nop.py
-bindsym $MOD+equal       nop ipc resize grow
+exec_always $i3b/i3ipc_nop.py
+bindsym $MOD+equal      nop ipc resize grow
 bindsym $MOD+$SHF+equal nop ipc resize shrink
 
 # {{{ i3-gaps only
@@ -215,7 +215,6 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym $MOD+$SHF+t     layout tabbed
 		bindsym $MOD+n          layout splitv
 		bindsym $MOD+$SHF+n     layout splith
-		#TODO
 		bindsym $MOD+m          layout toggle stacking tabbed
 		bindsym $MOD+$SHF+m     layout toggle splitv splith
 	# }}}
