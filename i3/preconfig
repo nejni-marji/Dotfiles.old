@@ -65,46 +65,61 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		for_window [title="^pulsemixer$"] floating enable, sticky enable
 	# }}}
 # }}}
-# {{{ decorations
-	for_window [class=".*"] border $borders
-	new_window $borders
-	new_float $borders
-	font pango:$font
-# }}}
-set $purple1 #800080
-# {{{ colors
-	#                       #edges  #body   #text   #split
-	client.focused          #600060 $purple1 #ffffff #0080ff
-	client.focused_inactive #606060 #808080 #ffffff #0080ff
-	client.unfocused        #303030 #404040 #aaaaaa #0080ff
-	client.urgent           #c06000 #ff8000 #000000 #0080ff
-# }}}
-# {{{ i3bar
-	bindsym $MOD+b      bar mode toggle;         $lock bar_mode
-	bindsym $MOD+$SHF+b bar hidden_state toggle; $lock bar_hide
-	bar {
-		font pango:monospace 8
-		mode $bar_mode
-		hidden_state $bar_hide
-		modifier $bar_key
-		i3bar_command i3bar -t
-		status_command i3blocks
-		strip_workspace_numbers yes
-		tray_output primary
-		tray_padding 0
-		colors { # {{{
-			background #00000080
-			statusline #ffffff
-			separator  #ff8000
-			#                  #edges    #body     #text
-			focused_workspace  #800080   #800080   #ffffff
-			inactive_workspace #404040   #404040   #ffffff
-			urgent_workspace   #ff8000   #ff8000   #000000
-			#
-			#binding_mode       #80ff80 #80ff80 #000000
-			binding_mode       #ff0000 #ff0000 #ffffff
-		} # }}}
-	}
+# {{{ appearance
+	# {{{ window decorations
+		for_window [class=".*"] border $borders
+		new_window $borders
+		new_float $borders
+		font pango:$font
+	# }}}
+	# {{{ color variables
+		set $c_focus1 #800080
+		set $c_focus2 #600060
+		set $c_inact1 #808080
+		set $c_inact2 #606060
+		set $c_unfoc1 #404040
+		set $c_unfoc2 #303030
+		set $c_urgen1 #ff8000
+		set $c_urgen2 #c06000
+		set $c_split0 #0080ff
+		set $c_bindm0 #00ff80
+		set $c_dk_txt #000000
+		set $c_gr_txt #aaaaaa
+		set $c_lt_txt #ffffff
+		set $c_i3bar0 #00000080
+	# }}}
+	# {{{ window colors
+		#                       #edges    #body     #text     #split
+		client.focused          $c_focus2 $c_focus1 $c_lt_txt $c_split0
+		client.focused_inactive $c_inact2 $c_inact1 $c_lt_txt $c_split0
+		client.unfocused        $c_unfoc2 $c_unfoc1 $c_gr_txt $c_split0
+		client.urgent           $c_urgen2 $c_urgen1 $c_dk_txt $c_split0
+	# }}}
+	# {{{ i3bar
+		bindsym $MOD+b      bar mode toggle;         $lock bar_mode
+		bindsym $MOD+$SHF+b bar hidden_state toggle; $lock bar_hide
+		bar {
+			font pango:monospace 8
+			mode $bar_mode
+			hidden_state $bar_hide
+			modifier $bar_key
+			i3bar_command i3bar -t
+			status_command i3blocks
+			strip_workspace_numbers yes
+			tray_output primary
+			tray_padding 0
+			colors { # {{{
+				background $c_i3bar0
+				statusline $c_lt_txt
+				separator  $c_urgen1
+				#                  #edges    #body     #text
+				focused_workspace  $c_focus1 $c_focus1 $c_lt_txt
+				inactive_workspace $c_unfoc1 $c_unfoc1 $c_lt_txt
+				urgent_workspace   $c_urgen1 $c_urgen1 $c_dk_txt
+				binding_mode       $c_bindm0 $c_bindm0 $c_dk_txt
+			} # }}}
+		}
+	# }}}
 # }}}
 # {{{ general settings
 	floating_maximum_size 1000x750
@@ -256,20 +271,6 @@ set $purple1 #800080
 		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd misc repair
 		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa get notify
 		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd player get
-	# }}}
-	# {{{ brightness
-		#TODO
-		#bind $MOD+87 $exec xbacklight -set 10
-		#bind $MOD+88 $exec xbacklight -set 20
-		#bind $MOD+89 $exec xbacklight -set 30
-		#bind $MOD+83 $exec xbacklight -set 40
-		#bind $MOD+84 $exec xbacklight -set 50
-		#bind $MOD+85 $exec xbacklight -set 60
-		#bind $MOD+79 $exec xbacklight -set 70
-		#bind $MOD+80 $exec xbacklight -set 80
-		#bind $MOD+81 $exec xbacklight -set 90
-		#bind $MOD+91 $exec xbacklight -set 0
-		#bind $MOD+90 $exec xbacklight -set 100
 	# }}}
 # }}}
 # {{{ nop
