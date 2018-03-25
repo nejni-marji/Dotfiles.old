@@ -73,27 +73,41 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		font pango:$font
 	# }}}
 	# {{{ color variables
-		set $c_focus1 #800080
-		set $c_focus2 #600060
-		set $c_inact1 #808080
-		set $c_inact2 #606060
-		set $c_unfoc1 #404040
-		set $c_unfoc2 #303030
-		set $c_urgen1 #ff8000
-		set $c_urgen2 #c06000
-		set $c_split0 #0080ff
-		set $c_bindm0 #00ff80
-		set $c_dk_txt #000000
-		set $c_gr_txt #aaaaaa
-		set $c_lt_txt #ffffff
-		set $c_i3bar0 #00000080
+		# [E]dge, [B]ody, [T]ext
+		# edges are set with di3:core/vars, this is just reference
+		# focused
+		set $c_focusE #600060
+		set $c_focusB #800080
+		set $c_focusT #ffffff
+		# inactive
+		set $c_inactE #606060
+		set $c_inactB #808080
+		set $c_inactT #ffffff
+		# unfocused
+		set $c_unfocE #303030
+		set $c_unfocB #404040
+		set $c_unfocT #aaaaaa
+		# urgent
+		set $c_urgenE #c06000
+		set $c_urgenB #ff8000
+		set $c_urgenT #000000
+		# bind indicator
+		set $c_bindmE #00ff80
+		set $c_bindmB #00ff80
+		set $c_bindmT #000000
+		# splits are [A]ll the same
+		set $c_splitA #00ff80
+		# i3bar: separator, background, text
+		set $c_i3barE #ff8000ff
+		set $c_i3barB #00000080
+		set $c_i3barT #ffffffff
 	# }}}
 	# {{{ window colors
 		#                       #edges    #body     #text     #split
-		client.focused          $c_focus2 $c_focus1 $c_lt_txt $c_split0
-		client.focused_inactive $c_inact2 $c_inact1 $c_lt_txt $c_split0
-		client.unfocused        $c_unfoc2 $c_unfoc1 $c_gr_txt $c_split0
-		client.urgent           $c_urgen2 $c_urgen1 $c_dk_txt $c_split0
+		client.focused          $c_focusE $c_focusB $c_focusT $c_splitA
+		client.focused_inactive $c_inactE $c_inactB $c_inactT $c_splitA
+		client.unfocused        $c_unfocE $c_unfocB $c_unfocT $c_splitA
+		client.urgent           $c_urgenE $c_urgenB $c_urgenT $c_splitA
 	# }}}
 	# {{{ i3bar
 		bindsym $MOD+b      bar mode toggle;         $lock bar_mode
@@ -109,14 +123,14 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 			tray_output primary
 			tray_padding 0
 			colors { # {{{
-				background $c_i3bar0
-				statusline $c_lt_txt
-				separator  $c_urgen1
+				background $c_i3barB
+				statusline $c_i3barT
+				separator  $c_i3barE
 				#                  #edges    #body     #text
-				focused_workspace  $c_focus1 $c_focus1 $c_lt_txt
-				inactive_workspace $c_unfoc1 $c_unfoc1 $c_lt_txt
-				urgent_workspace   $c_urgen1 $c_urgen1 $c_dk_txt
-				binding_mode       $c_bindm0 $c_bindm0 $c_dk_txt
+				focused_workspace  $c_focusB $c_focusB $c_focusT
+				inactive_workspace $c_unfocB $c_unfocB $c_focusT
+				urgent_workspace   $c_urgenB $c_urgenB $c_urgenT
+				binding_mode       $c_bindmB $c_bindmB $c_bindmT
 			} # }}}
 		}
 	# }}}
