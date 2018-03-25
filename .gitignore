@@ -5,6 +5,7 @@
 extras/config/ranger
 extras/config/mpd/*
 !extras/config/mpd/mpd.conf
+!extras/config/mpd/playlists
 extras/i3blocks/unused
 extras/vim
 
