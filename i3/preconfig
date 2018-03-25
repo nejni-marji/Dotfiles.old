@@ -1,0 +1,285 @@
+#
+# ~/.i3/config
+#
+
+# vim:fdm=marker:
+# i3 config file (v4)
+
+exec_always ~/i3ipc_nop.py
+bindsym $MOD+equal       nop ipc resize grow
+bindsym $MOD+$SHF+equal nop ipc resize shrink
+
+# {{{ i3-gaps only
+	smart_gaps on
+	gaps inner $gaps_inner
+	gaps outer $gaps_outer
+# }}}
+# {{{ set general variables
+	# {{{ modifiers
+		set $MOD Mod4
+		set $ALT Mod1
+		set $CTL Control
+		set $SHF Shift
+	# }}}
+	set $exec exec --no-startup-id
+	set $nsi --no-startup-id
+	set $i3b ~/.i3/bin
+	set $lock exec --no-startup-id ~/.i3/dynami3/lock_dynami3.sh set
+# }}}
+# {{{ startup
+	exec_always $nsi $i3b/set_wallpaper.sh
+	exec_always $nsi i3-msg rename workspace 1 to $w1 # always
+	$exec $i3b/manager.sh init
+# }}}
+# {{{ workspace, assign, for_window
+	# {{{ workspace variables
+		set $w1 1:Rec
+		set $w2 2:Code
+		set $w3 3:Misc
+		set $w4 4:School
+		set $w5 5:Steam
+		set $w6 6
+		set $w7 7
+		set $w8 8
+		set $w9 9
+		set $w0 10:Test
+	# }}}
+	# {{{ assign
+		# 1
+		assign [class="TelegramDesktop"] $w1
+		assign [class="discord"] $w1
+		# 2
+		# 3
+		assign [class="Deluge"] $w3
+		assign [class="Gimp"] $w3
+		assign [title="^Oracle VM VirtualBox Manager$"] $w3
+		# 4
+		assign [title="^School \[\w+\] - Oracle VM VirtualBox"] $w4
+		# 5
+		assign [class="Steam"] $w5
+		assign [title="Steam"] $w5
+	# }}}
+	# {{{ for_window
+		for_window [title="^vimpc$"] floating enable, sticky enable
+		for_window [class="Pavucontrol"] floating enable, sticky enable
+		for_window [title="^pulsemixer$"] floating enable, sticky enable
+	# }}}
+# }}}
+# {{{ decorations
+	for_window [class=".*"] border $borders
+	new_window $borders
+	new_float $borders
+	font pango:$font
+# }}}
+set $purple1 #800080
+# {{{ colors
+	#                       #edges  #body   #text   #split
+	client.focused          #600060 $purple1 #ffffff #0080ff
+	client.focused_inactive #606060 #808080 #ffffff #0080ff
+	client.unfocused        #303030 #404040 #aaaaaa #0080ff
+	client.urgent           #c06000 #ff8000 #000000 #0080ff
+# }}}
+# {{{ i3bar
+	bindsym $MOD+b      bar mode toggle;         $lock bar_mode
+	bindsym $MOD+$SHF+b bar hidden_state toggle; $lock bar_hide
+	bar {
+		font pango:monospace 8
+		mode $bar_mode
+		hidden_state $bar_hide
+		modifier $bar_key
+		i3bar_command i3bar -t
+		status_command i3blocks
+		strip_workspace_numbers yes
+		tray_output primary
+		tray_padding 0
+		colors { # {{{
+			background #00000080
+			statusline #ffffff
+			separator  #ff8000
+			#                  #edges    #body     #text
+			focused_workspace  #800080   #800080   #ffffff
+			inactive_workspace #404040   #404040   #ffffff
+			urgent_workspace   #ff8000   #ff8000   #000000
+			#
+			#binding_mode       #80ff80 #80ff80 #000000
+			binding_mode       #ff0000 #ff0000 #ffffff
+		} # }}}
+	}
+# }}}
+# {{{ general settings
+	floating_maximum_size 1000x750
+	floating_minimum_size 300x350
+	workspace_layout stacking
+	workspace_auto_back_and_forth yes
+# }}}
+# {{{ i3 controls
+	bindsym $MOD+c       $exec $i3b/manager.sh reload
+	bindsym $MOD+r       $exec $i3b/manager.sh restart
+	bindsym $MOD+$SHF+q kill
+	bindsym $MOD+$CTL+$SHF+q $exec "i3-nagbar \
+	-t warning -m 'Exit i3?' \
+	-b 'Yes, exit i3' '$i3b/manager.sh exit'
+	# misc
+	bindsym $MOD+d $exec $i3b/date_notify.sh
+# }}}
+# {{{ movement
+	bindsym $MOD+$SHF+d [urgent=latest] focus
+	# {{{ workspaces
+		bindsym $MOD+z                 workspace back_and_forth
+		bindsym $MOD+$SHF+z            move container to workspace back_and_forth
+		bindsym $MOD+bracketleft       workspace prev_on_output
+		bindsym $MOD+bracketright      workspace next_on_output
+		bindsym $MOD+$SHF+bracketleft  workspace prev
+		bindsym $MOD+$SHF+bracketright workspace next
+		bindsym $MOD+1                 workspace number $w1
+		bindsym $MOD+2                 workspace number $w2
+		bindsym $MOD+3                 workspace number $w3
+		bindsym $MOD+4                 workspace number $w4
+		bindsym $MOD+5                 workspace number $w5
+		bindsym $MOD+6                 workspace number $w6
+		bindsym $MOD+7                 workspace number $w7
+		bindsym $MOD+8                 workspace number $w8
+		bindsym $MOD+9                 workspace number $w9
+		bindsym $MOD+0                 workspace number $w0
+		bindsym $MOD+$SHF+1            move container to workspace number $w1
+		bindsym $MOD+$SHF+2            move container to workspace number $w2
+		bindsym $MOD+$SHF+3            move container to workspace number $w3
+		bindsym $MOD+$SHF+4            move container to workspace number $w4
+		bindsym $MOD+$SHF+5            move container to workspace number $w5
+		bindsym $MOD+$SHF+6            move container to workspace number $w6
+		bindsym $MOD+$SHF+7            move container to workspace number $w7
+		bindsym $MOD+$SHF+8            move container to workspace number $w8
+		bindsym $MOD+$SHF+9            move container to workspace number $w9
+		bindsym $MOD+$SHF+0            move container to workspace number $w0
+	# }}}
+	# {{{ variables for directionals
+		set $dir_mov Shift
+		set $dir_r10 Mod1
+		set $dir_r05 Shift+Mod1
+		set $dir_swp Control
+	# }}}
+	# {{{ directionals
+		# focus
+		bindsym $MOD+h          focus left
+		bindsym $MOD+j          focus down
+		bindsym $MOD+k          focus up
+		bindsym $MOD+l          focus right
+		# move
+		bindsym $MOD+$dir_mov+h move left
+		bindsym $MOD+$dir_mov+j move down
+		bindsym $MOD+$dir_mov+k move up
+		bindsym $MOD+$dir_mov+l move right
+		# resize 10
+		bindsym $MOD+$dir_r10+h resize shrink width  10 px or 10 ppt
+		bindsym $MOD+$dir_r10+j resize grow   height 10 px or 10 ppt
+		bindsym $MOD+$dir_r10+k resize shrink height 10 px or 10 ppt
+		bindsym $MOD+$dir_r10+l resize grow   width  10 px or 10 ppt
+		# resize 5
+		bindsym $MOD+$dir_r05+h resize shrink width  5 px or 5 ppt
+		bindsym $MOD+$dir_r05+j resize grow   height 5 px or 5 ppt
+		bindsym $MOD+$dir_r05+k resize shrink height 5 px or 5 ppt
+		bindsym $MOD+$dir_r05+l resize grow   width  5 px or 5 ppt
+		# swap
+		bindsym $MOD+$dir_swp+h mark A; focus left;  mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$dir_swp+j mark A; focus down;  mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$dir_swp+k mark A; focus up;    mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$dir_swp+l mark A; focus right; mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+	# }}}
+	# {{{ tree
+		bindsym $MOD+g          focus parent
+		bindsym $MOD+$SHF+g     focus child
+		bindsym $MOD+f          fullscreen
+		bindsym $MOD+$SHF+f     fullscreen global
+		bindsym $MOD+$CTL+f     focus parent; fullscreen; focus child
+		# splits
+		bindsym $MOD+v          split t; layout stacking
+		bindsym $MOD+$SHF+v     split t; layout tabbed
+		bindsym $MOD+w          split v
+		bindsym $MOD+$SHF+w     split h
+		bindsym $MOD+t          layout stacking
+		bindsym $MOD+$SHF+t     layout tabbed
+		bindsym $MOD+n          layout splitv
+		bindsym $MOD+$SHF+n     layout splith
+		#TODO
+		bindsym $MOD+m          layout toggle stacking tabbed
+		bindsym $MOD+$SHF+m     layout toggle splitv splith
+	# }}}
+	# {{{ floating
+		floating_modifier $MOD
+		bindsym $MOD+s          focus mode_toggle
+		bindsym $MOD+$SHF+s     floating toggle
+		bindsym $MOD+$ALT+s     sticky toggle
+	# }}}
+	# {{{ scratchpad
+		bindsym $MOD+$SHF+minus move scratchpad
+		bindsym $MOD+minus           scratchpad show
+	# }}}
+# }}}
+# {{{ summoners
+	bindsym $MOD+$SHF+Return      $exec urxvt -e zsh
+	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx
+	bindsym $MOD+$CTL+$SHF+Return $exec urxvt -e ranger
+	# {{{ rofi
+		bindsym $MOD+backslash      $exec rofi \
+			-kb-row-select "Tab" -kb-row-tab "" \
+			-modi run -show run
+		bindsym $MOD+$SHF+backslash $exec rofi \
+			-columns 1 \
+			-kb-row-select "Tab" -kb-row-tab "" \
+			-modi window -show window
+	# }}}
+# }}}
+# {{{ media keys
+	# {{{ screenshots
+		set $print Print
+		bindsym --release $print $exec ~/bin/shoot -s
+		bindsym      $SHF+$print $exec ~/bin/shoot
+		bindsym      $CTL+$print $exec ~/bin/shoot -u
+	# }}}
+	# {{{ audio and mpd with arrow keys
+		bindsym $MOD+Up         $exec ~/bin/sound pa set +10 notify
+		bindsym $MOD+Down       $exec ~/bin/sound pa set -10 notify
+		bindsym $MOD+Left       $exec ~/bin/sound pa mute notify
+		bindsym $MOD+Right      $exec ~/bin/sound mpd player toggle
+		#
+		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10
+		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10
+		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd player prev
+		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd player next
+		#
+		bindsym $MOD+$CTL+Up    $exec ~/bin/sound mpd vol +10 ODROID
+		bindsym $MOD+$CTL+Down  $exec ~/bin/sound mpd vol -10 ODROID
+		bindsym $MOD+$CTL+Left  $exec ~/bin/sound mpd sat stop
+		bindsym $MOD+$CTL+Right $exec ~/bin/sound mpd sat start
+		#
+		bindsym $MOD+$ALT+Up    $exec ~/bin/sound mpd misc shuffle
+		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd misc repair
+		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa get notify
+		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd player get
+	# }}}
+	# {{{ brightness
+		#TODO
+		#bind $MOD+87 $exec xbacklight -set 10
+		#bind $MOD+88 $exec xbacklight -set 20
+		#bind $MOD+89 $exec xbacklight -set 30
+		#bind $MOD+83 $exec xbacklight -set 40
+		#bind $MOD+84 $exec xbacklight -set 50
+		#bind $MOD+85 $exec xbacklight -set 60
+		#bind $MOD+79 $exec xbacklight -set 70
+		#bind $MOD+80 $exec xbacklight -set 80
+		#bind $MOD+81 $exec xbacklight -set 90
+		#bind $MOD+91 $exec xbacklight -set 0
+		#bind $MOD+90 $exec xbacklight -set 100
+	# }}}
+# }}}
+# {{{ nop
+	bindsym $MOD+$ALT+space        nop "Discord: push to talk"
+	bindsym button9 --whole-window nop "libinput: trackball button scrolling"
+# }}}
+
+
+
+# End of config
+
+
+

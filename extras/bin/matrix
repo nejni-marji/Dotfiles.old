@@ -1,0 +1,5 @@
+#!/bin/bash
+COLORS=(red green blue cyan magenta yellow)
+NUM=$(($RANDOM%6))
+COLOR=${COLORS[$NUM]}
+cmatrix -b -u 9 -C $COLOR ${@}

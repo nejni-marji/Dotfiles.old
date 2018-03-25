@@ -1,0 +1,10 @@
+#!/bin/bash
+
+~/bin/del playlist.m3u
+
+for i in $(cat batch); do
+	youtube-dl --output "#EXTM3U"$'\n'"#EXTINF:%(duration)s,%(title)s"$'\n'"$PWD/%(id)s.%(ext)s" --get-filename --format best -- $i >> playlist.m3u
+	youtube-dl --output                                                         "%(id)s.%(ext)s" --write-sub    --format best -- $i
+	#youtube-dl --output                                                         "%(id)s.%(ext)s"                --format best -- $i
+	sleep .5
+done

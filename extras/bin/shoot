@@ -1,0 +1,6 @@
+#!/bin/bash
+export DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$DIR"
+scrot "$@" -e "
+mv \$f $DIR/ && ln -sf $DIR/\$f $DIR/Latest.png
+" "%F-%H%M%S_\$wx\$h_$(hostname).png"

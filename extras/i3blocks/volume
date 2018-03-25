@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if ! ~/bin/sound pa get >/dev/null; then
+	echo Err
+	echo Err
+	echo "#FF0000"
+	exit
+fi
+
+~/bin/sound pa get | { a="$(</dev/stdin)";  echo "$a"; echo "$a"; }
+
+MUTE=$(pactl list sinks | grep '^\s*Mute:' | awk '{print $2}' | head -n1)
+
+if [[ "$MUTE" = "yes" ]]; then
+	echo "#FFFF00"
+fi

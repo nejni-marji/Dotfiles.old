@@ -1,0 +1,12 @@
+#!/bin/bash
+
+FILE=$HOME/brightness
+if [[ -f "$FILE" ]]; then
+	xbacklight -set $(cat $FILE)
+	rm $FILE
+else
+	GET=$(xbacklight -get)
+	echo $GET > $FILE
+	SET=$(python -c "print($GET/2)")
+	xbacklight -set $SET
+fi

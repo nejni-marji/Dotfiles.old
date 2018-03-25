@@ -1,0 +1,50 @@
+#!/bin/bash
+export MPC_FORMAT='[[\[%album%\] ][%artist% - ]%title%]'
+export MPD_HOST=odroid
+
+# if mpd is not running
+if [[ -z "$(mpc status)" ]]; then
+	#ssh odroid systemctl --user start mpd # commented from ASUS.Arch 2018-02-12
+	# it causes an unneeded ssh prompt at boot when not on the right network
+	echo Down
+	echo Down
+	echo "#FF0000"
+fi
+
+CURRENT=$(mpc current)
+POSITION="$(mpc | grep -E '^\[(playing|paused)\]' | awk '{print $3}')"
+VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
+STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
+MODES="$({
+	MPC=$(mpc status | tail -n1)
+	MODES=(repeat random single consume)
+	TRUE=(E R S C)
+	FALSE=(e r s c)
+
+	for i in $(seq 0 3); do
+		echo $MPC | grep -Po "(?<=${MODES[$i]}: )o(ff|n)" \
+		| grep "on" >/dev/null \
+		&& echo -n ${TRUE[$i]} || echo -n ${FALSE[$i]}
+	done
+	echo
+})"
+
+OUTPUT="$MODES $VOLUME"
+[[ -z $POSITION ]] || OUTPUT="$POSITION $OUTPUT"
+[[ -z $CURRENT ]]  || OUTPUT="$CURRENT $OUTPUT"
+
+if [[ $(echo $OUTPUT | tr 'ERSC' 'ersc') == 'ersc n/a' ]]; then
+	OUTPUT='*'
+	exit
+fi
+
+echo "$OUTPUT"
+echo "$VOLUME"
+
+if [[ -z "$STATE" ]]; then
+	echo "#999999"
+elif [[ "$STATE" = "playing" ]]; then
+	echo "#00CC00"
+elif [[ "$STATE" = "paused" ]]; then
+	echo "#FFFF00"
+fi

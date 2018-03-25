@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# This is a redshift-gtk control script
+#
+
+pgrep blueman
+if [[ "$?" != 0 ]]; then
+	blueman-applet &
+else
+	pkill blueman
+fi

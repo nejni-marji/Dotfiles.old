@@ -1,0 +1,71 @@
+#!/usr/bin/python
+from __future__ import print_function
+import sys
+from subprocess import Popen, PIPE, call
+import argparse
+
+parser = argparse.ArgumentParser(
+	description='Volctl is a program to control volume levels and mute states with PulseAudio.'
+)
+
+# Set arguments
+sos_choices = ('sinks', 'sources', 'sink-inputs', 'source-outputs')
+parser.add_argument('-s', '--sink-or-source', action = 'store', choices = sos_choices, dest = 'sos')
+parser.add_argument('-v', '--volume', action = 'store')
+#parser.add_argument('-m', '--mute-toggle', action = 'store_true')
+#parser.add_argument('-M', '--mute-set', action = 'store', choices = ('off', 'on'))
+#parser.add_argument('-l', '--display', action = 'store_true')
+#parser.add_argument('-L', '--display-all', action = 'store_true')
+args = parser.parse_args()
+
+def get_sink():
+	p1 = Popen(['pactl', 'list', args.sos], stdin=PIPE, stdout=PIPE)
+	p2 = Popen(['grep', '-E', '(Sink|Source) #'], stdin=p1.stdout, stdout=PIPE)
+	p3 = Popen(['grep', '-o', '[[:digit:]]*'], stdin=p2.stdout, stdout=PIPE)
+	return p3.communicate()[0].strip().decode('ascii')
+
+print(get_sink())
+exit()
+
+# {{{ Setting variables
+# Set sink_type
+if args.sink != None:
+	sink_type = 'sink-input'
+else:
+	sink_type = 'sink'
+# Set sink
+if sink_type == 'sink-input':
+	sink = args.sink
+else:
+	sink = get_sink()
+# Set volume
+if args.volume != None:
+	if args.volume[0] in '-+':
+		rel = args.volume[0]
+	else:
+		rel = ''
+	try:
+		volume = abs(int(args.volume))
+	except ValueError:
+		print('Volume has to be an integer through 0 and 100.', file=sys.stderr)
+		exit()
+# Set mute
+if args.mute_toggle:
+	mute = 'toggle'
+# }}}
+
+# Execution
+try:
+	if volume:
+		print('pactl set-%s-volume %s %s%r%%' % (sink_type, sink, rel, int(volume)))
+		call('pactl set-%s-volume %s %s%r%%' % (sink_type, sink, rel, int(volume)), shell=True)
+except:
+	pass
+if args.mute_toggle:
+	call('pactl set-%s-mute %s toggle' % (sink_type, sink), shell=True)
+if args.mute_set:
+	call('pactl set-%s-mute %s %s' % (sink_type, sink, args.mute_set), shell=True)
+if args.display_all:
+	call('pactl list sink-inputs', shell=True)
+elif args.display:
+	call('pactl list sink-inputs | grep -E \'Sink Input|Corked|Mute|Volume|\.name|application\.process\.binary\'', shell=True)

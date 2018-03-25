@@ -1,0 +1,4 @@
+add config.bak back into the thing
+error reporting for plugins
+per-plugin configs???
+write a demo?

@@ -1,0 +1,71 @@
+!
+! ~/.Xresources
+!
+
+! For proper functionality, be sure to run this:
+! ln -s ~/.Xresources ~/.Xdefaults
+
+! {{{ urxvt
+! font
+URxvt.font: xft:monospace:size=8
+URxvt.perl-ext-common: resize-font
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger:  C-Up
+
+! background
+URxvt.background: black
+URxvt.foreground: white
+URxvt.depth: 32
+URxvt.background: [75]#000000
+
+! user interface
+URxvt.scrollBar: false
+
+! bells
+URxvt.visualBell:  true
+Rxvt.urgentOnBell: true
+
+! URLs
+URxvt.perl-ext: default,url-select
+URxvt.keysym.M-o: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+
+! color
+! black red green yellow blue magenta cyan white
+URxvt.color0:  rgb:00/00/00
+URxvt.color1:  rgb:ff/3f/3f
+URxvt.color2:  rgb:3f/ff/3f
+URxvt.color3:  rgb:ff/ff/3f
+URxvt.color4:  rgb:3f/3f/ff
+URxvt.color5:  rgb:ff/3f/ff
+URxvt.color6:  rgb:3f/ff/ff
+URxvt.color7:  rgb:ee/ee/ee
+! black red green yellow blue magenta cyan white
+URxvt.color8:  rgb:ff/ff/ff
+URxvt.color9:  rgb:ff/5f/5f
+URxvt.color10: rgb:5f/ff/5f
+URxvt.color11: rgb:ff/ff/5f
+URxvt.color12: rgb:5f/5f/ff
+URxvt.color13: rgb:ff/5f/ff
+URxvt.color14: rgb:5f/ff/ff
+URxvt.color15: rgb:ff/ff/ff
+! }}}
+
+! {{{ rofi
+rofi.i: true
+rofi.lines: 10
+rofi.columns: 9
+rofi.location: 1
+rofi.width: 100
+rofi.bw: 0
+rofi.line-margin: 0
+rofi.separator-style: none
+rofi.font: monospace 10
+rofi.disable-history: true
+rofi.hide-scrollbar: true
+rofi.color-window: #404040, #404040, #ffffff
+rofi.color-normal: #404040, #aaaaaa, #404040, #800080, #ffffff
+rofi.color-urgent: #404040, #aaaaaa, #404040, #800080, #ffffff
+rofi.color-active: #404040, #aaaaaa, #404040, #800080, #ffffff
+! }}}

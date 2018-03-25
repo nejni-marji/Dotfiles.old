@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+
+from subprocess import call
+import argparse
+
+parser = argparse.ArgumentParser(
+	description = 'Runs setxkbmap in various ways, calling xmodmap at the end.'
+)
+
+presets = {
+	'dvorak': '-layout us -variant dvorak',
+	'qwerty': '-layout us',
+	'dvorak-esperanto': '-layout us,epo -variant dvorak, -option grp:alt_space_toggle',
+	'dvorak-qwerty': '-layout us,us -variant dvorak, -option grp:alt_space_toggle',
+	'dvorak-russian': '-layout us,ru -variant dvorak, -option grp:alt_space_toggle',
+	'qwerty-dvorak': '-layout us,us -variant ,dvorak -option grp:alt_space_toggle',
+}
+presets_abbr = {
+	'dv': 'dvorak',
+	'qw': 'qwerty',
+	'dv-eo': 'dvorak-esperanto',
+	'dv-qw': 'dvorak-qwerty',
+	'dv-ru': 'dvorak-russian',
+	'qw-dv': 'qwerty-dvorak',
+}
+
+parser.add_argument(
+	'-k',
+	dest = 'keymap',
+	action = 'store_true',
+	help = 'use preset keymap',
+)
+parser.add_argument(
+	'-l',
+	dest = 'list',
+	action = 'store_true',
+	help = 'list preset keymaps',
+)
+parser.add_argument(
+	'-L',
+	dest = 'list_abbr',
+	action = 'store_true',
+	help = 'list preset keymap abbreviations',
+)
+parser.add_argument(
+	dest = 'setxkbmap',
+	metavar = 'ARG',
+	action = 'store',
+	nargs = '*',
+	help = 'pass args to setxkbmap if not using a preset',
+)
+args = parser.parse_args()
+
+setxkbmap = ' '.join(args.setxkbmap)
+
+if args.list:
+	for i in presets:
+		print('%s: %s' % (i, presets[i]))
+	exit()
+
+if args.list_abbr:
+	for i in presets_abbr:
+		print('%s: %s' % (i, presets_abbr[i]))
+	exit()
+
+if args.keymap:
+	if setxkbmap in presets_abbr:
+		setxkbmap = presets_abbr[setxkbmap]
+	if setxkbmap in presets:
+		setxkbmap = presets[setxkbmap]
+
+print('setxkbmap {}'.format(setxkbmap))
+call('setxkbmap {}'.format(setxkbmap), shell = True)
+print('setxkbmap && xmodmap ~/.xmodmaprc')
+call('setxkbmap && xmodmap ~/.xmodmaprc', shell = True)

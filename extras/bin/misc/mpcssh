@@ -1,0 +1,7 @@
+#!/bin/bash
+mapfile -t CLIENTS < <(~/bin/ssh-clients)
+if [[ "${#CLIENTS[@]}" == 1 ]]; then
+	mpc -h $CLIENTS "$@"
+else
+	echo "There is more than one SSH client connected."
+fi

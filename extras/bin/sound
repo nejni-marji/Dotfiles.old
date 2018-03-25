@@ -1,0 +1,351 @@
+#!/bin/bash
+#
+# ~/bin/sound
+#
+
+###############################################################################
+# Here are the extra reference functions (debug utils, etc).
+###############################################################################
+
+debug() {
+	echo "If you're seeing this, it means Nejni hasn't written help docs yet."
+	echo "$@"
+	exit
+}
+
+mpd_notify() {
+	export MPD_HOST=ODROID
+
+	export MPC_FORMAT='[%title%|%file%]|Stopped'
+	SUMMARY=$(mpc current | perl -pe 's/&/&amp;/g' | grep . || echo 'Stopped')
+
+	export MPC_FORMAT='[By: %albumartist% ][<i>\[%album%\]</i>]|Unknown'
+	INFO=$(mpc current | perl -pe 's/&/&amp;/g')
+
+	REM_VOL="$(mpc volume | cut -c8- | tr -d ' ')"
+	LOC_VOL="$(MPD_HOST=localhost mpc volume | cut -c8- | tr -d ' ')"
+	VOLUME="($(hostname): $LOC_VOL, ODROID: $REM_VOL)"
+
+	EXTRAS="<i>$@</i>"
+
+	if [[ $SUMMARY == Stopped ]] && [[ -z $1 ]]; then
+		BODY=""
+	elif [[ $SUMMARY == Stopped ]] && ! [[ -z $1 ]]; then
+		BODY="$EXTRAS"
+	elif [[ $SUMMARY != Stopped ]] && [[ -z $1 ]]; then
+		BODY="$INFO\n$VOLUME"
+	elif [[ $SUMMARY != Stopped ]] && ! [[ -z $1 ]]; then
+		BODY="$INFO\n$VOLUME\n$EXTRAS"
+	else
+		echo "ERROR: This message should never appear."
+		exit 1
+	fi
+
+	notify-send -t 2000 -a "MPD" "$SUMMARY" "$BODY"
+
+	unset MPD_HOST
+	unset MPC_FORMAT
+}
+
+mpd_shuffle() {
+	export MPD_HOST=ODROID
+
+	mpc stop
+
+	if [[ $1 =~ a|all ]]; then
+		notify-send -t 2000 -a MPD Shuffling... Library
+	else
+		notify-send -t 2000 -a MPD Shuffling... Playlist
+	fi
+
+	OFF=(repeat random single consume)
+	for i in "${OFF[@]}"; do
+		mpc $i off
+	done
+
+	if [[ $1 =~ a|all ]]; then
+		echo Adding all tracks...
+		mpc clear
+		mpc listall | mpc add
+	fi
+
+	mpc add dummy.ogg
+	sleep .01
+	mpc mv $(mpc playlist | wc -l) 1
+	sleep .01
+	mpc random on
+	sleep .01
+	mpc repeat on
+	sleep .01
+	mpc play 1
+	sleep .01
+	mpc next
+	sleep .01
+	mpc del 1
+	sleep .01
+	mpc stop
+
+	unset MPD_HOST
+
+	sound_mpd_satellite_start
+}
+
+SINK='@DEFAULT_SINK@'
+
+get_volume() {
+	V_COUNT=$(pactl list sinks | grep -E '^\s*Volume:' | grep -Po '\d+%' | wc -l)
+	VOLUMES=$(pactl list sinks | grep -E '^\s*Volume:' | grep -Po '\d+%')
+	if [[ $V_COUNT == 1 ]]; then
+		export VOLUME="$VOLUMES"
+	else
+		LV=$(echo $VOLUMES | awk '{print $1}')
+		RV=$(echo $VOLUMES | awk '{print $2}')
+		if [[ $LV == $RV ]]; then
+			export VOLUME="$LV"
+		else
+			export VOLUME="$LV,$RV"
+		fi
+	fi
+	# also get the mute state
+	MUTE="$(pactl list sinks | grep -P "^(Sink #$SINK|\sMute: )" | grep -Po '(?<=: ).*')"
+}
+
+###############################################################################
+# Here are the main function definitions for this script.
+###############################################################################
+
+sound_pa_mute() {
+	pactl set-sink-mute $SINK toggle
+	if [[ $1 == notify ]]; then
+		MUTE="$(pactl list sinks | grep -P "^(Sink #$SINK|\sMute: )" | grep -Po '(?<=: ).*')"
+		[[ $MUTE == yes ]] && notify-send -t 2000 -a PulseAudio Volume Muted
+		[[ $MUTE == no  ]] && notify-send -t 2000 -a PulseAudio Volume Unmuted
+	fi
+}
+
+sound_pa_get() {
+	get_volume
+	echo $VOLUME
+	if [[ $1 == notify ]]; then
+		[[ $MUTE == yes ]] && VOLUME+=" (Muted)"
+		notify-send -t 2000 -a PulseAudio Volume "$VOLUME"
+	fi
+}
+
+sound_pa_set() {
+	VOL=$1
+	[[ $VOL =~ % ]] || VOL="$VOL%"
+
+	pactl set-sink-volume $SINK "$VOL"
+	if [[ $2 == notify ]]; then
+		get_volume
+		VOLUME="$VOLUME ($VOL)"
+		[[ $MUTE == yes ]] && VOLUME+=" (Muted)"
+		notify-send -t 2000 -a PulseAudio -- Volume "$VOLUME"
+	fi
+}
+
+sound_mpd_volume() {
+	VOL=$1
+	VOL=$(echo $VOL | tr -d '%')
+
+	HOST=$2
+	[[ -z $HOST ]] && HOST=localhost
+
+	[[ -z $VOL ]] && VOL="+0" #TODO
+	#[[ -z $VOL ]] && exit 1
+	mpc -h $HOST volume $VOL
+	[[ $HOST == localhost ]] && HOST="$(hostname)"
+	mpd_notify "Volume $VOL on $HOST"
+}
+
+sound_mpd_player_prev() {
+	mpc -h ODROID prev
+	mpd_notify 'Previous'
+}
+
+sound_mpd_player_next() {
+	mpc -h ODROID next
+	mpd_notify 'Next'
+}
+
+sound_mpd_player_toggle() {
+	mpc -h ODROID toggle
+	mpd_notify 'Toggle'
+}
+
+sound_mpd_player_get() {
+	POSITION="$( \
+		mpc -h ODROID \
+		| grep -E '^\[(playing|paused)\]' \
+		| awk '{print $3}' \
+	)"
+	mpd_notify $POSITION
+}
+
+sound_mpd_player_stop() {
+	mpc -h localhost stop
+	notify-send -a MPD 'Stopped' '<i>MPD local server stopped</i>'
+}
+
+sound_mpd_toggle() {
+	case $1 in
+		e|repeat)
+			ACT=repeat
+		;;
+		r|random)
+			ACT=random
+		;;
+		s|single)
+			ACT=single
+		;;
+		c|consume)
+			ACT=consume
+		;;
+		*)
+			debug 'sound mpd toggle [repeat|random|single|consume] [on|off]'
+		;;
+	esac
+
+	[[ -z $2 ]] || [[ $2 =~ on|off ]] || debug 'sound mpd toggle [repeat|random|single|consume] [on|off]'
+
+	mpc -h ODROID $ACT $2
+}
+
+sound_mpd_satellite_start() {
+	HOST=$1
+	[[ -z $HOST ]] && HOST=ODROID
+
+	notify-send -t 2000 -a MPD 'MPD Satellite' "Connecting to $HOST"
+	if [[ $HOST == ODROID ]]; then
+		mpc -h ODROID enable lan
+		mpc -h ODROID play
+	fi
+	mpc clear
+	mpc stop
+	mpc load $HOST
+	mpc play
+	# test success
+	COUNT=1
+	while [[ $COUNT -le 3 ]]; do
+		mpc -h $HOST && mpc idle && {
+			mpd_notify "Satellite to $HOST successful"
+			break
+		} || {
+			mpd_notify "Satellite to $HOST unsuccessful ($COUNT/3)"
+			sleep 2
+			COUNT=$(($COUNT+1))
+			[[ $COUNT -gt 3 ]] && exit 1
+		}
+	done
+}
+
+sound_mpd_satellite_stop() {
+	HOST=$1
+	[[ -z $HOST ]] && HOST=ODROID
+	mpc -h $HOST stop
+	mpc -h localhost stop
+	mpd_notify "MPD Satellite to $HOST stopped"
+}
+
+sound_mpd_misc_repair() {
+	notify-send -t 2000 -a MPD 'Restarting service'
+	ssh ODROID systemctl --user restart mpd
+}
+
+sound_mpd_misc_shuffle() {
+	mpd_shuffle "${@:1}"
+}
+
+###############################################################################
+# Here are the case statements that determine which functions to run.
+###############################################################################
+
+case $1 in
+	p|pa)
+		case $2 in
+			m|mute)
+				sound_pa_mute ${@:3}
+			;;
+			g|get)
+				sound_pa_get ${@:3}
+			;;
+			s|set)
+				sound_pa_set ${@:3}
+			;;
+			*)
+				debug 'sound pa [mute|get|set]'
+			;;
+		esac
+	;;
+	m|mpc|mpd)
+		case $2 in
+			v|vol|volume)
+				sound_mpd_volume ${@:3}
+			;;
+			p|player)
+				case $3 in
+					p|prev)
+						sound_mpd_player_prev ${@:4}
+					;;
+					n|next)
+						sound_mpd_player_next ${@:4}
+					;;
+					t|toggle)
+						sound_mpd_player_toggle ${@:4}
+					;;
+					g|get)
+						sound_mpd_player_get ${@:4}
+					;;
+					s|stop)
+						sound_mpd_player_stop ${@:4}
+					;;
+					*)
+						debug 'sound mpd player [prev|next|toggle|get]'
+					;;
+				esac
+			;;
+			t|toggle)
+				sound_mpd_toggle ${@:3}
+			;;
+			s|sat|satellite)
+				case $3 in
+					1|on|start)
+						sound_mpd_satellite_start ${@:4}
+					;;
+					0|off|stop)
+						sound_mpd_satellite_stop ${@:4}
+					;;
+					*)
+						debug 'mpd satellite [start|stop]'
+					;;
+				esac
+			;;
+			m|misc)
+				case $3 in
+					r|repair)
+						sound_mpd_misc_repair ${@:4}
+					;;
+					s|shuffle)
+						sound_mpd_misc_shuffle ${@:4}
+					;;
+					*)
+						debug 'mpd misc [repair|shuffle]'
+					;;
+				esac
+			;;
+			*)
+				debug 'sound mpd [volume|player|sat|misc]'
+			;;
+		esac
+	;;
+	-h|--help|help)
+		debug 'sound help: INCOMPLETE (sorry)'
+	;;
+	nop)
+		exit 0
+	;;
+	*)
+		debug 'sound [pa|mpd]'
+	;;
+esac

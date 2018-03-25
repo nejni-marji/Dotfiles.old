@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo Shuffling library...
+mpc clear        > /dev/null
+mpc listall | head -n1 | mpc add
+mpc listall | mpc add
+mpc repeat  off  > /dev/null
+mpc random  on   > /dev/null
+mpc single  off  > /dev/null
+mpc consume on   > /dev/null
+mpc next        2> /dev/null
+mpc consume off  > /dev/null

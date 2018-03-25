@@ -1,0 +1,70 @@
+#!/bin/bash
+
+HOSTS=(odroid nej.ninja 73.74.38.234)
+host() { for i in ${HOSTS[*]}; do ssh -o 'ConnectTimeout=1' $i hostname 2>/dev/null >/dev/null && HOST=$i && break; done; echo $HOST; }
+
+[[ -z "$HOST" ]] && HOST=odroid
+USE_TERM=true
+
+case $1 in
+	h|help|-h|--help)
+		echo "HOST: $HOST"
+		echo 'h: help'
+		echo 'm: mosh'
+		echo 's: ssh'
+		echo 't: tmx'
+		echo 'd: tmx -d'
+		echo 'r: ranger'
+		echo 'v: vimpc'
+		echo 'f: sshfs'
+		echo 'u: unmount sshfs'
+		echo '*: run command in mosh'
+		;;
+	m|mosh)
+		RUN=(mosh $HOST -- ${@:2})
+		TITLE='mosh'
+		;;
+	s|ssh)
+		RUN=(ssh $HOST -- ${@:2})
+		TITLE='ssh'
+		;;
+	t|tmx|tmux)
+		RUN=(mosh $HOST -- ~/bin/tmx ${@:2})
+		TITLE='tmux'
+		;;
+	d|td|tmxd|tmuxd)
+		RUN=(mosh $HOST -- ~/bin/tmx -d ${@:2})
+		TITLE='tmuxd'
+		;;
+	r|ranger)
+		RUN=(mosh $HOST -- ranger ${@:2})
+		TITLE='ranger'
+		;;
+	v|vimpc)
+		RUN=(mosh $HOST -- vimpc)
+		TITLE='vimpc'
+		;;
+	f|fs|sshfs)
+		RUN=(sshfs $HOST:Media ~/Mount/$HOST)
+		USE_TERM=false
+		;;
+	u|unmount)
+		RUN=(fusermount -u ~/Mount/$HOST)
+		USE_TERM=false
+		;;
+	p|ping)
+		RUN=(ping $HOST)
+		TITLE='ping'
+		;;
+	*)
+		RUN=(mosh $HOST -- ${@:1})
+		TITLE="${@:1}"
+		;;
+esac
+
+
+if $USE_TERM && [[ -z "$WINDOWID" ]]; then
+	urxvt -T "remote $1" -e ${RUN[*]}
+else
+	${RUN[*]}
+fi
