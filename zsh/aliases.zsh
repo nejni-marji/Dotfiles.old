@@ -47,13 +47,17 @@ alias ydl18="youtube-dl --restrict-filenames -f 18 -o '%(title)s-%(id)s.%(format
 alias ydlx="youtube-dl --restrict-filenames -o '%(extractor)s_%(title)s-%(id)s.%(format_id)s.%(ext)s'"
 
 # git aliases
-alias gst='git status'
-alias gstv='git status -v'
-alias gcm='git commit'
-alias gdf='git diff'
-alias gdfv='git diff -v'
+alias gs='git status'
+alias gd='git diff'
+alias gsv='git status -v'
+alias gdv='git diff -v'
 alias gsh='git stash'
+alias ga='git add'
 alias gaa='git add -A'
+alias gcm='git commit -m'
+alias gpu='git push'
+alias gl='git log --color --decorate'
+alias glh='git log --color --decorate | head -n41'
 
 # typos
 alias ccl='cl'
