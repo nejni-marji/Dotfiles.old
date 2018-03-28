@@ -3,5 +3,4 @@ set smartcase
 set windownumbers
 set expand-artists
 set sortignorethe
-playlist
-normal f
+lists
