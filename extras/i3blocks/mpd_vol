@@ -6,34 +6,17 @@ if [[ -z "$(mpc status)" ]]; then
 	echo Down
 	echo Down
 	echo "#FF0000"
-fi
-
-STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
-activate() {
-	if [[ -z "$STATE" ]]; then
-		~/bin/mpdsat
-	else
-		mpc toggle
-	fi
-}
-
-VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
-STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
-
-OUTPUT="$VOLUME"
-
-if [[ $OUTPUT == 'n/a' ]]; then
-	OUTPUT='*'
 	exit
 fi
 
-echo "$OUTPUT"
-echo "$OUTPUT"
+STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
+[[ -z $STATE ]] && exit
+VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
 
-if [[ -z "$STATE" ]]; then
-	echo "#999999"
-elif [[ "$STATE" = "playing" ]]; then
-	echo "#00CC00"
-elif [[ "$STATE" = "paused" ]]; then
-	echo "#FFFF00"
-fi
+DATA="$VOLUME"
+
+echo "$DATA"
+echo "$DATA"
+
+[[ $STATE -eq playing ]] && echo "#00CC00"
+[[ $STATE -eq paused  ]] && echo "#FFFF00"

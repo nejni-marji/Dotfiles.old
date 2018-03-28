@@ -1,20 +1,20 @@
 #!/bin/bash
-export MPC_FORMAT='[[\[%album%\] ][%artist% - ]%title%]'
+export MPC_FORMAT='[[\[%album%\] ][%artist% - ]%title%]|[%file%]'
 export MPD_HOST=odroid
 
 # if mpd is not running
 if [[ -z "$(mpc status)" ]]; then
-	#ssh odroid systemctl --user start mpd # commented from ASUS.Arch 2018-02-12
-	# it causes an unneeded ssh prompt at boot when not on the right network
 	echo Down
 	echo Down
 	echo "#FF0000"
+	exit
 fi
 
+STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
+[[ -z $STATE ]] && exit
+VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
 CURRENT=$(mpc current)
 POSITION="$(mpc | grep -E '^\[(playing|paused)\]' | awk '{print $3}')"
-VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
-STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
 MODES="$({
 	MPC=$(mpc status | tail -n1)
 	MODES=(repeat random single consume)
@@ -29,22 +29,11 @@ MODES="$({
 	echo
 })"
 
-OUTPUT="$MODES $VOLUME"
-[[ -z $POSITION ]] || OUTPUT="$POSITION $OUTPUT"
-[[ -z $CURRENT ]]  || OUTPUT="$CURRENT $OUTPUT"
+DATA="$POSITION $MODES"
+[[ $VOLUME == "n/a" ]] || DATA="$DATA $VOLUME"
 
-if [[ $(echo $OUTPUT | tr 'ERSC' 'ersc') == 'ersc n/a' ]]; then
-	OUTPUT='*'
-	exit
-fi
+echo "$CURRENT $DATA"
+echo "$DATA"
 
-echo "$OUTPUT"
-echo "$VOLUME"
-
-if [[ -z "$STATE" ]]; then
-	echo "#999999"
-elif [[ "$STATE" = "playing" ]]; then
-	echo "#00CC00"
-elif [[ "$STATE" = "paused" ]]; then
-	echo "#FFFF00"
-fi
+[[ $STATE -eq playing ]] && echo "#00CC00"
+[[ $STATE -eq paused  ]] && echo "#FFFF00"
