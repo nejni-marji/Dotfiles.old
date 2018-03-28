@@ -1,38 +1,37 @@
 #!/bin/bash
-pac="$(checkupdates)"
-aur="$(cower -u --ignore "libc++,libc++abi")"
-#aur="$(echo -e)"
-pacn="$(echo "$pac" | wc -l)"
-aurn="$(echo "$aur" | wc -l)"
+PAC="$(checkupdates)"
+AUR="$(cower -u --ignore "libc++,libc++abi")"
+PACN="$(echo "$PAC" | wc -l)"
+AURN="$(echo "$AUR" | wc -l)"
 
-if ! [[ $pac ]]; then
-	pacn="0"
+if ! [[ $PAC ]]; then
+	PACN="0"
 fi
-if ! [[ $aur ]]; then
-	aurn="0"
+if ! [[ $AUR ]]; then
+	AURN="0"
 fi
-check="$(($pacn+$aurn))"
-linux="$(echo "$pac" | grep -c linux)"
+CHECK="$(($PACN+$AURN))"
+LINUX="$(echo "$PAC" | grep -c linux)"
 
-if [[ $check == 0 ]]; then
+if [[ $CHECK == 0 ]]; then
 	exit
 fi
 
-text="$check"
-if [[ $aur ]]; then
-	text="$text/$aurn"
+text="$CHECK"
+if [[ $AUR ]]; then
+	text="$text/$AURN"
 fi
-if [[ $linux != "0" ]]; then
+if [[ $LINUX != "0" ]]; then
 	text="$text!"
 fi
 
 echo $text
 echo $text
 
-if [[ $check -gt 50 ]]; then
+if [[ $CHECK -gt 50 ]]; then
 	echo "#FF0000"
-elif [[ $check -gt 25 ]]; then
+elif [[ $CHECK -gt 25 ]]; then
 	echo "#FFFF00"
-elif [[ $check == 0 ]]; then
+elif [[ $CHECK == 0 ]]; then
 	echo "#00FF00"
 fi
