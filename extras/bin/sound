@@ -212,26 +212,22 @@ sound_mpd_toggle() {
 }
 
 sound_mpd_satellite_start() {
-	HOST=$1
-	[[ -z $HOST ]] && HOST=ODROID
-
-	notify-send -t 2000 -a MPD 'MPD Satellite' "Connecting to $HOST"
-	if [[ $HOST == ODROID ]]; then
-		mpc -h ODROID enable only LAN
-		mpc -h ODROID play
-	fi
+	notify-send -t 2000 -a MPD 'MPD Satellite' "Connecting to ODROID"
+	mpc -h ODROID enable only LAN
+	mpc -h ODROID play
 	mpc clear
 	mpc stop
-	mpc load $HOST
+	mpc load ODROID
+	mpc enable PulseAudio
 	mpc play
 	# test success
 	COUNT=1
 	while [[ $COUNT -le 3 ]]; do
-		mpc -h $HOST && mpc idle && {
-			mpd_notify "Satellite to $HOST successful"
+		mpc -h ODROID && mpc idle && {
+			mpd_notify "Satellite to ODROID successful"
 			break
 		} || {
-			mpd_notify "Satellite to $HOST unsuccessful ($COUNT/3)"
+			mpd_notify "Satellite to ODROID unsuccessful ($COUNT/3)"
 			sleep 2
 			COUNT=$(($COUNT+1))
 			[[ $COUNT -gt 3 ]] && exit 1
@@ -240,11 +236,9 @@ sound_mpd_satellite_start() {
 }
 
 sound_mpd_satellite_stop() {
-	HOST=$1
-	[[ -z $HOST ]] && HOST=ODROID
-	mpc -h $HOST stop
+	mpc -h ODROID stop
 	mpc -h localhost stop
-	mpd_notify "MPD Satellite to $HOST stopped"
+	mpd_notify "MPD Satellite to ODROID stopped"
 }
 
 sound_mpd_misc_repair() {
