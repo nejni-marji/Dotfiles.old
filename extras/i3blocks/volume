@@ -7,7 +7,7 @@ if ! ~/bin/sound pa get >/dev/null; then
 	exit
 fi
 
-~/bin/sound pa get | { a="$(</dev/stdin)";  echo "$a"; echo "$a"; }
+~/bin/sound pa get | { a="$(</dev/stdin)"; echo "$a"; echo "$a"; }
 
 MUTE=$(pactl list sinks | grep '^\s*Mute:' | awk '{print $2}' | head -n1)
 
