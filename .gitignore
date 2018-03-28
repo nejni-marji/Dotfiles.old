@@ -3,10 +3,10 @@
 .stignore
 
 extras/config/ranger
-extras/config/mpd/*
+!extras/config/mpd/playlist/ODROID.m3u
 !extras/config/mpd/mpd.conf
-!extras/config/mpd/playlists
 extras/i3blocks/unused
+extras/config/mpd/*
 extras/vim
 
 i3/config
