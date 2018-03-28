@@ -5,7 +5,6 @@
 extras/config/ranger
 !extras/config/mpd/playlist/ODROID.m3u
 !extras/config/mpd/mpd.conf
-extras/i3blocks/unused
 extras/config/mpd/*
 extras/vim
 
