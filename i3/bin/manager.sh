@@ -53,9 +53,10 @@ exit-generic() {
 	exit
 }
 
-reset-compton() {
+reset-apps() {
 	pgrep -x compton && pkill -x compton
 	compton -b
+	pkill dunst
 }
 
 if [[ $1 == init ]]; then
@@ -78,7 +79,7 @@ fi
 [[ $1 == restart ]] && sleep .25
 i3-msg reload
 
-reset-compton
+reset-apps
 
 if [[ $1 == init ]]; then
 	notify-send -t 500 -a 'i3wm' 'i3wm' 'Initialized'
