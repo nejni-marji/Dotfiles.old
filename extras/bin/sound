@@ -217,7 +217,7 @@ sound_mpd_satellite_start() {
 
 	notify-send -t 2000 -a MPD 'MPD Satellite' "Connecting to $HOST"
 	if [[ $HOST == ODROID ]]; then
-		mpc -h ODROID enable lan
+		mpc -h ODROID enable only LAN
 		mpc -h ODROID play
 	fi
 	mpc clear
