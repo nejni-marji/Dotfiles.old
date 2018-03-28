@@ -1,6 +1,5 @@
 .stfolder
 .stversions
-.stignore
 
 extras/config/ranger
 !extras/config/mpd/playlist/ODROID.m3u
