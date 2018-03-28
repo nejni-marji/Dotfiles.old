@@ -1,9 +1,9 @@
-[submodule "vim/bundle/vim-gitgutter"]
-	path = vim/bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
-[submodule "vim/bundle/lightline.vim"]
-	path = vim/bundle/lightline.vim
-	url = https://github.com/itchyny/lightline.vim
 [submodule "extras/zsh-git-prompt"]
 	path = extras/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/bundle/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
