@@ -1,6 +1,6 @@
 #!/bin/bash
 PAC="$(checkupdates)"
-AUR="$(cower -u --ignore "libc++,libc++abi")"
+AUR="$(cower -u)"
 PACN="$(echo "$PAC" | wc -l)"
 AURN="$(echo "$AUR" | wc -l)"
 
