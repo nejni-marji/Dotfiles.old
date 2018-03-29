@@ -6,6 +6,7 @@
 # i3 config file (v4)
 
 exec_always $i3b/i3ipc_nop.py
+exec_always $i3b/bind_logging.py >> ~/.i3/data/bind_logs.txt
 bindsym $MOD+equal      nop ipc resize grow
 bindsym $MOD+$SHF+equal nop ipc resize shrink
 
