@@ -79,3 +79,11 @@ alias pa='pacauc'
 alias i3ctl='i3-msg -s $XDG_RUNTIME_DIR/i3/ipc-socket.$(pgrep -x i3)'
 alias vpn-up='sudo -k systemctl start openvpn-client@AirVPN.service'
 alias vpn-down='sudo -k systemctl stop openvpn-client@AirVPN.service'
+
+# thefuck
+eval $(thefuck --alias)
+alias shit='fuck'
+alias crap='fuck'
+alias ffs='fuck'
+alias wtf='fuck'
+alias f='fuck'
