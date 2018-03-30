@@ -33,6 +33,7 @@ alias alarm='echo -ne "\a"'
 alias subs='subliminal download -l en'
 alias updates='checkupdates && cower -u --ignore "libc++,libc++abi"'
 alias tags_backup='rsync -av --exclude=deletos/\* ~/Media/Archive/ odroid:Media/Archive/'
+alias i3ctl='i3-msg -s $XDG_RUNTIME_DIR/i3/ipc-socket.$(pgrep -x i3)'
 
 alias freq='sort -n | uniq -c | sort -n'
 alias freql='sort -n | uniq -c | sort -nr | less'
@@ -74,11 +75,6 @@ alias l='ls'
 alias v='vim'
 alias pm='pacman'
 alias pa='pacauc'
-
-# miscellaneous
-alias i3ctl='i3-msg -s $XDG_RUNTIME_DIR/i3/ipc-socket.$(pgrep -x i3)'
-alias vpn-up='sudo -k systemctl start openvpn-client@AirVPN.service'
-alias vpn-down='sudo -k systemctl stop openvpn-client@AirVPN.service'
 
 # thefuck
 eval $(thefuck --alias)
