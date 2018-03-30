@@ -7,3 +7,6 @@
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "extras/unimatrix"]
+	path = extras/unimatrix
+	url = https://github.com/will8211/unimatrix
