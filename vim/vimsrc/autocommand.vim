@@ -8,5 +8,5 @@ autocmd!
 " exit insert mode while idling
 	autocmd CursorHoldI * stopinsert
 	autocmd InsertEnter * let updaterestore=&updatetime
-	autocmd InsertEnter * let &updatetime=15000
+	autocmd InsertEnter * let &updatetime=4000
 	autocmd InsertLeave * let &updatetime=updaterestore
