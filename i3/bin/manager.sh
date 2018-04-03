@@ -6,7 +6,7 @@
 init-desktop() {
 	xrandr --output DVI-D-0 --primary
 	~/bin/m570_sensitivity.sh .15 1
-	setxkbmap -layout us
+	setxkbmap -layout us -variant dvorak
 }
 
 init-laptop() {
