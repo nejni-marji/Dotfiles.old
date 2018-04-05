@@ -2,6 +2,7 @@ extras/config/ranger
 !extras/config/mpd/mpd.conf
 !extras/config/mpd/playlists/*
 extras/config/mpd/*
-extras/vim/
+!extras/vim/*/.gitignore
+extras/vim/*/*
 
 #.git
