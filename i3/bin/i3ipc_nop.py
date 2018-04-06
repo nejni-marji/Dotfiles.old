@@ -31,17 +31,7 @@ def auto_resize(i3, event, args):
 	}[parent.layout]
 
 	command = 'resize {} {} 10 px or 10 ppt'.format(mode, layout)
-	#print(command)
 	i3.command(command)
-
-def info_debug(i3, event, args):
-	child = i3.get_tree().find_focused()
-	parent = child.parent
-	print('layout: ' + parent.layout)
-	[
-		print('percent: ' + str(i.percent))
-		for i in parent.nodes
-	]
 
 def on_bind(i3, event):
 	args = event.binding.command
@@ -54,7 +44,6 @@ def on_bind(i3, event):
 
 	commands = {
 		'resize': auto_resize,
-		'info': info_debug,
 	}
 	try:
 		commands[args[2]](i3, event, args[3:])
