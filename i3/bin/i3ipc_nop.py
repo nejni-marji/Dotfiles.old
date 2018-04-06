@@ -3,9 +3,8 @@ from i3ipc import Connection
 
 i3 = Connection()
 
-def auto_resize(i3, event, args):
+def resize(i3, event, args):
 	parent = i3.get_tree().find_focused().parent
-	layout = parent.layout
 
 	mode = args[0]
 	if not mode in ['grow', 'shrink']:
@@ -25,12 +24,12 @@ def auto_resize(i3, event, args):
 	if parent.parent.layout == 'output':
 		return None
 
-	layout = {
+	direction = {
 		'splith': 'width',
 		'splitv': 'height',
 	}[parent.layout]
 
-	command = 'resize {} {} 10 px or 10 ppt'.format(mode, layout)
+	command = 'resize {} {} 10 px or 10 ppt'.format(mode, direction)
 	i3.command(command)
 
 def on_bind(i3, event):
@@ -39,11 +38,9 @@ def on_bind(i3, event):
 	if not args.startswith('nop ipc'):
 		return None
 	args = args.split()
-	if not len(args) >= 4:
-		return None
 
 	commands = {
-		'resize': auto_resize,
+		'resize': resize,
 	}
 	try:
 		commands[args[2]](i3, event, args[3:])
