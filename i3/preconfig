@@ -249,6 +249,7 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 	bindsym $MOD+$SHF+Return      $exec urxvt -e zsh
 	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx
 	bindsym $MOD+$CTL+$SHF+Return $exec urxvt -e ranger
+	bindsym $MOD+$ALT+Return      $exec cool-retro-term -e zsh
 	# {{{ rofi
 		bindsym $MOD+backslash      $exec rofi \
 			-kb-row-select "Tab" -kb-row-tab "" \
