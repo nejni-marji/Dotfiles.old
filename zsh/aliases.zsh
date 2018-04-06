@@ -70,7 +70,6 @@ alias gerp='grep'
 
 # abbreviations
 alias t='todo.sh -d ~/Sync/todo/config'
-alias T='t ls -+av'
 alias l='ls'
 alias v='vim'
 alias pm='pacman'
