@@ -51,14 +51,7 @@ binds = {
 		'av': E('VirtualBox'),
 		'aV': E('vlc'),
 	# }}}
-	# {{{ goto
-		'gf': FC('Firefox'),
-		'gg': FC('Gimp'),
-		'gt': FC('TelegramDesktop'),
-		'gv': FC('Vlc'),
-	# }}}
 	# {{{ i3-wm
-		'iE': E(I('manager.sh edit vi3m')),
 		'iec': E(I('manager.sh edit main')),
 		'ieC': E(I('manager.sh edit true')),
 		'iev': E(I('manager.sh edit vi3m')),
@@ -86,8 +79,6 @@ binds = {
 		'mv': E('urxvt -e vimpc -h odroid'),
 	# }}}
 	# {{{ remote
-		'R' : E(B('ssha')),
-		'rR': E(B('remote')),
 		'rm': E(B(R('mosh'))),
 		'rs': E(B(R('ssh'))),
 		'rt': E(B(R('tmux'))),
@@ -119,7 +110,6 @@ binds = {
 		'uP': E('pavucontrol'),
 		'us': E('sc-controller && ' + B('keyswitch')),
 		'uS': E(S('pkill -x sc-controller && pkill -x scc-daemon')),
-		'uT': E(T('%s ~/Documents/todo.txt' % editor)),
 		'uf': E(B('feshot')),
 		'uF': E(B('feshot all')),
 	# }}}
