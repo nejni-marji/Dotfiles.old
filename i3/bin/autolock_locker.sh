@@ -20,11 +20,6 @@ if ! pgrep -x i3lock; then
 		touch $LOCK
 		locker
 
-		#sleep 5
-		#while pgrep -x i3lock; do
-			#sleep 1
-		#done
-		#sleep 5
 		sleep 1
 
 		rm $LOCK

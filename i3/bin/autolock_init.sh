@@ -25,5 +25,3 @@ xset dpms $DELAY $DELAY $DELAY
 xset s $DELAY $DELAY
 xset q | grep -A1 ^DPMS | tail -n1
 xset q | grep -A2 ^Screen\ Saver | tail -n1
-
-#notify-send -a xautolock "Screenlocker" "Locker: $LOCKER minutes<br>Screen: $SCREEN seconds<br>Notify: $NOTIFY seconds"
