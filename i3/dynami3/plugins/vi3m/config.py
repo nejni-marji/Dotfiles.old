@@ -104,7 +104,7 @@ binds = {
 		'tc': E(S('pkill -x compton || compton -b')),
 		'tC': E(S('pkill -x compton && compton -b || compton -b')),
 		'tr': E(S('pkill -x redshift-gtk && redshift -x || redshift-gtk')),
-		'tR': E(S('pkill -x redshift-gtk && redshift -O 3500 || redshift -O 3500')),
+		'tR': E(S('pkill -x redshift-gtk && redshift -O 4500 || redshift -O 4500')),
 	# }}}
 	# {{{ workspaces
 		'wm': E('i3-input '
@@ -124,10 +124,9 @@ binds = {
 		'uF': E(B('feshot all')),
 	# }}}
 	# {{{ misc
-		'zD': E('desmume'),
-		'zdp': E('desmume ~/Games/Emulators/NDS/Pokemon_Platinum_Norando_Fasttext_Noevos.nds'),
+		'zd': E('desmume'),
 		'zw': E('firefox --new-window wolframalpha.com'),
-		'zW': F('title', 'Wolfram\\|Alpha')
+		'zW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla Firefox$')
 			+ '; '
 			+ E('firefox wolframalpha.com'),
 	# }}}
