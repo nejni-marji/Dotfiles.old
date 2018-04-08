@@ -1,5 +1,5 @@
 #!/bin/bash
-dy_dir="$(dirname "${BASH_SOURCE[0]}")"
+dy_dir="$(dirname "${BASH_SOURCE[0]}")/.."
 lock_dir="$dy_dir/data/locks"
 [[ -z $2 ]] && exit
 lock="$lock_dir/$2.lck"

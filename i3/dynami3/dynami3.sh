@@ -2,7 +2,6 @@
 export dir=~/.i3
 export dy_dir="$(dirname "${BASH_SOURCE[0]}")"
 export plugins=$dy_dir/plugins
-export lock_cmd="$dy_dir/lock_dynami3.sh"
 
 export preconf=$dir/preconfig
 export tmpconf=$dy_dir/data/tmpconfig

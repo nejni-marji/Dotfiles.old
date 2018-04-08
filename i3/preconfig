@@ -26,7 +26,7 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 	set $exec exec --no-startup-id
 	set $nsi --no-startup-id
 	set $i3b ~/.i3/bin
-	set $lock exec --no-startup-id ~/.i3/dynami3/lock_dynami3.sh set
+	set $lock exec --no-startup-id ~/.i3/dynami3/bin/lock_dynami3.sh set
 # }}}
 # {{{ startup
 	exec_always $nsi $i3b/set_wallpaper.sh
