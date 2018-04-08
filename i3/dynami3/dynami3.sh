@@ -19,16 +19,7 @@ parse_config() {
 	| perl -pe 's/\s*(?=.$)\s//'
 }
 
-#parse_config
-#exit
-
 mapfile -t plugins_list < <(parse_config)
-
-#echo test:
-#for i in "${plugins_list[@]}"; do
-#	echo "$i"
-#done
-#exit
 
 for p_name in "${plugins_list[@]}"; do
 	export p_name="$p_name"
