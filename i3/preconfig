@@ -185,9 +185,8 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 	# }}}
 	# {{{ variables for directionals
 		set $dir_mov Shift
-		set $dir_r10 Mod1
-		set $dir_r05 Shift+Mod1
 		set $dir_swp Control
+		set $dir_res Mod1
 	# }}}
 	# {{{ directionals
 		# focus
@@ -200,21 +199,16 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym $MOD+$dir_mov+j move down
 		bindsym $MOD+$dir_mov+k move up
 		bindsym $MOD+$dir_mov+l move right
-		# resize 10
-		bindsym $MOD+$dir_r10+h resize shrink width  10 px or 10 ppt
-		bindsym $MOD+$dir_r10+j resize grow   height 10 px or 10 ppt
-		bindsym $MOD+$dir_r10+k resize shrink height 10 px or 10 ppt
-		bindsym $MOD+$dir_r10+l resize grow   width  10 px or 10 ppt
-		# resize 5
-		bindsym $MOD+$dir_r05+h resize shrink width  5 px or 5 ppt
-		bindsym $MOD+$dir_r05+j resize grow   height 5 px or 5 ppt
-		bindsym $MOD+$dir_r05+k resize shrink height 5 px or 5 ppt
-		bindsym $MOD+$dir_r05+l resize grow   width  5 px or 5 ppt
 		# swap
 		bindsym $MOD+$dir_swp+h mark A; focus left;  mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		bindsym $MOD+$dir_swp+j mark A; focus down;  mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		bindsym $MOD+$dir_swp+k mark A; focus up;    mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		bindsym $MOD+$dir_swp+l mark A; focus right; mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		# resize 10
+		bindsym $MOD+$dir_res+h resize shrink width  10 px or 10 ppt
+		bindsym $MOD+$dir_res+j resize grow   height 10 px or 10 ppt
+		bindsym $MOD+$dir_res+k resize shrink height 10 px or 10 ppt
+		bindsym $MOD+$dir_res+l resize grow   width  10 px or 10 ppt
 	# }}}
 	# {{{ tree
 		bindsym $MOD+g          focus parent
