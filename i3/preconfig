@@ -186,6 +186,7 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 	# {{{ variables for directionals
 		set $dir_mov Shift
 		set $dir_swp Control
+		set $dir_ful Shift+Control
 		set $dir_res Mod1
 	# }}}
 	# {{{ directionals
@@ -204,6 +205,11 @@ bindsym $MOD+$SHF+equal nop ipc resize shrink
 		bindsym $MOD+$dir_swp+j mark A; focus down;  mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		bindsym $MOD+$dir_swp+k mark A; focus up;    mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		bindsym $MOD+$dir_swp+l mark A; focus right; mark B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		# fullscreen
+		bindsym $MOD+$dir_ful+h fullscreen disable; focus left;  fullscreen enable
+		bindsym $MOD+$dir_ful+j fullscreen disable; focus down;  fullscreen enable
+		bindsym $MOD+$dir_ful+k fullscreen disable; focus up;    fullscreen enable
+		bindsym $MOD+$dir_ful+l fullscreen disable; focus right; fullscreen enable
 		# resize 10
 		bindsym $MOD+$dir_res+h resize shrink width  10 px or 10 ppt
 		bindsym $MOD+$dir_res+j resize grow   height 10 px or 10 ppt
