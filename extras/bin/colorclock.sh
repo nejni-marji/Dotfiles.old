@@ -115,6 +115,8 @@ case $opt_m in
 esac
 
 $opt_v && echo "Starting colorclock.sh using the $method method: $desc." >&2
+$opt_v && $opt_r randomize_color
+$opt_v && $opt_r && echo "Randomizer for the day: $order."
 
 cache=~/Media/Cache/clocks
 mkdir -p $cache
