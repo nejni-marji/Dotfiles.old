@@ -74,6 +74,7 @@ alias l='ls'
 alias v='vim'
 alias pm='pacman'
 alias pa='pacauc'
+alias wcl='wc -l'
 
 # thefuck
 eval $(thefuck --alias)
