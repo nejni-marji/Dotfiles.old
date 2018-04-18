@@ -1,5 +1,6 @@
 #!/bin/bash
-[[ $1 =~ help|\-h|\?|man ]] && echo 'i3_autolock LOCKER SCREEN NOTIFY' && exit
+[[ $1 =~ help|\-h|\?|man ]] && echo 'Usage: autolock_init.sh [LOCKER [SCREEN [NOTIFY]]]'
+[[ $1 =~ help|\-h|\?|man ]] && exit
 LOCK=~/.i3/data/"$(hostname)"_locker.lck
 rm $LOCK
 
