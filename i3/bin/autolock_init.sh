@@ -2,7 +2,7 @@
 [[ $1 =~ help|\-h|\?|man ]] && echo 'Usage: autolock_init.sh [LOCKER [SCREEN [NOTIFY]]]'
 [[ $1 =~ help|\-h|\?|man ]] && exit
 LOCK=~/.i3/data/"$(hostname)"_locker.lck
-rm $LOCK
+[[ -f $LOCK ]] && rm -v $LOCK
 
 [[ -z $1 ]] && LOCKER=30  || LOCKER=$1
 [[ -z $2 ]] && SCREEN=60  || SCREEN=$2
