@@ -10,6 +10,11 @@
 	exec_always $i3b/i3ipc_nop.py
 	bindsym $MOD+equal      nop ipc resize grow
 	bindsym $MOD+$SHF+equal nop ipc resize shrink
+	# hotswap
+	exec_always $i3b/hotswap.py
+	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
+	bindsym $MOD+m      nop ipc hotswap swaphere
+	bindsym $MOD+$CTL+m [con_mark=".*"] unmark
 	# logging
 	exec_always date '+#%Y%m%d_%H%M%S' >> ~/.i3/data/bind_logs.txt
 	exec_always $i3b/bind_logging.py >> ~/.i3/data/bind_logs.txt
