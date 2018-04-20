@@ -5,12 +5,15 @@
 # vim:fdm=marker:
 # i3 config file (v4)
 
-exec_always $i3b/i3ipc_nop.py
-exec_always date '+#%Y%m%d_%H%M%S' >> ~/.i3/data/bind_logs.txt
-exec_always $i3b/bind_logging.py >> ~/.i3/data/bind_logs.txt
-bindsym $MOD+equal      nop ipc resize grow
-bindsym $MOD+$SHF+equal nop ipc resize shrink
-
+# {{{ ipc scripts
+	# generic
+	exec_always $i3b/i3ipc_nop.py
+	bindsym $MOD+equal      nop ipc resize grow
+	bindsym $MOD+$SHF+equal nop ipc resize shrink
+	# logging
+	exec_always date '+#%Y%m%d_%H%M%S' >> ~/.i3/data/bind_logs.txt
+	exec_always $i3b/bind_logging.py >> ~/.i3/data/bind_logs.txt
+# }}}
 # {{{ i3-gaps only
 	smart_gaps on
 	gaps inner $gaps_inner
