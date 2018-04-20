@@ -39,6 +39,12 @@ def on_binding(self, event):
 		command += '-F "mark hs_%s_0"'
 		i3.command(command)
 		return None
+	if command == 'nop ipc hotswap swapthis hide':
+		command  = 'exec i3-input '
+		command += '-P "hotswap swapthis " '
+		command += '-F "mark _hs_%s_0"'
+		i3.command(command)
+		return None
 	if command == 'nop ipc hotswap swaphere':
 		command  = 'exec i3-input '
 		command += '-P "hotswap swaphere " '
