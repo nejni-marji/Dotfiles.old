@@ -191,32 +191,27 @@
 		bindsym $MOD+$SHF+9            move container to workspace number $w9
 		bindsym $MOD+$SHF+0            move container to workspace number $w0
 	# }}}
-	# {{{ variables for directionals
-		set $dir_mov Shift
-		set $dir_swp Mod1
-		set $dir_ful Control
-	# }}}
 	# {{{ directionals
 		# focus
-		bindsym $MOD+h          focus left
-		bindsym $MOD+j          focus down
-		bindsym $MOD+k          focus up
-		bindsym $MOD+l          focus right
+		bindsym $MOD+h      focus left
+		bindsym $MOD+j      focus down
+		bindsym $MOD+k      focus up
+		bindsym $MOD+l      focus right
 		# move
-		bindsym $MOD+$dir_mov+h move left
-		bindsym $MOD+$dir_mov+j move down
-		bindsym $MOD+$dir_mov+k move up
-		bindsym $MOD+$dir_mov+l move right
+		bindsym $MOD+$SHF+h move left
+		bindsym $MOD+$SHF+j move down
+		bindsym $MOD+$SHF+k move up
+		bindsym $MOD+$SHF+l move right
 		# swap
-		bindsym $MOD+$dir_swp+h mark --add A; focus left;  mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
-		bindsym $MOD+$dir_swp+j mark --add A; focus down;  mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
-		bindsym $MOD+$dir_swp+k mark --add A; focus up;    mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
-		bindsym $MOD+$dir_swp+l mark --add A; focus right; mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$ALT+h mark --add A; focus left;  mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$ALT+j mark --add A; focus down;  mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$ALT+k mark --add A; focus up;    mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
+		bindsym $MOD+$ALT+l mark --add A; focus right; mark --add B; swap container with mark A; [con_mark="A"] focus; [con_mark="A"] unmark A; [con_mark="B"] unmark B
 		# fullscreen
-		bindsym $MOD+$dir_ful+h fullscreen disable; focus left;  fullscreen enable
-		bindsym $MOD+$dir_ful+j fullscreen disable; focus down;  fullscreen enable
-		bindsym $MOD+$dir_ful+k fullscreen disable; focus up;    fullscreen enable
-		bindsym $MOD+$dir_ful+l fullscreen disable; focus right; fullscreen enable
+		bindsym $MOD+$CTL+h fullscreen disable; focus left;  fullscreen enable
+		bindsym $MOD+$CTL+j fullscreen disable; focus down;  fullscreen enable
+		bindsym $MOD+$CTL+k fullscreen disable; focus up;    fullscreen enable
+		bindsym $MOD+$CTL+l fullscreen disable; focus right; fullscreen enable
 	# }}}
 	# {{{ tree
 		bindsym $MOD+g          focus parent
