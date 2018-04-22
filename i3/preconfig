@@ -15,6 +15,7 @@
 	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
 	bindsym $MOD+m      nop ipc hotswap swaphere
 	bindsym $MOD+$CTL+m nop ipc hotswap return
+	bindsym $MOD+$ALT+m nop ipc hotswap reset
 	# logging
 	exec_always date '+#%Y%m%d_%H%M%S' >> ~/.i3/data/bind_logs.txt
 	exec_always $i3b/bind_logging.py >> ~/.i3/data/bind_logs.txt
