@@ -193,8 +193,8 @@
 	# }}}
 	# {{{ variables for directionals
 		set $dir_mov Shift
-		set $dir_swp Control
-		set $dir_ful Shift+Control
+		set $dir_swp Mod1
+		set $dir_ful Control
 	# }}}
 	# {{{ directionals
 		# focus
@@ -223,7 +223,7 @@
 		bindsym $MOD+$SHF+g     focus child
 		bindsym $MOD+f          fullscreen
 		bindsym $MOD+$SHF+f     fullscreen global
-		bindsym $MOD+$CTL+f     focus parent; fullscreen; focus child
+		bindsym $MOD+$ALT+f     focus parent; fullscreen; focus child
 		# splits
 		bindsym $MOD+v          split t; layout stacking
 		bindsym $MOD+$SHF+v     split t; layout tabbed
