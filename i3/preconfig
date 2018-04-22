@@ -195,7 +195,6 @@
 		set $dir_mov Shift
 		set $dir_swp Control
 		set $dir_ful Shift+Control
-		set $dir_res Mod1
 	# }}}
 	# {{{ directionals
 		# focus
@@ -218,11 +217,6 @@
 		bindsym $MOD+$dir_ful+j fullscreen disable; focus down;  fullscreen enable
 		bindsym $MOD+$dir_ful+k fullscreen disable; focus up;    fullscreen enable
 		bindsym $MOD+$dir_ful+l fullscreen disable; focus right; fullscreen enable
-		# resize 10
-		bindsym $MOD+$dir_res+h resize shrink width  10 px or 10 ppt
-		bindsym $MOD+$dir_res+j resize grow   height 10 px or 10 ppt
-		bindsym $MOD+$dir_res+k resize shrink height 10 px or 10 ppt
-		bindsym $MOD+$dir_res+l resize grow   width  10 px or 10 ppt
 	# }}}
 	# {{{ tree
 		bindsym $MOD+g          focus parent
