@@ -1,16 +1,11 @@
 #!/bin/bash
 PAC="$(checkupdates)"
-AUR="$(cower -u)"
 PACN="$(echo "$PAC" | wc -l)"
-AURN="$(echo "$AUR" | wc -l)"
 
 if ! [[ $PAC ]]; then
 	PACN="0"
 fi
-if ! [[ $AUR ]]; then
-	AURN="0"
-fi
-CHECK="$(($PACN+$AURN))"
+CHECK="$(($PACN))"
 LINUX="$(echo "$PAC" | grep -c linux)"
 
 if [[ $CHECK == 0 ]]; then
@@ -18,9 +13,6 @@ if [[ $CHECK == 0 ]]; then
 fi
 
 text="$CHECK"
-if [[ $AUR ]]; then
-	text="$text/$AURN"
-fi
 if [[ $LINUX != "0" ]]; then
 	text="$text!"
 fi
