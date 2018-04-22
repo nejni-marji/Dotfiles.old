@@ -71,6 +71,9 @@ def on_binding(self, event):
 		i3.command(command)
 		return None
 
+workspace = i3.get_tree().find_focused().workspace()
+hotswap(workspace)
+
 i3.on('workspace::focus', on_workspace_focus)
 i3.on('window::mark', on_window_mark)
 i3.on('binding', on_binding)
