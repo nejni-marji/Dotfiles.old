@@ -118,7 +118,8 @@ binds = {
 		'uF': E(B('feshot all')),
 	# }}}
 	# {{{ misc
-		'zd': E('desmume'),
+		'zd': E('firefox --new-window https://github.com/nejni-marji/Dotfiles'),
+		'zs': E('virtualbox --startvm School'),
 		'zw': E('firefox --new-window wolframalpha.com'),
 		'zW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla Firefox$')
 			+ '; '
