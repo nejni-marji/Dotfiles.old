@@ -44,22 +44,18 @@
 # }}}
 # {{{ workspace, assign, for_window
 	# {{{ workspace variables
-		set $w1 1:Rec
+		set $w1 1:Web
 		set $w2 2:Code
 		set $w3 3:Misc
 		set $w4 4:School
-		set $w5 5:Steam
-		set $w6 6
+		set $w5 5:Chat
+		set $w6 6:Steam
 		set $w7 7
 		set $w8 8
 		set $w9 9
 		set $w0 10:Test
 	# }}}
 	# {{{ assign
-		# 1
-		assign [class="TelegramDesktop"] $w1
-		assign [class="discord"] $w1
-		# 2
 		# 3
 		assign [class="Deluge"] $w3
 		assign [class="Gimp"] $w3
@@ -67,8 +63,11 @@
 		# 4
 		assign [title="^School \[\w+\] - Oracle VM VirtualBox"] $w4
 		# 5
-		assign [class="Steam"] $w5
-		assign [title="Steam"] $w5
+		assign [class="TelegramDesktop"] $w5
+		assign [class="discord"] $w5
+		# 6
+		assign [class="Steam"] $w6
+		assign [title="Steam"] $w6
 	# }}}
 	# {{{ for_window
 		for_window [title="^vimpc$"] floating enable, sticky enable
