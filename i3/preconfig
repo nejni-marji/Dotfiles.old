@@ -162,10 +162,10 @@
 	bindsym $MOD+d $exec $i3b/date_notify.sh
 # }}}
 # {{{ movement
-	bindsym $MOD+$SHF+d [urgent=latest] focus
 	# {{{ workspaces
 		bindsym $MOD+z                 workspace back_and_forth
 		bindsym $MOD+$SHF+z            move container to workspace back_and_forth
+		bindsym $MOD+$ALT+z            [urgent=latest] focus
 		bindsym $MOD+bracketleft       workspace prev_on_output
 		bindsym $MOD+bracketright      workspace next_on_output
 		bindsym $MOD+$SHF+bracketleft  workspace prev
