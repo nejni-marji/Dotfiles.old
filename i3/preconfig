@@ -159,7 +159,9 @@
 	-t warning -m 'Exit i3?' \
 	-b 'Yes, exit i3' '$i3b/manager.sh exit'
 	# misc
-	bindsym $MOD+d $exec $i3b/date_notify.sh
+	bindsym $MOD+d      $exec $i3b/date_notify.sh
+	bindsym $MOD+$SHF+d $exec $i3b/web_search.sh
+	bindsym $MOD+$ALT+d $exec $i3b/web_search.sh !ddgi
 # }}}
 # {{{ movement
 	# {{{ workspaces
