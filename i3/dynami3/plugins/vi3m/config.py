@@ -57,7 +57,7 @@ binds = {
 		'iev': E(I('manager.sh edit vi3m')),
 		'ieV': E(I('manager.sh edit vars')),
 		'il': E(I('autolock_locker.sh')),
-		'iL': E(S('sleep .5 && xset dpms force off')),
+		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep .5 && xset dpms force off'))),
 		'im': E('i3-input '
 			+ '-P "mark " -F "mark %s"'),
 		'iM': E('i3-input '
