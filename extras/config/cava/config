@@ -28,7 +28,7 @@ sensitivity = 10
 ; bar_spacing = 1
 bars = 0
 bar_width = 1
-bar_spacing = 1
+bar_spacing = 0
 
 # Lower and higher cutoff frequencies for lowest and highest bars
 # the bandwidth of the visualizer.
