@@ -19,6 +19,10 @@ setopt PROMPT_SUBST
 source ~/Dotfiles/extras/zsh-git-prompt/zshrc.sh
 PROMPT=\
 '%f%k'\
+'%B%F{magenta}'\
+'%D{%a, %b %-d, %H:%M:%S}'\
+'%b%f%k'\
+$'\n'\
 '%F{white}%K{blue}'\
 's%Le%? %n@%M'\
 '%f%k'\
