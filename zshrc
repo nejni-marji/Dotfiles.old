@@ -17,9 +17,16 @@ setopt INC_APPEND_HISTORY HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
 
 source ~/Dotfiles/extras/zsh-git-prompt/zshrc.sh
-PROMPT='%f%k%F{15}%K{blue}s%Le%? %n@%M%f%k
-%F{cyan}%~%f
-$(git_super_status)%F{cyan}$(hidehist)%(#.#.%%)%f '
+PROMPT=\
+'%f%k'\
+'%F{white}%K{blue}'\
+'s%Le%? %n@%M'\
+'%f%k'\
+$'\n'\
+'%F{cyan}%~%f'\
+$'\n'\
+'$(git_super_status)%F{cyan}$(hidehist)%(#.#.%%)%f '\
+''
 
 source ~/.zshenv
 source ~/.zsh/zstyles.zsh
