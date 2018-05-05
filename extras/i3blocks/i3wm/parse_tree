@@ -1,0 +1,4 @@
+#!/bin/bash
+
+~/.i3/dynami3/bin/lock_dynami3.sh get debugging \
+|| ~/.i3/bin/debugging/parse_tree.py

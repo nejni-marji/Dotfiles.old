@@ -65,6 +65,7 @@ binds = {
 		# locks
 		'if': LM(multi_fancy, '1'),
 		'iF': LM(multi_fancy, '0'),
+		'id': L('debugging'),
 		'ic': L('colorclock'),
 		'iB': L('borders'),
 		'ibm': L('bar_mode'),
