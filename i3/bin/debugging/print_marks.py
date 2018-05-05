@@ -25,4 +25,5 @@ print(marks, flush = True)
 if not opts['oneshot']:
 	i3.on('window', show_marks)
 	i3.on('workspace', show_marks)
+	i3.on('binding', show_marks)
 	i3.main()

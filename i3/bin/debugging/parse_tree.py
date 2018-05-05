@@ -81,4 +81,5 @@ print(data, flush = True)
 if not opts['oneshot']:
 	i3.on('window', show_tree)
 	i3.on('workspace', show_tree)
+	i3.on('binding', show_tree)
 	i3.main()
