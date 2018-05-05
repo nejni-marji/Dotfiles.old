@@ -16,7 +16,7 @@ opts = {}
 opts_list = [
 	'oneshot',
 	'no-pango',
-	'show-class',
+	'show-instance',
 	'only-child',
 ]
 
@@ -34,10 +34,10 @@ def parse_tree(con):
 				data += '*'
 			else:
 				data += '<u>'
-		if opts['show-class']:
-			data += con.window_class
-		else:
+		if opts['show-instance']:
 			data += con.window_instance
+		else:
+			data += con.window_class
 		if con.focused == True:
 			if opts['no-pango']:
 				data += '*'
