@@ -15,6 +15,7 @@ layouts = {
 opts = {}
 opts_list = [
 	'oneshot',
+	'no-pango',
 	'show-class',
 	'only-child',
 ]
@@ -29,13 +30,19 @@ def parse_tree(con):
 	if len(con.nodes) == 0:
 		data = str()
 		if con.focused == True:
-			data += '<u>'
+			if opts['no-pango']:
+				data += '*'
+			else:
+				data += '<u>'
 		if opts['show-class']:
 			data += con.window_class
 		else:
 			data += con.window_instance
 		if con.focused == True:
-			data += '</u>'
+			if opts['no-pango']:
+				data += '*'
+			else:
+				data += '</u>'
 		return data
 	if opts['only-child'] and len(con.nodes) == 1:
 		return parse_tree(con.nodes[0])
@@ -43,10 +50,16 @@ def parse_tree(con):
 		children = [parse_tree(i) for i in con.nodes]
 		data = str()
 		if con.focused == True:
-			data += '<u>'
+			if opts['no-pango']:
+				data += '*'
+			else:
+				data += '<u>'
 		data += layouts[con.layout]
 		if con.focused == True:
-			data += '</u>'
+			if opts['no-pango']:
+				data += '*'
+			else:
+				data += '</u>'
 		data += '['
 		data += ' '.join(children)
 		data += ']'
