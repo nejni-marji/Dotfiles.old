@@ -202,14 +202,14 @@
 		bindsym $MOD+$SHF+k move up
 		bindsym $MOD+$SHF+l move right
 		# swap
-		bindsym $MOD+$ALT+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] unmark _dirswap_a; [con_mark="^_dirswap_b$"] unmark _dirswap_b
+		bindsym $MOD+$ALT+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+$SHF+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+$SHF+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+$SHF+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$ALT+$SHF+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
 		# fullscreen
 		bindsym $MOD+$CTL+h fullscreen disable; focus left;  fullscreen enable
 		bindsym $MOD+$CTL+j fullscreen disable; focus down;  fullscreen enable
