@@ -15,9 +15,6 @@ USED=$(echo $DATA | awk '{print $2}' | tr -d %)
 TARGET=$(echo $DATA | awk '{print $3}')
 
 if ! [[ "$DIR" == "$TARGET" ]]; then
-	echo "Mount"
-	echo "M"
-	echo "#FF0000"
 	exit
 fi
 
