@@ -68,7 +68,6 @@ binds = {
 		'iF': LM(multi_fancy, '0'),
 		'id': L('debugging'),
 		'ic': L('colorclock'),
-		'iB': L('borders'),
 		'ibm': L('bar_mode'),
 		'ibh': L('bar_hide'),
 		'ibk': L('bar_key'),
