@@ -10,6 +10,8 @@
 	exec_always $i3b/i3ipc_nop.py
 	bindsym $MOD+equal      nop ipc resize grow
 	bindsym $MOD+$SHF+equal nop ipc resize shrink
+	# flatten
+	bindsym $MOD+$ALT+g     nop ipc flatten arg
 	# hotswap
 	exec_always $i3b/hotswap.py
 	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
