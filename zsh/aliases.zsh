@@ -59,6 +59,7 @@ alias ga='git add'
 alias gaa='git add -A'
 alias gcm='git commit -m'
 alias gpu='git push'
+alias gch='git checkout'
 alias gl='git log --color --decorate --oneline'
 alias glh='git log --color --decorate --oneline | head'
 
