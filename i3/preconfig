@@ -149,6 +149,7 @@
 	floating_minimum_size 300x350
 	workspace_layout stacking
 	workspace_auto_back_and_forth yes
+	hide_edge_borders smart
 # }}}
 # {{{ i3 controls
 	bindsym $MOD+c       $exec $i3b/manager.sh reload
