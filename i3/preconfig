@@ -152,7 +152,7 @@
 	bindsym $MOD+c       $exec $i3b/manager.sh reload
 	bindsym $MOD+r       $exec $i3b/manager.sh restart
 	bindsym $MOD+$SHF+q kill
-	bindsym $MOD+$CTL+$SHF+q $exec "i3-nagbar \
+	bindsym $MOD+$SHF+$CTL+q $exec "i3-nagbar \
 	-t warning -m 'Exit i3?' \
 	-b 'Yes, exit i3' '$i3b/manager.sh exit'
 	# misc
@@ -206,10 +206,10 @@
 		bindsym $MOD+$ALT+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
 		bindsym $MOD+$ALT+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
 		bindsym $MOD+$ALT+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; [con_mark="^_dirswap_a$"] focus; unmark _dirswap_a; unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
-		bindsym $MOD+$ALT+$SHF+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$SHF+$ALT+h mark --add _dirswap_a; focus left;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$SHF+$ALT+j mark --add _dirswap_a; focus down;  mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$SHF+$ALT+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
+		bindsym $MOD+$SHF+$ALT+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
 		# fullscreen
 		bindsym $MOD+$CTL+h fullscreen disable; focus left;  fullscreen enable
 		bindsym $MOD+$CTL+j fullscreen disable; focus down;  fullscreen enable
@@ -246,7 +246,7 @@
 # {{{ summoners
 	bindsym $MOD+$SHF+Return      $exec urxvt -e zsh
 	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx
-	bindsym $MOD+$CTL+$SHF+Return $exec urxvt -e ranger
+	bindsym $MOD+$SHF+$CTL+Return $exec urxvt -e ranger
 	bindsym $MOD+$ALT+Return      $exec cool-retro-term -e zsh
 	# {{{ rofi
 		bindsym $MOD+backslash      $exec rofi \
