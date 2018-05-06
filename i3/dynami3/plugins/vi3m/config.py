@@ -33,7 +33,7 @@ def LM(var_list, opt):
 		['$lock %s %s; ' % (i, opt) for i in var_list]
 	) + E(I('manager.sh restart'))
 
-multi_fancy = 'titlebars bar_mode bar_hide bar_key gaps colorclock'
+multi_fancy = 'gaps titlebars'
 multi_fancy = multi_fancy.split()
 
 binds = {
