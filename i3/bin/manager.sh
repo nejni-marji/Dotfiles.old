@@ -68,6 +68,7 @@ fi
 if [[ $1 == edit ]]; then
 	[[ $2 == main ]] && urxvt -e vim ~/.i3/preconfig
 	[[ $2 == true ]] && urxvt -e vim ~/.i3/config
+	[[ $2 == mngr ]] && urxvt -e vim ~/.i3/bin/manager.sh
 	[[ $2 == vi3m ]] && urxvt -e vim ~/.i3/dynami3/plugins/vi3m/plugin.conf
 	[[ $2 == vars ]] && urxvt -e vim ~/.i3/dynami3/plugins/core/vars/plugin.conf
 fi

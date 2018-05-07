@@ -54,6 +54,7 @@ binds = {
 	# {{{ i3-wm
 		'iec': E(I('manager.sh edit main')),
 		'ieC': E(I('manager.sh edit true')),
+		'iem': E(I('manager.sh edit mngr')),
 		'iev': E(I('manager.sh edit vi3m')),
 		'ieV': E(I('manager.sh edit vars')),
 		'ii': E('i3-input'),
