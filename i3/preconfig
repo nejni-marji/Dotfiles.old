@@ -5,6 +5,7 @@
 # vim:fdm=marker:
 # i3 config file (v4)
 
+bindsym $MOD+o $exec ~/.i3/bin/misc/reset_iss.sh
 # {{{ ipc scripts
 	# generic
 	exec_always $i3b/i3ipc_nop.py
