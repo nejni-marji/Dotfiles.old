@@ -226,14 +226,14 @@
 		bindsym $MOD+$SHF+f     fullscreen global
 		bindsym $MOD+$ALT+f     focus parent; fullscreen; focus child
 		# splits
-		bindsym $MOD+v          split t; layout stacking
-		bindsym $MOD+$SHF+v     split t; layout tabbed
-		bindsym $MOD+w          split v
-		bindsym $MOD+$SHF+w     split h
 		bindsym $MOD+t          layout stacking
 		bindsym $MOD+$SHF+t     layout tabbed
 		bindsym $MOD+n          layout splitv
 		bindsym $MOD+$SHF+n     layout splith
+		bindsym $MOD+w          split t; layout stacking
+		bindsym $MOD+$SHF+w     split t; layout tabbed
+		bindsym $MOD+v          split v
+		bindsym $MOD+$SHF+v     split h
 	# }}}
 	# {{{ floating
 		floating_modifier $MOD
