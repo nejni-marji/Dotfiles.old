@@ -1,3 +1,3 @@
 #!/bin/bash
-[[ "$1" == "all" ]] && feh -F ~/Pictures/Screenshots/*
-[[ "$1" != "all" ]] && feh -F ~/Pictures/Screenshots/Latest.png
+[[ "$1" == "all" ]] && feh ~/Pictures/Screenshots/*
+[[ "$1" != "all" ]] && feh ~/Pictures/Screenshots/Latest.png
