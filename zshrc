@@ -17,6 +17,7 @@ setopt INC_APPEND_HISTORY HIST_IGNORE_ALL_DUPS
 setopt PROMPT_SUBST
 
 source ~/Dotfiles/extras/zsh-git-prompt/zshrc.sh
+source ~/Dotfiles/zsh/pwd_shorten.sh
 PROMPT=\
 '%f%k'\
 '%B%F{magenta}'\
@@ -27,7 +28,7 @@ $'\n'\
 's%Le%? %n@%M'\
 '%f%k'\
 $'\n'\
-'%F{cyan}%~%f'\
+'%F{cyan}$(pwds_status)%f'\
 $'\n'\
 '$(git_super_status)%F{cyan}$(hidehist)%(#.#.%%)%f '\
 ''
