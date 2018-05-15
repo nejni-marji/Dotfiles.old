@@ -20,6 +20,10 @@ URxvt.foreground:     #ffffff
 ! user interface
 URxvt.scrollBar: false
 
+! cursor
+URxvt.cursorColor: #3fffff
+URxvt.cursorUnderline: true
+
 ! bells
 URxvt.visualBell:  true
 Rxvt.urgentOnBell: true
