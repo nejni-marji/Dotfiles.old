@@ -168,6 +168,7 @@
 		bindsym $MOD+z                 workspace back_and_forth
 		bindsym $MOD+$SHF+z            move container to workspace back_and_forth
 		bindsym $MOD+$ALT+z            [urgent=latest] focus
+		bindsym $MOD+$SHF+$ALT+z       [urgent=oldest] focus
 		bindsym $MOD+bracketleft       workspace prev_on_output
 		bindsym $MOD+bracketright      workspace next_on_output
 		bindsym $MOD+$SHF+bracketleft  workspace prev
