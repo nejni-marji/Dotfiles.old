@@ -4,6 +4,6 @@ clear Mod4
 add Control = Caps_Lock
 add Mod4 = Control_L Control_R
 keycode 66 = Control_L Control_L NoSymbol NoSymbol
-keycode 133 = Caps_Lock Caps_Lock
+keycode 133 = NoSymbol Caps_Lock
 keycode 135 = Multi_key
 keycode 105 = Multi_key
