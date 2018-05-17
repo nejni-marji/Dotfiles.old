@@ -7,5 +7,3 @@ keycode 66 = Control_L Control_L NoSymbol NoSymbol
 keycode 133 = Caps_Lock Caps_Lock
 keycode 135 = Multi_key
 keycode 105 = Multi_key
-!keycode 32 = w W r R
-!keycode 33 = w W l L
