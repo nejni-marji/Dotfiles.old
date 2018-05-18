@@ -121,10 +121,8 @@ binds = {
 	# }}}
 	# {{{ misc
 		'zd': E('firefox --new-window https://github.com/nejni-marji/Dotfiles'),
-		'zI': E(I('misc/reset_iss.sh')),
 		'zir': E(I('misc/reset_iss.sh')),
 		'zif': E(I('misc/focus_iss.sh')),
-		'zs': E('virtualbox --startvm School'),
 		'zw': E('firefox --new-window wolframalpha.com'),
 		'zW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla Firefox$')
 			+ '; '
