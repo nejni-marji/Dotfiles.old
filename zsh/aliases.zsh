@@ -42,6 +42,8 @@ alias data='for i in *; do du -hs $i; done | sort -h'
 alias datag="data | grep 'G\s'"
 alias datadot='for i in * .*; do du -h $i | tail -n1; done | sort -n'
 
+alias help='helptext.sh'
+
 # youtube-dl
 alias ydl="youtube-dl --restrict-filenames -o '%(title)s-%(id)s.%(format_id)s.%(ext)s'"
 alias ydl18="youtube-dl --restrict-filenames -f 18 -o '%(title)s-%(id)s.%(format_id)s.%(ext)s'"
@@ -70,6 +72,7 @@ alias ccl='cl'
 alias gerp='grep'
 
 # abbreviations
+alias h='help'
 alias t='todo.sh -d ~/Sync/todo/config'
 alias l='ls'
 alias v='vim'
