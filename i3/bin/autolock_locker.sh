@@ -3,7 +3,7 @@ LOCK=~/.i3/data/"$(hostname)"_locker.lck
 
 locker() {
 	case "$(hostname)" in
-		Desktop)
+		Desktop.Arch)
 			i3lock -n -i ~/.wallpaper/astronomy/earth/usa_nighttime_1920x1080_lock.png
 			;;
 		ASUS|Toshiba)

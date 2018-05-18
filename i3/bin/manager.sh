@@ -60,7 +60,7 @@ reset-apps() {
 }
 
 if [[ $1 == init ]]; then
-	[[ $(hostname) == Desktop ]] && init-desktop || init-laptop
+	[[ $(hostname) == Desktop.Arch ]] && init-desktop || init-laptop
 	init-generic
 fi
 

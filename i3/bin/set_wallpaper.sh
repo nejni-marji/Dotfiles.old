@@ -1,6 +1,6 @@
 #!/bin/bash
 case $(hostname) in
-	Desktop)
+	Desktop.Arch)
 		feh --bg-scale ~/.wallpaper/astronomy/earth/usa_nighttime_1920x1080.png
 		;;
 	ASUS|Toshiba)
