@@ -1,6 +1,5 @@
 #!/bin/bash
 export MPC_FORMAT='[[\[%album%\] ][%artist% - ]%title%]|[%file%]'
-export MPD_HOST=odroid
 
 # if mpd is not running
 if [[ -z "$(mpc status)" ]]; then

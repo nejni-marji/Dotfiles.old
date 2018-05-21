@@ -270,25 +270,26 @@
 		bindsym      $CTL+$print $exec ~/bin/shoot -u
 	# }}}
 	# {{{ audio and mpd with arrow keys
-		bindsym $MOD+Up         $exec ~/bin/sound pa set +10 notify
-		bindsym $MOD+Down       $exec ~/bin/sound pa set -10 notify
-		bindsym $MOD+Left       $exec ~/bin/sound pa mute notify
-		bindsym $MOD+Right      $exec ~/bin/sound mpd player toggle
+		#
+		bindsym $MOD+Up         $exec ~/bin/sound pa  set +10
+		bindsym $MOD+Down       $exec ~/bin/sound pa  set -10
+		bindsym $MOD+Left       $exec ~/bin/sound pa  mute
+		bindsym $MOD+Right      $exec ~/bin/sound mpd toggle
 		#
 		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10
 		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10
-		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd player prev
-		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd player next
+		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev
+		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd next
 		#
-		bindsym $MOD+$CTL+Up    $exec ~/bin/sound mpd vol +10 ODROID
-		bindsym $MOD+$CTL+Down  $exec ~/bin/sound mpd vol -10 ODROID
-		bindsym $MOD+$CTL+Left  $exec ~/bin/sound mpd sat stop
-		bindsym $MOD+$CTL+Right $exec ~/bin/sound mpd sat start
+		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop
+		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop
+		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get
+		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get
 		#
-		bindsym $MOD+$ALT+Up    $exec ~/bin/sound mpd misc shuffle
-		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd misc repair
-		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa get notify
-		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd player get
+		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop
+		bindsym $MOD+$CTL+Down  $exec ~/bin/sound nop
+		bindsym $MOD+$CTL+Left  $exec ~/bin/sound nop
+		bindsym $MOD+$CTL+Right $exec ~/bin/sound nop
 	# }}}
 # }}}
 # {{{ nop

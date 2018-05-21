@@ -82,7 +82,7 @@ binds = {
 		'mtr': E(A('mpd toggle random')),
 		'mts': E(A('mpd toggle single')),
 		'mtc': E(A('mpd toggle consume')),
-		'mv': E('urxvt -e vimpc -h odroid'),
+		'mv': E('urxvt -e vimpc'),
 	# }}}
 	# {{{ remote
 		'rm': E(B(R('mosh'))),
