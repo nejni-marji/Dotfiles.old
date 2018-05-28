@@ -79,7 +79,7 @@ sound_pa_get() {
 	get_volume
 	echo $VOLUME
 
-	exit 0
+	[[ $1 == notify ]] || exit 0
 	# notify
 	[[ $MUTE == yes ]] && VOLUME+=" (Muted)"
 	notify-send -t 2000 -a PulseAudio Volume "$VOLUME"

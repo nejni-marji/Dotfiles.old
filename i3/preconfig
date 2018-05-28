@@ -283,7 +283,7 @@
 		#
 		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop
 		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop
-		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get
+		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get notify
 		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get
 		#
 		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop
