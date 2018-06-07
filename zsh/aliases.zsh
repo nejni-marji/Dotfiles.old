@@ -87,3 +87,6 @@ alias crap='fuck'
 alias ffs='fuck'
 alias wtf='fuck'
 alias f='fuck'
+
+# per-system aliases
+[[ $(hostname -d) == Kubuntu ]] && alias todo.sh=todo-txt
