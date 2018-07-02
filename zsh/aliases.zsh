@@ -20,6 +20,7 @@ alias lla='ls -lA'
 alias llaa='ls -la'
 alias lr='ls -R'
 alias llr='ls -lR'
+alias lsd='ls -d'
 
 # miscellaneous shell stuff
 alias :q='exit'
