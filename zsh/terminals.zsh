@@ -17,5 +17,7 @@ set_urxvt_title_prompt() {
 	set_urxvt_title "$USER@$HOST:$(echo -n $PWD | sed -e s#$HOME#~#)"
 }
 
+[[ $(hostname -d) == Kubuntu ]] && return 0
+
 add-zsh-hook preexec set_urxvt_title_command
 add-zsh-hook precmd set_urxvt_title_prompt
