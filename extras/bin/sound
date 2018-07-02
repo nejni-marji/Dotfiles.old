@@ -37,7 +37,7 @@ mpd_notify() {
 		exit 1
 	fi
 
-	notify-send -t 2000 -a "MPD" "$SUMMARY" "$BODY"
+	notify-send -t 5000 -a "MPD" "$SUMMARY" "$BODY"
 }
 
 SINK='@DEFAULT_SINK@'
@@ -126,7 +126,7 @@ sound_mpd_get() {
 	POSITION="$( \
 		mpc \
 		| grep -E '^\[(playing|paused)\]' \
-		| awk '{print $3}' \
+		| awk '{print $3" ("$2")"}' \
 	)"
 	mpd_notify $POSITION
 }
