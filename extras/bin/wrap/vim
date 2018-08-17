@@ -1,2 +1,0 @@
-#!/bin/bash
-which nvim >/dev/null && exec /usr/bin/nvim "$@" || which vim >/dev/null && exec /usr/bin/vim "$@"
