@@ -1,5 +1,0 @@
-#!/bin/bash
-ssh-add -l >/dev/null || ssh-add
-#export MOSH_ESCAPE_KEY=""
-#export MOSH_PREDICTION_DISPLAY="always"
-exec /usr/bin/mosh "$@"
