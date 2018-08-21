@@ -1,15 +1,45 @@
 #!/bin/bash
-while getopts 'd' OPT; do
-	case ${OPT} in
-		d) OPT_DETACH=true ;;
-	esac
+
+# Script taken from http://github.com/brandur/tmux-extra
+# Rewritten by nejni-marji
+
+# Kill defunct sessions
+list-dead() {
+	tmux ls 2>/dev/null | grep -P '(.*?)-\d{4}_\d{6}: .* \(group \1\)$' | cut -d: -f1
+}
+for i in $(list-dead); do
+	echo "Killing defunct session: $i"
+	tmux kill-session -t "$i"
 done
-export TERM=tmux-256color
-if [[ $OPT_DETACH ]]; then
-	export TMX_EXIT=$(if [[ -z $TMUX ]]; then tmux -q has-session 2> /dev/null && tmux attach-session -d || tmux new-session; fi)
-else
-	export TMX_EXIT=$(if [[ -z $TMUX ]]; then tmux -q has-session 2> /dev/null && tmux attach-session || tmux new-session; fi)
+
+case "$1" in
+	'')
+#		group="tmx"
+		echo -n 'Tmux group: '
+		read group
+	;;
+	l|ls)
+		tmux ls
+		exit
+	;;
+	*)
+		[[ -z "$group" ]] && group="$1"
+	;;
+esac
+
+count="$(tmux ls 2>/dev/null | grep -Pc "\(group $group\)")"
+
+# Applies if this is a new group
+if [[ "$count" == "0" ]]; then
+	echo "New base session: $group"
+	tmux new-session -t "$group" -s "$group" -d
 fi
-if [[ ! "$TMX_EXIT" =~ detach ]]; then
-	tmux -q has-session 2> /dev/null && tmx
+# Only run if we aren't in a tmux shell
+if [[ -z "$TMUX" ]]; then
+	session="$group-$(date +%m%d_%H%M%S)"
+	echo "New grouped session: $session"
+	tmux new-session -t "$group" -s "$session" -d -F '#{session_name}'
+	tmux attach-session -t "$session" >/dev/null 2>/dev/null
+	echo "Killing grouped session: $session"
+	tmux kill-session -t "$session" >/dev/null 2>/dev/null
 fi
