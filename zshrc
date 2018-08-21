@@ -24,7 +24,7 @@ PROMPT=\
 '%D{%a, %b %-d, %H:%M:%S}'\
 '%b%f%k'\
 $'\n'\
-'%F{white}%K{blue}'\
+'%(1000#.%F{white}%K{blue}.%F{black}%K{red})'\
 's%Le%? %n@%M'\
 '%f%k'\
 $'\n'\
