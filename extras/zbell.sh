@@ -24,7 +24,7 @@ autoload -Uz add-zsh-hook || return
 (( ${+zbell_duration} )) || zbell_duration=15
 
 # initialize zbell_ignore if not set
-(( ${+zbell_ignore} )) || zbell_ignore=($EDITOR $PAGER startx man ssh sshp raspi laptop simple tmux tmx vlc feh)
+(( ${+zbell_ignore} )) || zbell_ignore=($EDITOR $PAGER startx man ssh sshp raspi laptop simple tmux tmx vlc feh weechat watch)
 
 # initialize it because otherwise we compare a date and an empty string
 # the first time we see the prompt. it's fine to have lastcmd empty on the
