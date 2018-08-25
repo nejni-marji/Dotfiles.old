@@ -12,20 +12,37 @@ for i in $(list-dead); do
 	tmux kill-session -t "$i"
 done
 
-case "$1" in
-	'')
-#		group="tmx"
-		echo -n 'Tmux group: '
-		read group
-	;;
-	l|ls)
-		tmux ls
-		exit
-	;;
-	*)
-		[[ -z "$group" ]] && group="$1"
-	;;
-esac
+arg="$1"
+[[ -z "$arg" ]] && arg=ls
+while [[ -z "$group" ]]; do
+
+	if [[ -z "$arg" ]]; then
+		read -t 30 -p '>>> ' arg
+		err="$?"
+		[[ "$err" -eq 1   ]] && exit 1
+		[[ "$err" -eq 142 ]] && exit 1
+	fi
+
+	case "$arg" in
+		ls|l)
+			tmux ls
+		;;
+		lsg|lg|g)
+			tmux ls | grep -P '(.*?): .* \(group \1\)$'
+		;;
+		exit|quit|q)
+			exit 1
+		;;
+		'')
+			group="tmx"
+		;;
+		*)
+			group="$arg"
+		;;
+	esac
+
+	arg=""
+done
 
 count="$(tmux ls 2>/dev/null | grep -Pc "\(group $group\)")"
 
