@@ -34,7 +34,6 @@ while [[ -z "$group" ]]; do
 			exit 1
 		;;
 		'')
-			group="tmx"
 		;;
 		*)
 			group="$arg"
