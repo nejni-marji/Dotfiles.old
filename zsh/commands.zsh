@@ -1,9 +1,5 @@
 #!/bin/zsh
 
-msh() {
-	source ~/.zsh/microshell.zsh $1
-}
-
 cl() {
 	local dir="$1"
 	local dir="${dir:=$HOME}"

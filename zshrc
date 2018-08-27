@@ -43,3 +43,4 @@ source ~/Dotfiles/extras/zbell.sh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/commands.zsh
 source ~/.zsh/terminals.zsh
+source ~/.zsh/microshell.zsh quiet
