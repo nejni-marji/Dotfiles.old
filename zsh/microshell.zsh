@@ -23,6 +23,7 @@ msh_arg=microshell_initialization_argument
 this="$0"
 if ! [[ $1 == $msh_arg ]]; then
 	! [[ $1 == quiet ]] && echo "Adding the 'msh' command"
+	compdef _command_names msh
 	msh() {
 		source "$this" "$msh_arg" $1
 	}
