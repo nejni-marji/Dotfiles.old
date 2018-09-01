@@ -18,8 +18,7 @@ setopt PROMPT_SUBST
 
 source ~/Dotfiles/extras/zsh-git-prompt/zshrc.sh
 source ~/Dotfiles/zsh/pwd_shorten.sh
-PROMPT=\
-'%b%f%k'\
+PROMPT='%b%f%k'\
 '%B%F{magenta}'\
 '%D{%a, %b %-d, %H:%M:%S}'\
 '%b%f%k'\
@@ -30,9 +29,9 @@ $'\n'\
 $'\n'\
 '%F{cyan}$(pwds_status)%f'\
 $'\n'\
-'$(git_super_status)%F{cyan}$(hidehist)%(#.#.%%)%f '\
-'%b%f%k'\
-''
+'$(git_super_status)'\
+'%F{cyan}$(hidehist)%(#.#.%%)%f '\
+'%b%f%k'
 
 source ~/.zshenv
 source ~/.zsh/zstyles.zsh
