@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+debug() {
+	return 0
+	echo "$@" >> ~/log.txt
+}
+
+while getopts ":r:" opt; do
+	case "${opt}" in
+		r)
+			refresh_mode="$OPTARG"
+		;;
+	esac
+done
+
+refresh_modes=(idle all)
+[[ ${refresh_modes[(ie)$OPTARG]} -gt ${#refresh_modes} ]] \
+&& refresh_mode=idle
+
+while true; do
+
+	clear
+	position=$(mpc -f '%position%' current)
+
+	mpc playlist | nl -n ln \
+	| tail -n+$(($position-2)) \
+	| perl -pe "s/^($position)( *?)( )\t/\2*\1* /" \
+	| fold -w $(($(tput cols)-0)) \
+	| head -n $(($(tput lines)-1))
+	debug $(date +%m%m_%H%M%S)
+
+	case $refresh_mode in
+		all)
+			mpc idle >/dev/null &
+			lines=$(tput lines)
+			columns=$(tput cols)
+
+			while true; do
+				read -t 1                        && act=break
+				[[ $(tput cols)  -ne $columns ]] && act=break
+				[[ $(tput lines) -ne $lines   ]] && act=break
+				if [[ $act == break ]]; then
+					debug "killing jobs"
+					debug $jobstate
+					kill "${${jobstates##*:*:}%=*}"
+					act=""
+					break
+				fi
+				[[ $#jobstates -eq 0 ]] && break
+
+			done
+		;;
+		idle|*)
+			mpc idle
+			continue
+		;;
+	esac
+done
