@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-debug() {
-	return 0
-	echo "$@" >> ~/log.txt
-}
-
 while getopts ":r:" opt; do
 	case "${opt}" in
 		r)
@@ -27,7 +22,6 @@ while true; do
 	| perl -pe "s/^($position)( *?)( )\t/\2*\1* /" \
 	| fold -w $(($(tput cols)-0)) \
 	| head -n $(($(tput lines)-1))
-	debug $(date +%m%m_%H%M%S)
 
 	case $refresh_mode in
 		all)
@@ -40,8 +34,6 @@ while true; do
 				[[ $(tput cols)  -ne $columns ]] && act=break
 				[[ $(tput lines) -ne $lines   ]] && act=break
 				if [[ $act == break ]]; then
-					debug "killing jobs"
-					debug $jobstate
 					kill "${${jobstates##*:*:}%=*}"
 					act=""
 					break
