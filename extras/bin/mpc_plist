@@ -16,11 +16,18 @@ while true; do
 
 	clear
 	position=$(mpc -f '%position%' current)
+	jump=$(($position-2))
+	pos_len=$(echo -n $position | wc -m)
+	pos_neg=$((8-$pos_len))
+	spaces=$(printf ' %.0s' {1..$(($pos_neg-3))})
+	while [[ $jump -lt 1 ]]; do
+		jump=$(($jump+1))
+	done
 
-	mpc playlist | nl -n ln \
-	| tail -n+$(($position-2)) \
-	| perl -pe "s/^($position)( *?)( )\t/\2*\1* /" \
-	| fold -w $(($(tput cols)-0)) \
+	mpc playlist -f '%position%\t[[%artist% - ]%title%]|%file%' \
+	| tail -n+$jump \
+	| perl -pe "s/^($position)\t(.*$)/$spaces\*\1\*\t\2/" \
+	| fold -s -w $(($(tput cols)-0)) \
 	| head -n $(($(tput lines)-1))
 
 	case $refresh_mode in
