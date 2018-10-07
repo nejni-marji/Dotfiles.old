@@ -14,7 +14,7 @@ debug() {
 
 mpd_notify() {
 	export MPC_FORMAT='[%title%|%file%]|Stopped'
-	SUMMARY=$(mpc current | perl -pe 's/&/&amp;/g' | grep . || echo 'Stopped')
+	SUMMARY=$(mpc current | grep . || echo 'Stopped')
 
 	export MPC_FORMAT='[By: %albumartist% ][\[<i>%album%</i>\]]|Unknown'
 	INFO=$(mpc current | perl -pe 's/&/&amp;/g')
