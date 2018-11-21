@@ -24,7 +24,12 @@ while true; do
 		jump=$(($jump+1))
 	done
 
-	mpc playlist -f '%position%\t[[%artist% - ]%title%]|%file%' \
+#TODO: handle for repeat/single/shuffle?
+	{
+		mpc playlist -f '%position%\t[[%artist% - ]%title%]|%file%' \
+#		&& \
+#		mpc playlist -f '%position%\t[[%artist% - ]%title%]|%file%' \
+	} \
 	| tail -n+$jump \
 	| perl -pe "s/^($position)\t(.*$)/$spaces\*\1\*\t\2/" \
 	| fold -s -w $(($(tput cols)-0)) \
@@ -41,7 +46,9 @@ while true; do
 				[[ $(tput cols)  -ne $columns ]] && act=break
 				[[ $(tput lines) -ne $lines   ]] && act=break
 				if [[ $act == break ]]; then
-					kill "${${jobstates##*:*:}%=*}"
+					#kill "${${jobstates##*:*:}%=*}"
+					# the previous one could cause a race condition?
+					! [[ -z "${${jobstates##*:*:}%=*}" ]] && kill "${${jobstates##*:*:}%=*}"
 					act=""
 					break
 				fi

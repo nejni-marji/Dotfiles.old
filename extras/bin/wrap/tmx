@@ -55,7 +55,7 @@ count="$(tmux ls 2>/dev/null | grep -Pc "\(group $group\)")"
 # Applies if this is a new group
 if [[ "$count" == "0" ]]; then
 	echo "New base session: $group"
-	tmux new-session -t "$group" -s "$group" -d
+	tmux new-session -s "$group" -d
 fi
 # Only run if we aren't in a tmux shell
 if [[ -z "$TMUX" ]]; then

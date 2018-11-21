@@ -1,0 +1,31 @@
+#
+# ~/.i3/config
+#
+
+# vim:fdm=marker:
+# i3 config file (v4)
+
+		# vars
+		set $MOD Mod4
+		set $ALT Mod1
+		set $CTL Control
+		set $SHF Shift
+	set $exec exec --no-startup-id
+	set $nsi --no-startup-id
+	set $i3b ~/.i3/bin
+	set $lock exec --no-startup-id ~/.i3/dynami3/bin/lock_dynami3.sh set
+
+
+
+		set $w1 1:Web
+		set $w2 2:Code
+		set $w3 3:Misc
+		set $w4 4:School
+		set $w5 5:Chat
+		set $w6 6:Steam
+		set $w7 7
+		set $w8 8
+		set $w9 9
+		set $w0 10:Test
+
+
