@@ -39,9 +39,9 @@ alias i3ctl='i3-msg -s $XDG_RUNTIME_DIR/i3/ipc-socket.$(pgrep -x i3)'
 alias freq='sort -n | uniq -c | sort -n'
 alias freql='sort -n | uniq -c | sort -nr | less'
 
-alias data='for i in *; do du -hs $i; done | sort -hr'
+alias data='du -hs * 2>/dev/null | sort -hr'
 alias datag="data | grep 'G\s'"
-alias datadot='for i in * .*; do du -h $i | tail -n1; done | sort -hr'
+alias datadot='du -hs * .* 2>/dev/null | sort -hr'
 
 alias help='helptext.sh'
 
