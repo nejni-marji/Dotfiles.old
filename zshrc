@@ -37,6 +37,11 @@ $'\n'\
 source ~/.zshenv
 source ~/.zsh/zstyles.zsh
 
+# binding to edit the current command line with $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # zbell.sh
 source ~/Dotfiles/extras/zbell.sh
 
