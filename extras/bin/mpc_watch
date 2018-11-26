@@ -1,0 +1,18 @@
+#!/bin/bash
+DELAY="$1"
+[[ -z $DELAY ]] && DELAY=3
+
+
+while true; do
+
+	clear;
+	mpc status;
+
+	if ! mpc | grep '^\[playing\]' >/dev/null; then
+		mpc idle;
+
+	else
+		sleep $DELAY;
+
+	fi
+done
