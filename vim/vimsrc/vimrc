@@ -3,3 +3,6 @@ source ~/.vim/vimsrc/plugins.vim
 source ~/.vim/vimsrc/autocommand.vim
 source ~/.vim/vimsrc/mapping.vim
 source ~/.vim/vimsrc/interface.vim
+
+" I think this fixes the statusbar in neovim
+:set guicursor=
