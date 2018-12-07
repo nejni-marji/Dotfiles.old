@@ -1,4 +1,0 @@
-Add error handling using config.bak
-Add error reporting for plugins
-Consider alternatives to plugin.conf
-Write a demo of dynami3
