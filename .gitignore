@@ -7,5 +7,3 @@ extras/config/mpd/*
 !extras/config/mpd/playlists
 
 i3/config
-i3/dynami3/data/*
-!i3/dynami3/data/locks

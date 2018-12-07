@@ -1,6 +1,0 @@
-#!/bin/bash
-totl=$(free | grep Mem | awk '{print $2}')
-used=$(free | grep Mem | awk '{print $3}')
-free=$(free | grep Mem | awk '{print $4}')
-python3 -c "print('%.f%%' % float(100 * $used / $totl))"
-python3 -c "print('%.f%%' % float(100 * $used / $totl))"
