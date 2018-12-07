@@ -22,7 +22,7 @@ URxvt.scrollBar: false
 
 ! cursor
 URxvt.cursorColor: #3fffff
-URxvt.cursorUnderline: true
+URxvt.cursorUnderline: false
 
 ! bells
 URxvt.visualBell:  true
