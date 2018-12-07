@@ -5,7 +5,7 @@
 
 # Kill defunct sessions
 list-dead() {
-	tmux ls 2>/dev/null | grep -P '(.*?)-\d{4}_\d{6}: .* \(group \1\)$' | cut -d: -f1
+	tmux ls 2>/dev/null | grep -P '(.*?)-\d{4}_\d{6}: .* \(group (?:\1|\d+)\)$' | cut -d: -f1
 }
 for i in $(list-dead); do
 	echo "Killing defunct session: $i"
@@ -55,7 +55,7 @@ count="$(tmux ls 2>/dev/null | grep -Pc "\(group $group\)")"
 # Applies if this is a new group
 if [[ "$count" == "0" ]]; then
 	echo "New base session: $group"
-	tmux new-session -t "$group" -s "$group" -d
+	tmux new-session -s "$group" -d
 fi
 # Only run if we aren't in a tmux shell
 if [[ -z "$TMUX" ]]; then
