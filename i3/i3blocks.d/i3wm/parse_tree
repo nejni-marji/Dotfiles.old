@@ -1,0 +1,4 @@
+#!/bin/bash
+DIR=$(dirname "${BASH_SOURCE[0]}")
+~/.i3/bin/lockfiles.sh get debugging \
+|| $DIR/parse_tree.py

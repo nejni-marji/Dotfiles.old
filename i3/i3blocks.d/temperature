@@ -1,0 +1,16 @@
+#!/bin/bash
+TEMP="$(sensors -u | grep -Po '^\s+temp1_input:\s+\+*(-*\d+\.\d)' | grep -Po '\d+\.\d' | head -n1)"
+TEMP_INT="$(echo $TEMP | grep -Po '^\d+')"
+
+T_WARN=70
+T_CRIT=80
+
+echo "$TEMP°C"
+echo "$TEMP"
+
+if [[ $TEMP_INT -ge $T_CRIT ]]; then
+	echo "#FF0000"
+	exit 33
+elif [[ $TEMP_INT -ge $T_WARN ]]; then
+	echo "#FFFF00"
+fi

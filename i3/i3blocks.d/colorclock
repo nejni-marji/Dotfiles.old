@@ -1,0 +1,4 @@
+#!/bin/bash
+
+~/.i3/dynami3/bin/lock_dynami3.sh get colorclock \
+|| ~/bin/colorclock.sh -vr

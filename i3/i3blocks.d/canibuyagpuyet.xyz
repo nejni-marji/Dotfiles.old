@@ -1,0 +1,24 @@
+#!/bin/bash
+
+resp() {
+	curl -s 'http://canibuyagpuyet.xyz/' \
+	| grep -Po '(?<=<h1>)[^<]*(?=</h1>)' \
+	| tr '\n' ' ' \
+	| perl -pe 's/ $/\n/'
+}
+
+RESP="$(resp)"
+if [[ $RESP == No ]]; then
+	echo $RESP
+	echo $RESP
+	exit 0
+elif [[ $RESP == Maybe ]]; then
+	echo $RESP
+	echo $RESP
+#	echo \#ff8080
+	exit 0
+else
+	echo $RESP
+	echo $RESP
+	exit 33
+fi

@@ -1,0 +1,38 @@
+#!/bin/bash
+export MPC_FORMAT='[[\[%album%\] ][%artist% - ]%title%]|[%file%]'
+
+# if mpd is not running
+if [[ -z "$(mpc status)" ]]; then
+	echo Down
+	echo Down
+	echo "#FF0000"
+	exit
+fi
+
+STATE=$(mpc | grep -Eo '^\[(playing|paused)\]' | tr -d '[]')
+[[ -z $STATE ]] && exit
+VOLUME="$(mpc volume | cut -c8- | tr -d ' ')"
+CURRENT=$(mpc current)
+POSITION="$(mpc | grep -E '^\[(playing|paused)\]' | awk '{print $3}')"
+MODES="$({
+	MPC=$(mpc status | tail -n1)
+	MODES=(repeat random single consume)
+	TRUE=(E R S C)
+	FALSE=(e r s c)
+
+	for i in $(seq 0 3); do
+		echo $MPC | grep -Po "(?<=${MODES[$i]}: )o(ff|n)" \
+		| grep "on" >/dev/null \
+		&& echo -n ${TRUE[$i]} || echo -n ${FALSE[$i]}
+	done
+	echo
+})"
+
+DATA="$POSITION $MODES"
+[[ $VOLUME == "n/a" ]] || DATA="$DATA $VOLUME"
+
+echo "$CURRENT $DATA"
+echo "$DATA"
+
+[[ $STATE -eq playing ]] && echo "#00CC00"
+[[ $STATE -eq paused  ]] && echo "#FFFF00"
