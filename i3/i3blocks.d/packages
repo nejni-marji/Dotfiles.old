@@ -1,0 +1,36 @@
+#!/bin/bash
+source /etc/os-release
+if ! [[ $ID == "arch" ]]; then
+	echo "Not Arch Linux"
+	echo "Not Arch Linux"
+	exit
+fi
+
+PAC="$(checkupdates)"
+PACN="$(echo "$PAC" | wc -l)"
+
+if ! [[ $PAC ]]; then
+	PACN="0"
+fi
+CHECK="$(($PACN))"
+LINUX="$(echo "$PAC" | grep -c linux)"
+
+if [[ $CHECK == 0 ]]; then
+	exit
+fi
+
+text="$CHECK"
+if [[ $LINUX != "0" ]]; then
+	text="$text!"
+fi
+
+echo $text
+echo $text
+
+if [[ $CHECK -gt 50 ]]; then
+	echo "#FF0000"
+elif [[ $CHECK -gt 25 ]]; then
+	echo "#FFFF00"
+elif [[ $CHECK == 0 ]]; then
+	echo "#00FF00"
+fi
