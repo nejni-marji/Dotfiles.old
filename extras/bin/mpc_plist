@@ -41,7 +41,9 @@ while true; do
 				[[ $(tput cols)  -ne $columns ]] && act=break
 				[[ $(tput lines) -ne $lines   ]] && act=break
 				if [[ $act == break ]]; then
-					kill "${${jobstates##*:*:}%=*}"
+					#kill "${${jobstates##*:*:}%=*}"
+					# the previous one could cause a race condition?
+					! [[ -z "${${jobstates##*:*:}%=*}" ]] && kill "${${jobstates##*:*:}%=*}"
 					act=""
 					break
 				fi
