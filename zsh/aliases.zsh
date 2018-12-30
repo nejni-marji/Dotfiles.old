@@ -1,13 +1,13 @@
 #!/bin/zsh
 
 # actual commands
-alias startx='ssh-agent startx'
+alias startx='ssh-agent -t 1h startx'
 alias rm='echo pls dont'
 alias man='man -P less'
 alias pacman='pacman --color=auto'
 alias pacaur='aurman --color auto'
 alias grep='grep --color=auto'
-alias rsync='rsync -a'
+#alias rsync='rsync -a'
 alias cp='rsync'
 alias scp='rsync'
 
