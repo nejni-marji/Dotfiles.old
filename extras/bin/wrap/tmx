@@ -29,10 +29,12 @@ while [[ -z "$group" ]]; do
 	# switch on $arg
 	case "$arg" in
 		ls|l)
-			tmux ls
+			{ tmux ls 2>/dev/null; } \
+			|| echo 'No sessions found'
 		;;
 		lsg|lg|g)
-			tmux ls | grep -P '(.*?): .* \(group \1\)$'
+			{ tmux ls 2>/dev/null | grep -P '(.*?): .* \(group \1\)$'; } \
+			|| echo 'No sessions found'
 		;;
 		exit|quit|q)
 			exit 1
