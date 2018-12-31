@@ -34,7 +34,16 @@ for p_name in "${plugins_list[@]}"; do
 		} || {
 
 			echo "# dynami3: $p_name: plugin failed #"
-			espeak "dynam_i3 error: $p_name" #TODO: error reporting thru nagbar
+			{
+				i3-nagbar -t error -m "There is an error with dynami3: $p_name" \
+				-b 'Open shell' '$SHELL' \
+				-b 'Edit plugin conf' '$EDITOR $plugins/$p_name/plugin.conf' \
+				-b 'Edit plugin file' '$EDITOR $plugins/$p_name/plugin.sh' \
+				-b 'Edit dynami3 conf' '$EDITOR $dy_dir/dynami3.conf' \
+				-b 'Edit dynami3 file' '$EDITOR $dy_dir/dynami3.sh' \
+				-b 'Restart i3' '~/.i3/manager.sh restart' \
+
+			} >/dev/null 2>/dev/null
 
 		}
 	} >> $finconf
