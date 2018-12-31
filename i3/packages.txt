@@ -1,12 +1,12 @@
 Packages for my i3 setup so far:
 
-i3
-i3blocks
-tmux zsh git
-rofi
-urxvt
+	i3
+	i3blocks
+	tmux zsh git
+	rofi
+	urxvt
 compton
-pip3 -> i3ipc
+	pip3 -> i3ipc
 fonts
 dunst
 redshift redshift-gtk
@@ -17,3 +17,14 @@ pulsemixer
 hsetroot
 leafpad
 lm-sensors
+	synclient
+	rsync
+	xrandr
+feh
+scrot
+xautolock?
+
+not i3 critical:
+nmap
+bc
+youtube-dl
