@@ -10,11 +10,10 @@ init-desktop() {
 	{}
 #	xrandr --output DVI-D-0 --primary
 #	~/bin/m570_sensitivity.sh .15 1
-#	setxkbmap -layout us -variant dvorak
 }
 
 init-laptop() {
-	xrandr --output LVDS-1 --primary
+	xrandr --output LVDS1 --primary
 
 	# touchpad
 	synclient TapButton1=1
@@ -22,36 +21,45 @@ init-laptop() {
 	synclient TapButton3=2
 	synclient CircularScrolling=1
 	synclient CircScrollTrigger=1
+
+	# tray
+	pkill -x cbatticon
+	{ cbatticon -i symbolic -l 25 -r 10 -c 'systemctl suspend' & }
 }
 
 init-generic() {
 	xrdb -load ~/.Xresources
-	# run xmodmap again if it fails
-	xmodmap ~/.xmodmaprc || \
+
+	# set keymap
+	setxkbmap -layout us -variant dvorak
 	xmodmap ~/.xmodmaprc
-#	xset m 7/2 4
-#	xset -b
+
+	xset m 7/2 4
+	xset -b
 
 	# This block is required to make Bluetooth work. It's either due to bad
 	# module loading or permissions, I think.
-#	{ pulseaudio --kill; sleep 1; pulseaudio --start; } &
+#	{ { pulseaudio --kill; sleep 1; pulseaudio --start; } & }
 }
 
 exit-generic() {
+	stop-apps
+	redshift -x
+	# set backlight to something?
 	i3-msg exit
 	exit
 }
 
 start-apps() {
-#	redshift -O 4500
-#	{ redshift-gtk & }
+	redshift -Po
+	{ redshift -P & }
 	compton -b
 	{ dunst & }
 }
 
 stop-apps() {
-	pkill -x redshift-gtk
-	redshift -x
+	redshift -Po
+	pkill -x redshift
 	pkill -x compton
 	pkill -x dunst
 }
@@ -62,7 +70,7 @@ if [[ $1 == exit ]]; then
 fi
 
 if [[ $1 == init ]]; then
-	if [[ $(hostname) == ASUS ]]; then
+	if [[ $(hostname -d) == ASUS.localdomain ]]; then
 		init-laptop
 	fi
 	init-generic
