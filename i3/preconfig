@@ -7,23 +7,23 @@
 
 # {{{ ipc scripts
 	# loader
-	exec_always $i3b/i3ipc_nop.py
+	exec_always --no-startup-id $i3b/i3ipc_nop.py
 	# resize
 	bindsym $MOD+equal      nop ipc resize grow
 	bindsym $MOD+$SHF+equal nop ipc resize shrink
 	# flatten
 	bindsym $MOD+$ALT+g     nop ipc flatten arg
 	# hotswap
-	exec_always $i3b/old_bin/hotswap.py
+	exec_always --no-startup-id $i3b/hotswap.py
 	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
 	bindsym $MOD+m      nop ipc hotswap swaphere
 	bindsym $MOD+$ALT+m nop ipc hotswap return
 	bindsym $MOD+$CTL+m nop ipc hotswap reset
 # }}}
 # {{{ i3-gaps only
-#	smart_gaps on
-#	gaps inner $gaps_inner
-#	gaps outer $gaps_outer
+	smart_gaps on
+	gaps inner $gaps_inner
+	gaps outer $gaps_outer
 # }}}
 # {{{ set general variables
 	# {{{ modifiers
@@ -58,13 +58,16 @@
 	# }}}
 	# {{{ assign
 		# 3
-		assign [class="TelegramDesktop"] $w3
-		assign [class="discord"] $w3
+		assign [class="^TelegramDesktop$"] $w3
+		assign [class="^discord$"] $w3
 	# }}}
 	# {{{ for_window
 		for_window [title="^vimpc$"] floating enable, sticky enable
-		for_window [class="Pavucontrol"] floating enable, sticky enable
+		for_window [class="^Pavucontrol$"] floating enable, sticky enable
 		for_window [title="^pulsemixer$"] floating enable, sticky enable
+
+		# Telegram image viewer
+		for_window [class="^TelegramDesktop$"] [title="^Media viewer$"] fullscreen enable
 	# }}}
 # }}}
 # {{{ appearance
@@ -120,8 +123,7 @@
 			mode $bar_mode
 			hidden_state $bar_hide
 			modifier $bar_key
-			#TODO: -t
-			i3bar_command i3bar
+			i3bar_command i3bar -t
 			status_command i3blocks
 			strip_workspace_numbers yes
 			tray_output primary
@@ -140,9 +142,9 @@
 	# }}}
 # }}}
 # {{{ general settings
-	#TODO
-#	floating_maximum_size 1000x750
-#	floating_minimum_size 300x350
+	#TODO: do we want minmax sizes?
+	floating_maximum_size 1000x750
+	floating_minimum_size 300x350
 	workspace_layout stacking
 	workspace_auto_back_and_forth yes
 	hide_edge_borders smart
@@ -249,7 +251,7 @@
 # {{{ summoners
 	bindsym $MOD+$SHF+Return      $exec urxvt -e zsh
 	#TODO
-#	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx		#old
+	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx
 #	bindsym $MOD+$SHF+$CTL+Return $exec urxvt -e ranger		#old
 #	bindsym $MOD+$ALT+Return      $exec cool-retro-term -e zsh		#old
 	# {{{ rofi
@@ -271,12 +273,12 @@
 	# }}}
 	# {{{ audio and mpd with arrow keys		#old
 	#TODO
-#		#		#old
-#		bindsym $MOD+Up         $exec ~/bin/sound pa  set +10		#old
-#		bindsym $MOD+Down       $exec ~/bin/sound pa  set -10		#old
-#		bindsym $MOD+Left       $exec ~/bin/sound pa  mute		#old
-#		bindsym $MOD+Right      $exec ~/bin/sound mpd toggle		#old
-#		#		#old
+		#
+		bindsym $MOD+Up         $exec ~/bin/sound pa  set +10
+		bindsym $MOD+Down       $exec ~/bin/sound pa  set -10
+		bindsym $MOD+Left       $exec ~/bin/sound pa  mute
+		bindsym $MOD+Right      $exec ~/bin/sound mpd toggle
+		#		#old
 #		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10		#old
 #		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10		#old
 #		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev		#old
