@@ -36,10 +36,21 @@ def LM(var_list, opt):
 multi_fancy = 'gaps titlebars'
 multi_fancy = multi_fancy.split()
 
+ws_goto = {
+	'm%i' % i: 'workspace number $w%i' % i
+	for i in list(range(1, 10)) + [0]
+}
+ws_move = {
+	'mm%i' % i: 'move container to workspace number $w%i' % i
+	for i in list(range(1, 10)) + [0]
+}
+
+
 binds = { # {{{
+	**ws_goto,
+	**ws_move,
 	# {{{ applications
 		'ad': E('discord'),
-		'aD': E('deluge-gtk'),
 		'af': E('firefox'),
 		'aF': E('firefox --private-window'),
 		'ag': E('gimp'),
@@ -48,116 +59,8 @@ binds = { # {{{
 		'aL': E('libreoffice'),
 		'as': E('steam'),
 		'at': E(B('telegram')),
-		'av': E('VirtualBox'),
-		'aV': E('vlc'),
-	# }}}
-	# {{{ i3-wm
-		'iec': E(I('manager.sh edit preconf')),
-		'ieC': E(I('manager.sh edit postconf')),
-		'iem': E(I('manager.sh edit manager')),
-		'iev': E(I('manager.sh edit vi3m')),
-		'ieV': E(I('manager.sh edit vars')),
-		'ii': E('i3-input'),
-		'il': E(I('autolock_locker.sh')),
-		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
-		'im': E('i3-input '
-			+ '-P "mark " -F "mark %s"'),
-		'iM': E('i3-input '
-			+ '-P "unmark " -F "unmark %s"'),
-		# locks
-		'if': LM(multi_fancy, '1'),
-		'iF': LM(multi_fancy, '0'),
-		'id': L('debugging'),
-		'ic': L('colorclock'),
-		'ibm': L('bar_mode'),
-		'ibh': L('bar_hide'),
-		'ibk': L('bar_key'),
-		'ig': L('gaps'),
-		'it': L('titlebars'),
-	# }}}
-	# {{{ mpc
-		'ms': E('mpc stop'),
-		'mS': E('mpc stop && mpc -h odroid pause'),
-		'mte': E(A('mpd toggle repeat')),
-		'mtr': E(A('mpd toggle random')),
-		'mts': E(A('mpd toggle single')),
-		'mtc': E(A('mpd toggle consume')),
-		'mv': E('urxvt -e vimpc'),
-	# }}}
-	# {{{ remote
-		'rm': E(B(R('mosh'))),
-		'rs': E(B(R('ssh'))),
-		'rt': E(B(R('tmux'))),
-		'rd': E(B(R('tmuxd'))),
-		'rr': E(B(R('ranger'))),
-		'rv': E(B(R('vimpc'))),
-		'rf': E(B(R('sshfs'))),
-		'ru': E(B(R('unmount'))),
-		'rp': E(B(R('ping'))),
-		'rb': E(B(R('mosh bot -f -o cat -n 24'))),
-	# }}}
-	# {{{ toggles
-		'tb': E(S('pkill blueman-applet || blueman-applet')),
-		'tc': E(S('pkill -x compton || compton -b')),
-		'tC': E(S('pkill -x compton && compton -b || compton -b')),
-		'tr': E(S('pkill -x redshift-gtk && redshift -x || redshift-gtk')),
-		'tR': E(S('pkill -x redshift-gtk && redshift -O 4500 || redshift -O 4500')),
-	# }}}
-	# {{{ workspaces
-		'wm': E('i3-input '
-			+ '-P "move to workspace " -F "move to workspace %s"'),
-		'wo': E('i3-input '
-			+ '-P "move workspace to output " -F "move workspace to output %s"'),
-		'wr': E('i3-input '
-			+ '-P "rename workspace to " -F "rename workspace to %s"'),
-	# }}}
-	# {{{ utilities
-		'up': E(T('pulsemixer')),
-		'uP': E('pavucontrol'),
-		'uP': E('pavucontrol-qt'),
-		'us': E('sc-controller && ' + B('keyswitch')),
-		'uS': E(S('pkill -x sc-controller && pkill -x scc-daemon')),
-		'uf': E(B('feshot')),
-		'uF': E(B('feshot all')),
-	# }}}
-	# {{{ misc
-		'zd': E('firefox --new-window https://github.com/nejni-marji/Dotfiles'),
-		'zir': E(I('misc/reset_iss.sh')),
-		'zif': E(I('misc/focus_iss.sh')),
-		'zw': E('firefox --new-window wolframalpha.com'),
-		'zW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla Firefox$')
-			+ '; '
-			+ E('firefox wolframalpha.com'),
-	# }}}
-} # }}}
-
-move_a={
-	'm%i' % i: 'workspace number $w%i' % i
-	for i in list(range(1, 10)) + [0]
-}
-move_b={
-	'mm%i' % i: 'move container to workspace number $w%i' % i
-	for i in list(range(1, 10)) + [0]
-}
-
-
-binds = { # {{{
-**move_a,
-**move_b,
-	# {{{ applications
-		'ad': E('discord'),
-#		'aD': E('deluge-gtk'),
-		'af': E('firefox'),
-		'aF': E('firefox --private-window'),
-#		'ak': E('kate'),
-#		'ag': E('gimp'),
-#		'aG': E('gimp ~/Pictures/Screenshots/Latest.png'),
-		'al': E('leafpad'),
-		'aL': E('libreoffice'),
-#		'as': E('steam'),
-		'at': E(B('telegram')),
-#		'av': E('VirtualBox'),
-#		'aV': E('vlc'),
+		'av': E('vlc'),
+#		'aV': E('VirtualBox'),
 	# }}}
 	# {{{ i3-wm
 		'iec': '$mgr_run edit preconf',
@@ -182,6 +85,8 @@ binds = { # {{{
 		'ibk': L('bar_key'),
 		'ig': L('gaps'),
 		'it': L('titlebars'),
+		'iw': E('i3-input '
+			+ '-P "set_wallpaper.sh " -F "$exec $i3b/set_wallpaper.sh %s"'),
 	# }}}
 	# {{{ workspaces
 		'wm': E('i3-input '
@@ -196,7 +101,6 @@ binds = { # {{{
 	# {{{ utilities
 		'up': E(T('pulsemixer')),
 		'uP': E('pavucontrol'),
-		'uP': E('pavucontrol-qt'),
 		'uf': E(B('feshot')),
 		'uF': E(B('feshot all')),
 	# }}}
