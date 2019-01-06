@@ -12,18 +12,20 @@ URxvt.perl-ext-common: resize-font
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger:  C-Up
 
-! colors and transparency
+! colors
+URxvt.background: #202020
+URxvt.foreground: #ffffff
+
+! true transparency
 !URxvt.depth: 32
 !URxvt.background: [75]#000000
 !URxvt.foreground:     #ffffff
 
-! colors and fake transparency
-URxvt.background: #000000
-URxvt.foreground: #ffffff
-URxvt.inheritPixmap: true
-URxvt.transparent: true
-! URxvt.shading: 0-99 darkens, 101-200 lightens
-URxvt.shading: 35
+! native transparency
+!URxvt.inheritPixmap: true
+!URxvt.transparent: true
+!! URxvt.shading: 0-99 darkens, 101-200 lightens
+!URxvt.shading: 35
 
 ! user interface
 URxvt.scrollBar: false
