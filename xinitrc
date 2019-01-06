@@ -2,7 +2,6 @@
 # ~/.xinitrc
 #
 
-#TODO: is this required?
-EDITOR=vim
-TERMINAL=urxvt
+export EDITOR=vim
+export TERMINAL=urxvt
 exec i3
