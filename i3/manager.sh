@@ -55,6 +55,7 @@ start-apps() {
 	{ redshift -P & }
 	compton -b
 	{ dunst & }
+	~/.i3/bin/autolock_init.sh 30 300 600
 }
 
 stop-apps() {
