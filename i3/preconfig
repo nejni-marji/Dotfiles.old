@@ -262,6 +262,11 @@
 			-columns 1 \
 			-kb-row-select "Tab" -kb-row-tab "" \
 			-modi window -show window
+		bindsym $MOD+$ALT+backslash $exec rofi \
+			-columns 1 \
+			-no-parse-hosts -no-parse-known-hosts \
+			-kb-row-select "Tab" -kb-row-tab "" \
+			-modi ssh -show ssh
 	# }}}
 # }}}
 # {{{ media keys
