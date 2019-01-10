@@ -7,14 +7,14 @@
 
 # {{{ ipc scripts
 	# loader
-	exec_always --no-startup-id $i3b/i3ipc_nop.py
+	$execa $i3b/i3ipc_nop.py
 	# resize
 	bindsym $MOD+equal      nop ipc resize grow
 	bindsym $MOD+$SHF+equal nop ipc resize shrink
 	# flatten
 	bindsym $MOD+$ALT+g     nop ipc flatten arg
 	# hotswap
-	exec_always --no-startup-id $i3b/hotswap.py
+	$execa $i3b/hotswap.py
 	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
 	bindsym $MOD+m      nop ipc hotswap swaphere
 	bindsym $MOD+$ALT+m nop ipc hotswap return
@@ -33,14 +33,14 @@
 		set $SHF Shift
 	# }}}
 	set $exec exec --no-startup-id
-	set $nsi --no-startup-id
+	set $execa exec_always --no-startup-id
 	set $i3b ~/.i3/bin
 	set $mgr_run exec --no-startup-id ~/.i3/manager.sh
 	set $lock exec --no-startup-id ~/.i3/bin/lockfiles.sh set
 # }}}
 # {{{ startup
-	exec_always --no-startup-id $i3b/set_wallpaper.sh
-	exec_always --no-startup-id i3-msg rename workspace 1 to $w1 # always
+	$execa $i3b/set_wallpaper.sh
+	$execa i3-msg rename workspace 1 to $w1 # always
 	$mgr_run init
 # }}}
 # {{{ workspace, assign, for_window
