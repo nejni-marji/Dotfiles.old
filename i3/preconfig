@@ -252,7 +252,7 @@
 	bindsym $MOD+$SHF+Return      $exec urxvt -e zsh
 	#TODO
 	bindsym $MOD+$CTL+Return      $exec urxvt -e tmx
-#	bindsym $MOD+$SHF+$CTL+Return $exec urxvt -e ranger		#old
+	bindsym $MOD+$ALT+Return      $exec urxvt -e ranger
 #	bindsym $MOD+$ALT+Return      $exec cool-retro-term -e zsh		#old
 	# {{{ rofi
 		bindsym $MOD+backslash      $exec rofi \
