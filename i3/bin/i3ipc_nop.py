@@ -39,7 +39,10 @@ def flatten(i3, event, args):
 	if not parent.nodes == [target]:
 		return None
 
-	if any([i for i in [target, parent, parent.parent] if i.type == 'workspace']):
+	if any([i for i in [target, parent] if i.type == 'workspace']):
+		return None
+
+	if parent.parent.type == 'workspace' and target.orientation == 'none':
 		return None
 
 	i3.command('[con_id="%s"] mark --add _flat_target' % target.id)
