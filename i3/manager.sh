@@ -87,7 +87,7 @@ fi
 
 ~/.i3/dynami3/dynami3.sh
 
-stop-apps
+[[ ( $1 == restart ) || ( $1 == init ) ]] && stop-apps
 
 # I don't know why this sleep has to be the way it is, but it does
 # It's required for compton to load properly, though.
@@ -95,7 +95,7 @@ stop-apps
 [[ $1 == restart ]] && sleep 1
 [[ $1 != restart ]] && i3-msg reload
 
-start-apps
+[[ ( $1 == restart ) || ( $1 == init ) ]] && start-apps
 
 if [[ $1 == init ]]; then
 	notify-send -t 500 -a 'i3wm' 'i3wm' 'Initialized'

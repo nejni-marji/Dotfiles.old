@@ -5,6 +5,11 @@
 # vim:fdm=marker:
 # i3 config file (v4)
 
+bindsym $MOD+Escape $exec i3-nagbar \
+	-B 'dvorak' '~/bin/old/keyswitch -k dvorak' \
+	-B 'qwerty' '~/bin/old/keyswitch -k qwerty' \
+	-t warning
+
 # {{{ ipc scripts
 	# loader
 	$execa $i3b/i3ipc_nop.py
@@ -21,7 +26,7 @@
 	bindsym $MOD+$CTL+m nop ipc hotswap reset
 # }}}
 # {{{ i3-gaps only
-	smart_gaps on
+#	smart_gaps on
 	gaps inner $gaps_inner
 	gaps outer $gaps_outer
 # }}}
@@ -49,9 +54,9 @@
 		set $w2 2:Video
 		set $w3 3:Chat
 		set $w4 4:Code
-		set $w5 5:Misc
-		set $w6 6:School
-		set $w7 7:Game
+		set $w5 5
+		set $w6 6
+		set $w7 7
 		set $w8 8
 		set $w9 9
 		set $w0 10
@@ -104,7 +109,7 @@
 		set $c_splitA #00ff80
 		# i3bar: separator, background, text
 		set $c_i3barE #ff8000ff
-		set $c_i3barB #00000080
+		set $c_i3barB #400040d0
 		set $c_i3barT #ffffffff
 	# }}}
 	# {{{ window colors
@@ -126,7 +131,7 @@
 			i3bar_command i3bar -t
 			status_command i3blocks
 			strip_workspace_numbers yes
-			tray_output primary
+			tray_output $tray_state
 			tray_padding 0
 			colors { # {{{
 				background $c_i3barB
@@ -275,6 +280,9 @@
 		bindsym --release $print $exec $i3b/shoot -s
 		bindsym      $SHF+$print $exec $i3b/shoot
 		bindsym      $CTL+$print $exec $i3b/shoot -u
+		bindsym --release $MOD+p $exec $i3b/shoot -s
+		bindsym       $MOD+SHF+P $exec $i3b/shoot
+		bindsym       $MOD+CTL+p $exec $i3b/shoot -u
 	# }}}
 	# {{{ audio and mpd with arrow keys		#old
 	#TODO
@@ -283,27 +291,53 @@
 		bindsym $MOD+Down       $exec ~/bin/sound pa  set -10
 		bindsym $MOD+Left       $exec ~/bin/sound pa  mute
 		bindsym $MOD+Right      $exec ~/bin/sound mpd toggle
-		#		#old
-#		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10		#old
-#		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10		#old
-#		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev		#old
-#		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd next		#old
-#		#		#old
-#		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop		#old
-#		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get notify		#old
-#		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get		#old
-#		#		#old
-#		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Down  $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Left  $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Right $exec ~/bin/sound nop		#old
+		#
+		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10
+		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10
+		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev
+		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd next
+		#
+#		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop
+#		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop
+		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get notify
+		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get
+		#
+#		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Down  $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Left  $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Right $exec ~/bin/sound nop
 	# }}}
 # }}}
 # {{{ nop
 	bindsym $MOD+$ALT+space        nop "Discord: push to talk"
 	bindsym button9 --whole-window nop "libinput: trackball button scrolling"
 # }}}
+
+
+mode "Resize" {
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym Control+c mode "default"
+	bindsym Control+bracketleft mode "default"
+	bindsym $mod+Return mode "default"
+	bindsym BackSpace mode "R-"
+
+#	bindsym h      resize grow   left   10 px or 10 ppt
+#	bindsym l      resize grow   right  10 px or 10 ppt
+#	bindsym j      resize grow   down   10 px or 10 ppt
+#	bindsym k      resize grow   up     10 px or 10 ppt
+#	bindsym $SHF+h resize shrink left   10 px or 10 ppt
+#	bindsym $SHF+l resize shrink right  10 px or 10 ppt
+#	bindsym $SHF+j resize shrink down   10 px or 10 ppt
+#	bindsym $SHF+k resize shrink up     10 px or 10 ppt
+	bindsym h resize shrink width  10 px or 10 ppt
+	bindsym l resize grow   width  10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym j resize grow   height 10 px or 10 ppt
+	
+}
+bindsym $MOD+$ALT+equal mode "Resize"
+
 
 
 

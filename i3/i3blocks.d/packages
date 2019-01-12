@@ -15,6 +15,10 @@ fi
 CHECK="$(($PACN))"
 LINUX="$(echo "$PAC" | grep -c linux)"
 
+if [[ $CHECK == 0 ]]; then
+	exit
+fi
+
 text="$CHECK"
 if [[ $LINUX != "0" ]]; then
 	text="$text!"

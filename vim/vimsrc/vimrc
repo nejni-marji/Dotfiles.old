@@ -6,3 +6,9 @@ source ~/.vim/vimsrc/interface.vim
 
 " I think this fixes the statusbar in neovim
 :set guicursor=
+
+" remember this for later I guess
+"autocmd FileType python :setlocal sw=2 ts=2 sts=2
+
+
+"let g:pathogen_disable = ['lightline.vim']

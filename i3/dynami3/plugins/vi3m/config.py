@@ -28,10 +28,10 @@ def FC(wm_class): return F('class', wm_class)
 def A(cmd): return '~/bin/sound %s' % cmd
 
 def L(var): return '$lock %s; ' % var + '$mgr_run restart'
-def LM(var_list, opt):
-	return ''.join(
-		['$lock %s %s; ' % (i, opt) for i in var_list]
-	) + E(I('manager.sh restart'))
+#def LM(var_list, opt):
+#	return ''.join(
+#		['$lock %s %s; ' % (i, opt) for i in var_list]
+#	) + '$mgr_run restart'
 
 multi_fancy = 'gaps titlebars'
 multi_fancy = multi_fancy.split()
@@ -69,8 +69,8 @@ binds = { # {{{
 		'iev': '$mgr_run edit vi3m',
 		'ieV': '$mgr_run edit vars',
 		'ii': E('i3-input'),
-#		'il': E(I('autolock_locker.sh')),
-#		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
+		'il': E(I('autolock_locker.sh')),
+		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
 		'im': E('i3-input '
 			+ '-P "mark " -F "mark %s"'),
 		'iM': E('i3-input '
@@ -83,6 +83,7 @@ binds = { # {{{
 		'ibm': L('bar_mode'),
 		'ibh': L('bar_hide'),
 		'ibk': L('bar_key'),
+		'ibt': L('tray'),
 		'ig': L('gaps'),
 		'it': L('titlebars'),
 		'iw': E('i3-input '

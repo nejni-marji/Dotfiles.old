@@ -11,6 +11,11 @@
 	set showcmd
 	" disabled by lightline, but here for the record
 	"set statusline=%F\ %m%r%y%=%-9(%l/%L,%)\ %-9(%c%V,%)\ %P
+	" adding new ruler, 2019-01-06
+	set statusline=
+	set statusline+=%f\ %<%m%r%y
+	set statusline+=%=
+	set statusline+=%-8(%l/%L%)\ %-7(%c%V%)\ %P
 " buffers, windows
 	set splitbelow splitright
 	set hidden
@@ -36,5 +41,6 @@
 " highlighting
 	syntax enable
 	set background=dark
+	highlight Search ctermfg=0 ctermbg=11
 	highlight SpellBad ctermbg=none cterm=bold,underline
 	highlight SpellCap ctermbg=none cterm=bold,underline
