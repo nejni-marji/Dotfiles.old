@@ -18,6 +18,8 @@ opts_list = [
 	'no-pango',
 	'show-instance',
 	'only-child',
+	'shorten',
+	'shorten-pure',
 ]
 
 for i in opts_list:
@@ -27,39 +29,58 @@ for i in opts_list:
 		opts[i] = False
 
 def parse_tree(con):
+
+	if opts['no-pango']:
+		foc_pre = '*'
+		foc_pst = '*'
+	else:
+		foc_pre = '<u>'
+		foc_pst = '</u>'
+
+	# explicit container
 	if len(con.nodes) == 0:
+
 		data = str()
-		if con.focused == True:
-			if opts['no-pango']:
-				data += '*'
-			else:
-				data += '<u>'
+
 		if opts['show-instance']:
-			data += con.window_instance
+			con_name = con.window_instance
 		else:
-			data += con.window_class
-		if con.focused == True:
-			if opts['no-pango']:
-				data += '*'
-			else:
-				data += '</u>'
+			con_name = con.window_class
+
+		if opts['shorten']:
+			if opts['shorten-pure']:
+				con_disp = con_name[0]
+			elif len(con_name) > 5:
+				con_disp = con_name[:4] + '…'
+		if 'con_disp' not in locals():
+			con_disp = con_name
+
+		if con.focused:
+			data += foc_pre
+		data += con_disp
+		if con.focused:
+			data += foc_pst
+
 		return data
+
+
+
 	if opts['only-child'] and len(con.nodes) == 1:
 		return parse_tree(con.nodes[0])
+
+
+	# implicit container
 	if len(con.nodes) >= 1:
+
 		children = [parse_tree(i) for i in con.nodes]
 		data = str()
-		if con.focused == True:
-			if opts['no-pango']:
-				data += '*'
-			else:
-				data += '<u>'
+
+		if con.focused:
+			data += foc_pre
 		data += layouts[con.layout]
-		if con.focused == True:
-			if opts['no-pango']:
-				data += '*'
-			else:
-				data += '</u>'
+		if con.focused:
+			data += foc_pst
+
 		data += '['
 		data += ' '.join(children)
 		data += ']'
