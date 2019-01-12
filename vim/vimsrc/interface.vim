@@ -19,6 +19,7 @@
 	set ignorecase smartcase
 " text
 	set foldmethod=indent
+	set foldlevelstart=99
 	set number relativenumber
 	set linebreak wrap list
 	set listchars=tab:>-,trail:~,extends:>,precedes:<
