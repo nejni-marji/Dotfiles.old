@@ -49,9 +49,9 @@
 		set $w2 2:Video
 		set $w3 3:Chat
 		set $w4 4:Code
-		set $w5 5:Misc
-		set $w6 6:School
-		set $w7 7:Game
+		set $w5 5
+		set $w6 6
+		set $w7 7
 		set $w8 8
 		set $w9 9
 		set $w0 10
