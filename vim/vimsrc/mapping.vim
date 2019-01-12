@@ -7,6 +7,7 @@ nnoremap <leader>V :source ~/.vimrc<CR>
 nnoremap <leader>W :write<CR>
 nnoremap <leader>ln 80\|bhr
 nnoremap <leader>lp 80\|bi"+ "<ESC>
+nnoremap <leader>r :reg<CR>
 " fix j/k with line wrap
 nnoremap j gj
 nnoremap k gk
