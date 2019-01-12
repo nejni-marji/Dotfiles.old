@@ -24,7 +24,9 @@
 	set listchars=tab:>-,trail:~,extends:>,precedes:<
 	set nojoinspaces
 " tabs
-	set smarttab tabstop=4 shiftwidth=4
+	" When I press <Tab>, I want a goddamn tab character.
+	set shiftwidth=4 tabstop=4 softtabstop=4
+	set noexpandtab smarttab
 " movement
 	set cursorline
 	set autoindent
