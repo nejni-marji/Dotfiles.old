@@ -1,9 +1,35 @@
+!
+! ~/.xmodmaprc
+!
+
 clear Lock
 clear Control
 clear Mod4
-add Control = Caps_Lock
-add Mod4 = Control_L Control_R
-keycode 66 = Control_L Control_L NoSymbol NoSymbol
-keycode 133 = NoSymbol Caps_Lock
-keycode 135 = Multi_key
-keycode 105 = Multi_key
+clear Shift
+
+! keysym Replace_This = With_This
+
+keysym Caps_Lock = Control_L
+
+keysym Control_L = Super_L
+keysym Control_R = Super_R
+
+keysym Super_L = Shift_L
+!keysym Control_R = Shift_R
+
+keysym Menu = Multi_key Caps_Lock
+
+add Lock = Caps_Lock
+add Control = Control_L Control_R
+add Mod4 = Super_L Super_R
+add Shift = Shift_L Shift_R
+
+! The result of this should be as follows:
+! Physical         Digital
+!
+! Caps_Lock        Control_L
+! Control_L        Super_L
+! Super_L          Shift_L
+! Control_R        Shift_R
+! Menu             Multi_key
+! Shift+Menu       Caps_Lock
