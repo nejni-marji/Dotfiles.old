@@ -69,6 +69,7 @@ URxvt.color15: rgb:ff/ff/ff
 rofi.i: true
 rofi.lines: 10
 rofi.columns: 9
+rofi.fixed-num-lines: false
 rofi.location: 1
 rofi.width: 100
 rofi.bw: 0
@@ -77,7 +78,9 @@ rofi.separator-style: none
 rofi.font: monospace 10
 rofi.disable-history: true
 rofi.hide-scrollbar: true
+!                  bckgrn   border   sep
 rofi.color-window: #404040, #404040, #ffffff
+!           state: bg       fg       bgalt    hlbg     hlfg
 rofi.color-normal: #404040, #aaaaaa, #404040, #800080, #ffffff
 rofi.color-urgent: #404040, #aaaaaa, #404040, #800080, #ffffff
 rofi.color-active: #404040, #aaaaaa, #404040, #800080, #ffffff
