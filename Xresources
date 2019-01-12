@@ -7,7 +7,7 @@
 
 ! {{{ urxvt
 ! font
-URxvt.font: xft:monospace:size=8
+URxvt.font: xft:monospace:size=8,xft:Noto Sans CJK JP:size=8
 URxvt.perl-ext-common: resize-font
 URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger:  C-Up
