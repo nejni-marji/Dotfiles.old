@@ -83,6 +83,7 @@ binds = { # {{{
 		'ibm': L('bar_mode'),
 		'ibh': L('bar_hide'),
 		'ibk': L('bar_key'),
+		'ibt': L('tray'),
 		'ig': L('gaps'),
 		'it': L('titlebars'),
 		'iw': E('i3-input '
