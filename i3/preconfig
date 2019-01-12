@@ -283,21 +283,21 @@
 		bindsym $MOD+Down       $exec ~/bin/sound pa  set -10
 		bindsym $MOD+Left       $exec ~/bin/sound pa  mute
 		bindsym $MOD+Right      $exec ~/bin/sound mpd toggle
-		#		#old
-#		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10		#old
-#		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10		#old
-#		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev		#old
-#		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd next		#old
-#		#		#old
-#		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop		#old
-#		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get notify		#old
-#		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get		#old
-#		#		#old
-#		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Down  $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Left  $exec ~/bin/sound nop		#old
-#		bindsym $MOD+$CTL+Right $exec ~/bin/sound nop		#old
+		#
+		bindsym $MOD+$SHF+Up    $exec ~/bin/sound mpd vol +10
+		bindsym $MOD+$SHF+Down  $exec ~/bin/sound mpd vol -10
+		bindsym $MOD+$SHF+Left  $exec ~/bin/sound mpd prev
+		bindsym $MOD+$SHF+Right $exec ~/bin/sound mpd next
+		#
+#		bindsym $MOD+$ALT+Up    $exec ~/bin/sound nop
+#		bindsym $MOD+$ALT+Down  $exec ~/bin/sound mpd stop
+		bindsym $MOD+$ALT+Left  $exec ~/bin/sound pa  get notify
+		bindsym $MOD+$ALT+Right $exec ~/bin/sound mpd get
+		#
+#		bindsym $MOD+$CTL+Up    $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Down  $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Left  $exec ~/bin/sound nop
+#		bindsym $MOD+$CTL+Right $exec ~/bin/sound nop
 	# }}}
 # }}}
 # {{{ nop
