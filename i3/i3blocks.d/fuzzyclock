@@ -189,7 +189,11 @@ if sector == 12:
 hours = (hours % 12 - 1)
 if hours == -1: hours = 11
 
-fuzzy = time_data[hours][sector]
+fuzzy_str = time_data[hours][sector]
+fuzzy_num = '~{}:{}'.format(
+	str(now.hour).zfill(2),
+	str(sector * 5),
+)
 
-print(fuzzy + ' ')
-print(now.strftime('%H:%M'))
+print(fuzzy_str + ' ')
+print(fuzzy_num + ' ')
