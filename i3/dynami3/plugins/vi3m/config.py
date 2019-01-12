@@ -69,8 +69,8 @@ binds = { # {{{
 		'iev': '$mgr_run edit vi3m',
 		'ieV': '$mgr_run edit vars',
 		'ii': E('i3-input'),
-#		'il': E(I('autolock_locker.sh')),
-#		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
+		'il': E(I('autolock_locker.sh')),
+		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
 		'im': E('i3-input '
 			+ '-P "mark " -F "mark %s"'),
 		'iM': E('i3-input '
