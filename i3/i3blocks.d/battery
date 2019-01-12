@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+from subprocess import check_output
+
+ZPAD=2
+data = check_output('acpi -b'.split()).decode('utf-8').split('\n')[0].split()
+#data = 'Battery 0: Charging, 7%, 00:50:08 until charged'.split()
+#data = 'Battery 0: Unknown, 95%'.split()
+
+if   data[2].rstrip(',') == 'Charging':
+#	c_tf = True
+	c_s = '+'
+elif data[2].rstrip(',') == 'Discharging':
+#	c_tf = False
+	c_s = '-'
+elif data[2].rstrip(',') == 'Full':
+	c_s = ''
+else:
+	c_s = '*'
+
+c_val = data[3].rstrip(',')[:-1]
+c_num = int(c_val)
+
+try:
+	c_t = [int(i) for i in data[4].split(':')]
+	c_ts = ''
+
+	if c_t[0]:
+		c_ts += str(c_t[0]).zfill(ZPAD) + 'h'
+	if c_t[1]:
+		c_ts += str(c_t[1]).zfill(ZPAD) + 'm'
+except IndexError:
+	c_ts = ''
+
+print('{}{}%{}'.format(
+	c_s,
+	c_val.zfill(ZPAD),
+	(' ({})'.format(c_ts) if c_ts else ''),
+))
+
+print('{}{}%'.format(
+	c_s,
+	c_val.zfill(ZPAD),
+))
+
+if c_num <= 10:
+	color = '#FF0000'
+elif c_num <= 25:
+	color = '#FFFF00'
+else:
+	color = ''
+
+if color: print(color)
