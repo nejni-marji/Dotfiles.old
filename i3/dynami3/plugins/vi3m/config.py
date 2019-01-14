@@ -36,19 +36,25 @@ def LM(var_list, opt):
 multi_fancy = 'gaps titlebars'
 multi_fancy = multi_fancy.split()
 
-ws_goto = {
+move_focus = {
 	'm%i' % i: 'workspace number $w%i' % i
 	for i in list(range(1, 10)) + [0]
 }
-ws_move = {
+
+move_send = {
 	'mm%i' % i: 'move container to workspace number $w%i' % i
 	for i in list(range(1, 10)) + [0]
 }
 
+move_send_focus = {
+	'mz%i' % i: 'move container to workspace number $w%i; workspace back_and_forth' % i
+	for i in list(range(1, 10)) + [0]
+}
 
 binds = { # {{{
-	**ws_goto,
-	**ws_move,
+	**move_focus,
+	**move_send,
+	**move_send_focus,
 	# {{{ applications
 		'ad': E('discord'),
 		'af': E('firefox'),
