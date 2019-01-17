@@ -276,8 +276,8 @@
 		bindsym      $SHF+$print $exec $i3b/shoot
 		bindsym      $CTL+$print $exec $i3b/shoot -u
 		bindsym --release $MOD+p $exec $i3b/shoot -s
-		bindsym       $MOD+SHF+P $exec $i3b/shoot
-		bindsym       $MOD+CTL+p $exec $i3b/shoot -u
+		bindsym      $MOD+$SHF+P $exec $i3b/shoot
+		bindsym      $MOD+$CTL+p $exec $i3b/shoot -u
 	# }}}
 	# {{{ audio and mpd with arrow keys		#old
 	#TODO
