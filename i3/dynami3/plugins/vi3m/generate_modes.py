@@ -19,8 +19,6 @@ def validate_config(config):
 		mode = chain[:-1]
 		if not chain.isalnum():
 			errors.append([1, chain])
-		if not mode == mode.lower():
-			errors.append([2, chain])
 		get_modes(chain)
 
 	modes = list(set(modes))
@@ -51,7 +49,6 @@ def validate_config(config):
 def handle_errors(errors):
 	types = {
 		1: 'non-alphanumeric chars',
-		2: 'uppercase char before final char',
 		3: 'overlapped mapping(s)',
 	}
 	for error in errors:
@@ -99,8 +96,10 @@ def generate_config(config):
 			))
 
 		for mode in modes:
-			key = mode.lower()
-			if len(key) == 1:
+			if len(mode) == 1:
+				key = mode
+				if not key == key.lower():
+					key = 'Shift+' + key.lower()
 				print('\tbindsym %s mode "%s%s"' % (key, p_sym, mode))
 		print('}')
 		print()
