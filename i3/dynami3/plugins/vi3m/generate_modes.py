@@ -45,6 +45,7 @@ def validate_config(config):
 
 	if errors:
 		handle_errors(errors)
+		exit(1)
 	return [chains, modes]
 
 def handle_errors(errors):
