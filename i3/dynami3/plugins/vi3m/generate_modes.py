@@ -62,12 +62,15 @@ def handle_errors(errors):
 	exit(1)
 
 def generate_config(config):
-	try:
+	if 'mod' in config:
 		p_key = '$mod+%s' % config['mod']
 		p_sym = config['mod'][0].upper() + '-'
-	except:
+	elif 'key' in config and 'sym' in config:
 		p_key = config['key']
 		p_sym = config['sym']
+	else:
+		print('unable to determine activation binding')
+		exit(1)
 	binds = config['binds']
 
 	chains, modes = validate_config(config)
