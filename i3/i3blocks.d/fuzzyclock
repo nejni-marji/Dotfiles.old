@@ -192,7 +192,7 @@ if hours == -1: hours = 11
 fuzzy_str = time_data[hours][sector]
 fuzzy_num = '~{}:{}'.format(
 	str(now.hour).zfill(2),
-	str(sector * 5),
+	str(sector * 5).zfill(2),
 )
 
 print(fuzzy_str + ' ')
