@@ -7,7 +7,12 @@ set_urxvt_title() {
 }
 
 set_urxvt_title_command() {
-	CMD=$(echo $1 | cut -d\  -f1)
+	if [[ $1 =~ \\\\ ]]; then
+		set_urxvt_title "$USER@$HOST:$(echo -n $PWD | sed -e s#$HOME#~#) % ???"
+		return 0
+	fi
+	CMD=$(echo "$1" | cut -d\  -f1)
+	set_urxvt_title $CMD
 	if [[ ${title_command_ignore[(r)$CMD]} != $CMD ]]; then
 		set_urxvt_title "$USER@$HOST:$(echo -n $PWD | sed -e s#$HOME#~#) % $1"
 	fi
