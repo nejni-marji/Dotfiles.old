@@ -158,6 +158,11 @@
 	bindsym $MOD+$SHF+$CTL+q $exec "i3-nagbar \
 	-t warning -m 'Exit i3?' \
 	-b 'Yes, exit i3' '~/.i3/manager.sh exit'
+	# keyboard layouts
+	bindsym $MOD+Escape $exec i3-nagbar \
+		-B 'dvorak' '~/.i3/bin/keyswitch -k dvorak' \
+		-B 'qwerty' '~/.i3/bin/keyswitch -k qwerty' \
+		-t warning
 	# misc
 	bindsym $MOD+d      $exec $i3b/date_notify.sh
 	bindsym $MOD+$SHF+d $exec $i3b/web_search.sh
