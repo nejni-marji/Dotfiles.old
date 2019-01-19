@@ -53,7 +53,7 @@ exit-generic() {
 start-apps() {
 	redshift -Po
 	{ redshift -P & }
-	compton -b
+	# compton -b
 	{ dunst & }
 	~/.i3/bin/autolock_init.sh 30 300 600
 }
@@ -92,7 +92,7 @@ fi
 # I don't know why this sleep has to be the way it is, but it does
 # It's required for compton to load properly, though.
 [[ $1 == restart ]] && i3-msg restart
-[[ $1 == restart ]] && sleep 1
+# [[ $1 == restart ]] && sleep 1
 [[ $1 != restart ]] && i3-msg reload
 
 [[ ( $1 == restart ) || ( $1 == init ) ]] && start-apps
