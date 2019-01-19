@@ -19,13 +19,13 @@
 #	~ % git
 ###
 
-msh_arg=microshell_initialization_argument
-this="$0"
-if ! [[ $1 == $msh_arg ]]; then
+MSH_ARG=microshell_initialization_argument
+MICROSHELL_INIT="$0"
+if ! [[ $1 == $MSH_ARG ]]; then
 	! [[ $1 == quiet ]] && echo "Adding the 'msh' command"
 	compdef _command_names msh
 	msh() {
-		source "$this" "$msh_arg" $1
+		source "$MICROSHELL_INIT" "$MSH_ARG" $1
 	}
 	return 0
 fi
