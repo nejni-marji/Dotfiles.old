@@ -65,6 +65,11 @@
 		for_window [title="^vimpc$"] floating enable, sticky enable
 		for_window [class="^Pavucontrol$"] floating enable, sticky enable
 		for_window [title="^pulsemixer$"] floating enable, sticky enable
+		# marking
+		for_window [title="^tmux: irc-\d{4}_\d{6}:\d+: WeeChat"] \
+			mark --add _hs_irc_0
+		for_window [title="^Telegram( \(\d+\))?$"] \
+			mark --add _hs_tg_0
 
 		# Telegram image viewer
 		for_window [class="^TelegramDesktop$"] [title="^Media viewer$"] fullscreen enable
