@@ -17,7 +17,7 @@ keysym Control_R = Super_R
 keysym Super_L = Shift_L
 !keysym Control_R = Shift_R
 
-keysym Menu = Multi_key Caps_Lock
+keysym Menu = Multi_key Multi_key
 
 add Lock = Caps_Lock
 add Control = Control_L Control_R
