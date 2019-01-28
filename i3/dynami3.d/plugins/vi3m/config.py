@@ -99,6 +99,10 @@ binds = { # {{{
 			+ '-P "rename workspace to " -F "rename workspace to %s"'),
 	# }}}
 	# {{{ utilities
+		'uc':  E(T(S('cal -3 && read'))),
+		'uC1': E(T(S('cal -1 && read'))),
+		'uCo': E(T(S('cal -1 && read'))),
+		'uCy': E(T(S('cal -y && read'))),
 		'up': E(T('pulsemixer')),
 		'uP': E('pavucontrol'),
 		'uf': E(B('feshot')),
