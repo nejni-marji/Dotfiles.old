@@ -73,6 +73,9 @@
 			mark --add _hs_irc_0
 		for_window [title="^Telegram( \(\d+\))?$"] \
 			mark --add _hs_tg_0
+		for_window [class="^discord$" title="Discord$"] \
+			mark --add _hs_dis_0
+
 
 		# Telegram image viewer
 		for_window [class="^TelegramDesktop$"] [title="^Media viewer$"] fullscreen enable
