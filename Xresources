@@ -22,10 +22,10 @@ URxvt.foreground: #ffffff
 !URxvt.foreground:     #ffffff
 
 ! native transparency
-!URxvt.inheritPixmap: true
-!URxvt.transparent: true
-!! URxvt.shading: 0-99 darkens, 101-200 lightens
-!URxvt.shading: 35
+URxvt.inheritPixmap: true
+URxvt.transparent: true
+! URxvt.shading: 0-99 darkens, 101-200 lightens
+URxvt.shading: 15
 
 ! user interface
 URxvt.scrollBar: false
