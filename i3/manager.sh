@@ -7,9 +7,8 @@
 #
 
 init-desktop() {
-	{}
-#	xrandr --output DVI-D-0 --primary
-#	~/bin/m570_sensitivity.sh .15 1
+	xrandr --output DVI-D-0 --primary
+	~/bin/m570_sensitivity.sh #.15 1
 }
 
 init-laptop() {
