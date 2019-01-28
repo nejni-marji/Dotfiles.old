@@ -136,7 +136,7 @@
 			modifier $bar_key
 			i3bar_command i3bar -t
 			status_command i3blocks
-			strip_workspace_numbers yes
+			# strip_workspace_numbers yes
 			tray_output $tray_state
 			tray_padding 0
 			colors { # {{{
