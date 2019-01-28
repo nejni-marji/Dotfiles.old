@@ -16,3 +16,6 @@
 [submodule "extras/unimatrix"]
 	path = extras/unimatrix
 	url = https://github.com/will8211/unimatrix
+[submodule "extras/zsh-git-prompt"]
+	path = extras/zsh-git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt
