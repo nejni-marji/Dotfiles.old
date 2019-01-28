@@ -60,8 +60,9 @@
 	# }}}
 	# {{{ assign
 		# 3
-		assign [class="^TelegramDesktop$"] $w3
-		assign [class="^discord$"] $w3
+		assign [class="^TelegramDesktop$" title="^Telegram"] number $w3
+		assign [class="^discord$"] number $w3
+		assign [class="^Steam$"] number $w5
 	# }}}
 	# {{{ for_window
 		for_window [title="^vimpc$"] floating enable, sticky enable
