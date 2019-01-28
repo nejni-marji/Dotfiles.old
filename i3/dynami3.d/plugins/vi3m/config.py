@@ -49,6 +49,7 @@ binds = { # {{{
 	'mZ': 'move container to workspace back_and_forth; workspace back_and_forth',
 	# {{{ applications
 		'ad': E('discord'),
+		'aD': E('deluge-gtk'),
 		'af': E('firefox'),
 		'aF': E('firefox --private-window'),
 		'ag': E('gimp'),
