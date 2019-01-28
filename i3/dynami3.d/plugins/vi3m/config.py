@@ -89,9 +89,9 @@ binds = { # {{{
 	# }}}
 	# {{{ workspaces
 		'wm': E('i3-input '
-			+ '-P "move to workspace " -F "move to workspace %s"'),
+			+ '-P "workspace " -F "workspace %s"'),
 		'wM': E('i3-input '
-			+ '-P "move to workspace number " -F "move to workspace number %s"'),
+			+ '-P "move to workspace " -F "move to workspace %s"'),
 		'wo': E('i3-input '
 			+ '-P "move workspace to output " -F "move workspace to output %s"'),
 		'wr': E('i3-input '
