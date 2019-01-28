@@ -19,3 +19,6 @@
 [submodule "extras/zsh-git-prompt"]
 	path = extras/zsh-git-prompt
 	url = https://github.com/olivierverdier/zsh-git-prompt
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/bundle/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
