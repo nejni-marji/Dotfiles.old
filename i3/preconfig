@@ -9,8 +9,10 @@
 	# loader
 	$execa $i3b/i3ipc_nop.py
 	# resize
-	bindsym $MOD+equal      nop ipc resize grow
-	bindsym $MOD+$SHF+equal nop ipc resize shrink
+	bindsym $MOD+equal           nop ipc resize grow
+	bindsym $MOD+$SHF+equal      nop ipc resize shrink
+	bindsym $MOD+$ALT+equal      nop ipc resize grow rev
+	bindsym $MOD+$ALT+$SHF+equal nop ipc resize shrink rev
 	# flatten
 	bindsym $MOD+$ALT+g     nop ipc flatten arg
 	# hotswap

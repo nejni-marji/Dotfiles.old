@@ -6,8 +6,10 @@ i3 = Connection()
 def resize(i3, event, args):
 	parent = i3.get_tree().find_focused().parent
 
+	print(args)
 	mode = args[0]
 	if not mode in ['grow', 'shrink']:
+		print(1)
 		return None
 
 	while not (
@@ -28,6 +30,11 @@ def resize(i3, event, args):
 		'splith': 'width',
 		'splitv': 'height',
 	}[parent.layout]
+	if (len(args) >= 2 and args[1] == 'rev'):
+		direction = {
+			'splith': 'height',
+			'splitv': 'width',
+		}[parent.layout]
 
 	command = 'resize {} {} 10 px or 10 ppt'.format(mode, direction)
 	i3.command(command)
