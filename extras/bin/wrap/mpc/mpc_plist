@@ -150,7 +150,7 @@ def refresh_screen(mode='all'):
 
 			while True:
 				do_break = False
-				exitcode = system('read -t 1')
+				exitcode = system('read -s -t 1')
 				# if exitcode in [2, 130, 256]:
 				if exitcode == 256:
 					# add try-except?
