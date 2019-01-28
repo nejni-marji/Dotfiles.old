@@ -30,7 +30,7 @@ move_focus = {
 }
 
 move_send = {
-	'mm%i' % i: 'move container to workspace number $w%i' % i
+	'M%i' % i: 'move container to workspace number $w%i' % i
 	for i in list(range(1, 10)) + [0]
 }
 
