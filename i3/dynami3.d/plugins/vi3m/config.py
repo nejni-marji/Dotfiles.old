@@ -104,6 +104,8 @@ binds = { # {{{
 		'uF': E(B('feshot all')),
 	# }}}
 	# {{{ misc
+		'zd': E(I('date_notify.sh fuzzy')),
+		'zD': E(I('date_notify.sh')),
 		'zpocr': E('echo -n "https://ocremix.org/remix/OCRxxxxx" | xsel -b -i'),
 		'zfs': E(I('web_search.sh')),
 		'zfSi': E(I('web_search.sh \'!ddgi\'')),

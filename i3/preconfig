@@ -174,10 +174,6 @@
 		-B 'dvorak' '~/.i3/bin/keyswitch -k dvorak' \
 		-B 'qwerty' '~/.i3/bin/keyswitch -k qwerty' \
 		-t warning
-	# misc
-	bindsym $MOD+d      $exec $i3b/date_notify.sh
-	bindsym $MOD+$SHF+d $exec $i3b/web_search.sh
-	bindsym $MOD+$ALT+d $exec $i3b/web_search.sh '!ddgi'
 # }}}
 # {{{ movement
 	# {{{ workspaces
