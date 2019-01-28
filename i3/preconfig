@@ -78,7 +78,7 @@
 
 
 		# Telegram image viewer
-		for_window [class="^TelegramDesktop$"] [title="^Media viewer$"] fullscreen enable
+		for_window [class="^TelegramDesktop$" title="^Media viewer$"] fullscreen enable
 	# }}}
 # }}}
 # {{{ appearance
