@@ -129,6 +129,9 @@ def draw_screen():
 	# Split, pull the first th-1 lines
 	cropped = wrapped.split('\n')[:th-1]
 
+	# Add newlines to correct the height
+	cropped += (th - 1 - len(cropped)) * ['']
+
 	# Rejoin the lines we want
 	output = '\n'.join(cropped)
 
