@@ -115,7 +115,7 @@
 		set $c_splitA #00ff80
 		# i3bar: separator, background, text
 		set $c_i3barE #ff8000ff
-		set $c_i3barB #400040d0
+		set $c_i3barB #000000d0
 		set $c_i3barT #ffffffff
 	# }}}
 	# {{{ window colors
