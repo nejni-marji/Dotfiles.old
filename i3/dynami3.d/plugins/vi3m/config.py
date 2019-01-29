@@ -23,6 +23,13 @@ def FC(wm_class): return F('class', wm_class)
 
 def L(var): return '$lock %s; ' % var + '$mgr_run restart'
 
+def WR(cmd): # While Read
+	return E('"{}"'.format(
+		T(S(
+			'{0}; while read; do clear; {0}; done'.format(cmd)
+		)).replace('"', r'\\"')
+	))
+
 # Comprehensions to generate enumerated values
 move_focus = {
 	'm%i' % i: 'workspace number $w%i' % i
@@ -99,10 +106,10 @@ binds = { # {{{
 			+ '-P "rename workspace to " -F "rename workspace to %s"'),
 	# }}}
 	# {{{ utilities
-		'uc':  E(T(S('cal -3 && read'))),
-		'uC1': E(T(S('cal -1 && read'))),
-		'uCo': E(T(S('cal -1 && read'))),
-		'uCy': E(T(S('cal -y && read'))),
+		'uc':  WR('cal -3'),
+		'uC1': WR('cal -1'),
+		'uCo': WR('cal -1'),
+		'uCy': WR('cal -y'),
 		'up': E(T('pulsemixer')),
 		'uP': E('pavucontrol'),
 		'uf': E(B('feshot')),
@@ -113,8 +120,8 @@ binds = { # {{{
 		'zD': E(I('date_notify.sh')),
 		'zpocr': E('echo -n "https://ocremix.org/remix/OCRxxxxx" | xsel -b -i'),
 		# {{{ paste maps
-			'zpsl': E(T(S(I('clipsync.sh') + ' && read'))),
-			'zpL':  E(T(S(I('clipsync.sh') + ' && read'))),
+			'zpsl': WR(I('clipsync.sh')),
+			'zpL': WR(I('clipsync.sh')),
 			'zps0': E(I('clipsync.sh c')),
 			'zps3': E(I('clipsync.sh c')),
 			'zpsc': E(I('clipsync.sh c')),
