@@ -120,26 +120,18 @@ binds = { # {{{
 		'zD': E(I('date_notify.sh')),
 		'zpocr': E('echo -n "https://ocremix.org/remix/OCRxxxxx" | xsel -b -i'),
 		# {{{ paste maps
+			# display output
 			'zpsl': WR(I('clipsync.sh')),
 			'zpL': WR(I('clipsync.sh')),
-			'zps0': E(I('clipsync.sh c')),
-			'zps3': E(I('clipsync.sh c')),
+			# run normally
 			'zpsc': E(I('clipsync.sh c')),
 			'zpsC': E(I('clipsync.sh c v')),
-			'zpS0': E(I('clipsync.sh c v')),
-			'zpS3': E(I('clipsync.sh c v')),
-			'zpSc': E(I('clipsync.sh c v')),
-			'zps1': E(I('clipsync.sh p')),
 			'zpsp': E(I('clipsync.sh p')),
 			'zpsP': E(I('clipsync.sh p v')),
-			'zpS1': E(I('clipsync.sh p v')),
-			'zpSp': E(I('clipsync.sh p v')),
 			'zpsk': E(I('clipsync.sh k')),
 			'zpsK': E(I('clipsync.sh k v')),
-			'zpSk': E(I('clipsync.sh k v')),
 			'zpsx': E(I('clipsync.sh x')),
 			'zpsX': E(I('clipsync.sh x v')),
-			'zpSx': E(I('clipsync.sh x v')),
 		# }}}
 		'zfs': E(I('web_search.sh')),
 		'zfSi': E(I('web_search.sh \'!ddgi\'')),
