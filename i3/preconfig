@@ -215,10 +215,15 @@
 		bindsym $MOD+$SHF+$ALT+k mark --add _dirswap_a; focus up;    mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
 		bindsym $MOD+$SHF+$ALT+l mark --add _dirswap_a; focus right; mark --add _dirswap_b; swap container with mark _dirswap_a; unmark _dirswap_a; unmark _dirswap_b
 		# fullscreen
-		bindsym $MOD+$CTL+h fullscreen disable; focus left;  fullscreen enable
-		bindsym $MOD+$CTL+j fullscreen disable; focus down;  fullscreen enable
-		bindsym $MOD+$CTL+k fullscreen disable; focus up;    fullscreen enable
-		bindsym $MOD+$CTL+l fullscreen disable; focus right; fullscreen enable
+		# bindsym $MOD+$CTL+h fullscreen disable; focus left;  fullscreen enable
+		# bindsym $MOD+$CTL+j fullscreen disable; focus down;  fullscreen enable
+		# bindsym $MOD+$CTL+k fullscreen disable; focus up;    fullscreen enable
+		# bindsym $MOD+$CTL+l fullscreen disable; focus right; fullscreen enable
+		# focus visible
+		bindsym $MOD+$CTL+h nop ipc focvis left
+		bindsym $MOD+$CTL+j nop ipc focvis down
+		bindsym $MOD+$CTL+k nop ipc focvis up
+		bindsym $MOD+$CTL+l nop ipc focvis right
 	# }}}
 	# {{{ tree
 		bindsym $MOD+g          focus parent
