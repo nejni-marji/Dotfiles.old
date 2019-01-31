@@ -6,21 +6,8 @@
 # i3 config file (v4)
 
 # {{{ ipc scripts
-	# loader
 	$execa $i3b/i3ipc_nop.py
-	# resize
-	bindsym $MOD+equal           nop ipc resize grow
-	bindsym $MOD+$SHF+equal      nop ipc resize shrink
-	bindsym $MOD+$ALT+equal      nop ipc resize grow rev
-	bindsym $MOD+$ALT+$SHF+equal nop ipc resize shrink rev
-	# flatten
-	bindsym $MOD+$ALT+g     nop ipc flatten arg
-	# hotswap
 	$execa $i3b/hotswap.py
-	bindsym $MOD+$SHF+m nop ipc hotswap swapthis
-	bindsym $MOD+m      nop ipc hotswap swaphere
-	bindsym $MOD+$ALT+m nop ipc hotswap return
-	bindsym $MOD+$CTL+m nop ipc hotswap reset
 # }}}
 # {{{ i3-gaps only
 	smart_gaps on
@@ -248,6 +235,19 @@
 		bindsym $MOD+$SHF+w     split t; layout tabbed
 		bindsym $MOD+v          split v
 		bindsym $MOD+$SHF+v     split h
+		# flatten
+		bindsym $MOD+$ALT+g     nop ipc flatten arg
+		# hotswap
+		bindsym $MOD+$SHF+m nop ipc hotswap swapthis
+		bindsym $MOD+m      nop ipc hotswap swaphere
+		bindsym $MOD+$ALT+m nop ipc hotswap return
+		bindsym $MOD+$CTL+m nop ipc hotswap reset
+	# }}}
+	# {{{ resize
+		bindsym $MOD+equal           nop ipc resize grow
+		bindsym $MOD+$SHF+equal      nop ipc resize shrink
+		bindsym $MOD+$ALT+equal      nop ipc resize grow rev
+		bindsym $MOD+$ALT+$SHF+equal nop ipc resize shrink rev
 	# }}}
 	# {{{ floating
 		floating_modifier $MOD
