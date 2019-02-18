@@ -73,6 +73,7 @@ def on_binding(self, event):
 	if event.binding.command == 'nop ipc hotswap reset':
 		workspace = i3.get_tree().find_focused().workspace()
 		hotswap(workspace)
+		return None
 
 if __name__ == '__main__':
 	workspace = i3.get_tree().find_focused().workspace()
