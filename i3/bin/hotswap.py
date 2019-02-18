@@ -74,11 +74,12 @@ def on_binding(self, event):
 		workspace = i3.get_tree().find_focused().workspace()
 		hotswap(workspace)
 
-workspace = i3.get_tree().find_focused().workspace()
-hotswap(workspace)
+if __name__ == '__main__':
+	workspace = i3.get_tree().find_focused().workspace()
+	hotswap(workspace)
 
-i3.on('workspace::focus', on_workspace_focus)
-i3.on('window::mark', on_window_mark)
-i3.on('binding', on_binding)
+	i3.on('workspace::focus', on_workspace_focus)
+	i3.on('window::mark', on_window_mark)
+	i3.on('binding', on_binding)
 
-i3.main()
+	i3.main()
