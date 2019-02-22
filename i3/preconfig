@@ -34,16 +34,16 @@
 # }}}
 # {{{ workspace, assign, for_window
 	# {{{ workspace variables
-		set $w1 1:Web
-		set $w2 2:Video
-		set $w3 3:Chat
-		set $w4 4:Code
-		set $w5 5
-		set $w6 6
-		set $w7 7
-		set $w8 8
-		set $w9 9
-		set $w0 10
+		set $w1 10:Web
+		set $w2 20:Video
+		set $w3 30:Chat
+		set $w4 40:Code
+		set $w5 50:Game
+		set $w6 60:School
+		set $w7 70
+		set $w8 80
+		set $w9 90
+		set $w0 00:Test
 	# }}}
 	# {{{ assign
 		# 3
