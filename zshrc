@@ -5,6 +5,7 @@
 
 # misc options
 setopt AUTO_CD
+setopt EXTENDED_HISTORY
 bindkey -v
 
 # history
