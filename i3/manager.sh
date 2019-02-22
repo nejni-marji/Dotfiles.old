@@ -52,7 +52,7 @@ exit-generic() {
 start-apps() {
 	redshift -Po
 	{ redshift -P & }
-	compton -b
+	# compton -b
 	{ dunst & }
 	~/.i3/bin/autolock_init.sh 30 300 600
 }
@@ -63,6 +63,16 @@ stop-apps() {
 	pkill -x compton
 	pkill -x dunst
 }
+
+repair-compton() {
+	for i in $(
+		wmctrl -l | awk '{print $1}'
+	); do
+		xprop -id $i -remove _NET_WM_WINDOW_OPACITY;
+	done
+}
+
+
 
 if [[ $1 == exit ]]; then
 	stop-apps
@@ -91,10 +101,11 @@ fi
 # I don't know why this sleep has to be the way it is, but it does
 # It's required for compton to load properly, though.
 [[ $1 == restart ]] && i3-msg restart
-# [[ $1 == restart ]] && sleep 1
+# [[ $1 == restart ]] && $do_apps && sleep 1
 [[ $1 != restart ]] && i3-msg reload
 
 [[ ( $1 == restart ) || ( $1 == init ) ]] && start-apps
+repair-compton
 
 if [[ $1 == init ]]; then
 	notify-send -t 500 -a 'i3wm' 'i3wm' 'Initialized'
