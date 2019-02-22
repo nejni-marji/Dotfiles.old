@@ -242,7 +242,7 @@
 		bindsym $MOD+v          split v
 		bindsym $MOD+$SHF+v     split h
 		# flatten
-		bindsym $MOD+$ALT+g     nop ipc flatten arg
+		bindsym $MOD+$ALT+g     nop ipc flatten
 		# hotswap
 		bindsym $MOD+$SHF+m nop ipc hotswap swapthis
 		bindsym $MOD+m      nop ipc hotswap swaphere
