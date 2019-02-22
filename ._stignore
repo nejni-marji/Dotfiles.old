@@ -1,0 +1,14 @@
+/i3/config
+/i3/i3log.txt
+
+/.git
+
+/extras/config/ranger
+
+!/extras/config/mpd/mpd.conf
+!/extras/config/mpd/playlists
+/extras/config/mpd
+
+!/extras/vim/*/.gitignore
+/extras/vim/*/
+/vim/bundle
