@@ -8,6 +8,7 @@
 # {{{ ipc scripts
 	$execa $i3b/i3ipc_nop.py
 	$execa $i3b/hotswap.py
+	$execa $i3b/hotswap_focus.py
 # }}}
 # {{{ i3-gaps only
 	smart_gaps on

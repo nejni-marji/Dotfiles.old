@@ -74,6 +74,10 @@ binds = { # {{{
 		'av': E('vlc'),
 		'aV': E('VirtualBox'),
 	# }}}
+	# {{ goto
+		'gt': 'nop ipc hotswap focus tg 30:Chat ',
+		'gi': 'nop ipc hotswap focus irc 30:Chat ',
+	# }}}
 	# {{{ i3-wm
 		'iec': '$mgr_run edit preconf',
 		'ieC': '$mgr_run edit postconf',
