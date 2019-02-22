@@ -79,24 +79,84 @@ if [[ $1 == exit ]]; then
 	exit-generic
 fi
 
+
+
 if [[ $1 == init ]]; then
-	if [[ $(hostname -d) == ASUS.localdomain ]]; then
-		init-laptop
-	fi
+	case "$(hostname -d)" in
+		ASUS.localdomain)
+			init-laptop
+		;;
+		Desktop.localdomain)
+			init-desktop
+		;;
+	esac
 	init-generic
 fi
 
+
+
 if [[ $1 == edit ]]; then
-	[[ $2 == preconf ]] && urxvt -e vim ~/.i3/preconfig
-	[[ $2 == postconf ]] && urxvt -e vim ~/.i3/config
-	[[ $2 == manager ]] && urxvt -e vim ~/.i3/manager.sh
-	[[ $2 == vi3m ]] && urxvt -e vim ~/.i3/dynami3/plugins/vi3m/plugin.conf
-	[[ $2 == vars ]] && urxvt -e vim ~/.i3/dynami3/plugins/vars/plugin.conf
+	do_edit=true
+	case $2 in
+		preconf)
+			target=~/.i3/preconfig
+		;;
+		postconf)
+			target=~/.i3/config
+		;;
+		manager)
+			target=~/.i3/manager.sh
+		;;
+		vi3m)
+			target=~/.i3/dynami3/plugins/vi3m/plugin.conf
+		;;
+		vars)
+			target=~/.i3/dynami3/plugins/vars/plugin.conf
+		;;
+		*)
+			do_edit=false
+		;;
+	esac
+
+	# There's an option to exit prematurely. This can prevent the execution of
+	# heavier code in the event that we don't want to modify any files.
+	if $do_edit; then
+		if [[ $3 != exit ]]; then
+			urxvt -e vim "$target"
+		else
+			urxvt -e vim -R "$target"
+			exit
+		fi
+	fi
 fi
 
+
+
+# This should always be run, in order to update the i3 config.
 ~/.i3/dynami3/dynami3.sh
 
-[[ ( $1 == restart ) || ( $1 == init ) ]] && stop-apps
+
+
+# If restarting apps is ever desired for edit, use these conditions.
+# if [[ ( $1 == restart ) || ( $1 == init ) || ( $1 == edit ) ]]; then
+	# if ! [[ ( $2 -eq no-apps ) || ( ( $1 -eq edit ) && ( $3 -eq no-apps ) ) ]]; then
+
+# A better idea may be to have edit not restart apps by default, but allow $3
+# to be used to request that to occur.
+# I am not implementing this now.
+
+
+# Determine whether or not we should restart apps.
+do_apps=false
+if [[ $1 == restart || $1 == init ]]; then
+	if ! [[ $2 == no-apps ]]; then
+		do_apps=true
+	fi
+fi
+
+
+
+$do_apps && stop-apps
 
 # I don't know why this sleep has to be the way it is, but it does
 # It's required for compton to load properly, though.
@@ -104,7 +164,7 @@ fi
 # [[ $1 == restart ]] && $do_apps && sleep 1
 [[ $1 != restart ]] && i3-msg reload
 
-[[ ( $1 == restart ) || ( $1 == init ) ]] && start-apps
+$do_apps && start-apps
 repair-compton
 
 if [[ $1 == init ]]; then
