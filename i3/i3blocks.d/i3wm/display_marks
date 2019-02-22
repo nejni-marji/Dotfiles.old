@@ -1,0 +1,4 @@
+#!/bin/bash
+
+i3-msg -t get_tree \
+| jq -cMr '..? | select(.focused?==true) | .marks | if (.==null) then "" else . end'

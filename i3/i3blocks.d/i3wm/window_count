@@ -1,0 +1,17 @@
+#!/bin/bash
+
+normals=$(
+	i3-msg -t get_tree | jq '.[] | .. | select(.nodes==[])? | select(.type=="con") | select(.window_properties.class!="i3bar") | [.name, .marks] | select(  (.[1]==null)  or  (..[1][] | test("^(_)?hs_[a-zA-Z0-9]+_(?!0$)") | not)  ) | .[0]' | wc -l
+)
+
+hotswap=$(
+	i3-msg -t get_tree | jq '.[] | .. | select(.nodes==[])? | select(.type=="con") | select(.window_properties.class!="i3bar") | [.name, .marks] | select(  (.[1]==null | not)  and  (..[1][] | test("^(_)?hs_[a-zA-Z0-9]+_(?!0$)"))  ) | .[0]' | wc -l
+)
+
+if [[ $hotswap -ne 0 ]]; then
+	pst="+$hotswap"
+	if [[ $normals -ne 0 ]]; then
+		pst+="=$(($normals+$hotswap))"
+	fi
+fi
+echo "$normals""$pst"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+i3-idle() {
+	i3-msg -t subscribe '["window", "workspace", "output", "binding"]' >/dev/null 2>/dev/null
+}
+
+while true; do
+	i3-idle && \
+	pkill -SIGRTMIN+10 i3blocks >/dev/null 2>/dev/null
+done
