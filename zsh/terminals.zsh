@@ -24,5 +24,15 @@ set_urxvt_title_prompt() {
 
 [[ $(hostname -d) == Kubuntu ]] && return 0
 
-add-zsh-hook preexec set_urxvt_title_command
-add-zsh-hook precmd set_urxvt_title_prompt
+set_urxvt_title_enable() {
+	add-zsh-hook preexec set_urxvt_title_command
+	add-zsh-hook precmd set_urxvt_title_prompt
+}
+
+set_urxvt_title_disable() {
+	add-zsh-hook -d preexec set_urxvt_title_command
+	add-zsh-hook -d precmd set_urxvt_title_prompt
+	set_urxvt_title_prompt
+}
+
+set_urxvt_title_enable
