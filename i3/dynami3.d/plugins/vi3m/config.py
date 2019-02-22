@@ -30,30 +30,36 @@ def WR(cmd): # While Read
 		)).replace('"', r'\\"')
 	))
 
-# Comprehensions to generate enumerated values
-move_focus = {
-	'm%i' % i: 'workspace number $w%i' % i
-	for i in list(range(1, 10)) + [0]
-}
+goto_I = 'workspace number %i'
+goto_W = 'workspace number $w%i'
+goto_S = 'workspace number %s'
+send_I = 'move container to workspace number %i'
+send_W = 'move container to workspace number $w%i'
+send_S = 'move container to workspace number %s'
+take_I = 'move container to workspace number %i; workspace back_and_forth'
+take_W = 'move container to workspace number $w%i; workspace back_and_forth'
+take_S = 'move container to workspace number %s; workspace back_and_forth'
 
-move_send = {
-	'M%i' % i: 'move container to workspace number $w%i' % i
-	for i in list(range(1, 10)) + [0]
-}
+maps = {}
 
-move_send_focus = {
-	'mz%i' % i: 'move container to workspace number $w%i; workspace back_and_forth' % i
-	for i in list(range(1, 10)) + [0]
-}
+maps['wm'] = '$exec i3-input -P "goto " -F "workspace number %s"'
+maps['wM'] = '$exec i3-input -P "send " -F "move container to workspace number %s"'
+maps['wz'] = '$exec "i3-input -P \'take \' -F \'move container to workspace number %s; workspace back_and_forth\'"'
+maps['wr'] = '$exec i3-input -P "rename workspace to " -F "rename workspace to %s"'
+maps['wo'] = '$exec i3-input -P "move workspace to output " -F "move workspace to output %s"'
+maps['mZ'] = 'move container to workspace back_and_forth; workspace back_and_forth'
+
+for i in range(0, 10):
+	maps['m%i' % i] = goto_W % i
+	maps['M%i' % i] = send_W % i
+	maps['mz%i' % i] = take_W % i
+
+workspace_maps = maps
+
+
 
 binds = { # {{{
-
-	'gf': F('con_mark', '^_hs_tg_0'),
-
-	**move_focus,
-	**move_send,
-	**move_send_focus,
-	'mZ': 'move container to workspace back_and_forth; workspace back_and_forth',
+	**workspace_maps,
 	# {{{ applications
 		'ad': E('discord'),
 		'aD': E('deluge-gtk'),
@@ -94,16 +100,6 @@ binds = { # {{{
 		'it': L('titlebars'),
 		'iw': E('i3-input '
 			+ '-P "set_wallpaper.sh " -F "$exec $i3b/set_wallpaper.sh %s"'),
-	# }}}
-	# {{{ workspaces
-		'wm': E('i3-input '
-			+ '-P "workspace " -F "workspace %s"'),
-		'wM': E('i3-input '
-			+ '-P "move to workspace " -F "move to workspace %s"'),
-		'wo': E('i3-input '
-			+ '-P "move workspace to output " -F "move workspace to output %s"'),
-		'wr': E('i3-input '
-			+ '-P "rename workspace to " -F "rename workspace to %s"'),
 	# }}}
 	# {{{ utilities
 		'uc':  WR('cal -3'),
