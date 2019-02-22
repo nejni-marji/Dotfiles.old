@@ -7,3 +7,5 @@ extras/config/mpd/*
 !extras/config/mpd/playlists
 
 i3/config
+
+__pycache__
