@@ -1,0 +1,1 @@
+../../i3/bin/clipsync.sh
