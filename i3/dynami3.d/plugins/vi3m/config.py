@@ -63,10 +63,13 @@ binds = { # {{{
 	# {{{ applications
 		'ad': E('discord'),
 		'aD': E('deluge-gtk'),
-		'af': E('firefox'),
-		'aF': E('firefox --private-window'),
+		'af': E('GTK_THEME=Arc firefox'),
+		'aF': E('GTK_THEME=Arc firefox --private-window'),
 		'ag': E('gimp'),
 		'aG': E('gimp ~/Pictures/Screenshots/Latest.png'),
+		'ai': E(T(
+				'ssh desktop -t "LANG=en_US.UTF-8 tmx irc"'
+			)),
 		'al': E('leafpad'),
 		'aL': E('libreoffice'),
 		'as': E('steam'),
@@ -74,16 +77,22 @@ binds = { # {{{
 		'av': E('vlc'),
 		'aV': E('VirtualBox'),
 	# }}}
-	# {{ goto
+	# {{{ goto
+		'gd': 'nop ipc hotswap focus dis 30:Chat ',
 		'gt': 'nop ipc hotswap focus tg 30:Chat ',
 		'gi': 'nop ipc hotswap focus irc 30:Chat ',
 	# }}}
 	# {{{ i3-wm
 		'iec': '$mgr_run edit preconf',
-		'ieC': '$mgr_run edit postconf',
+		'ieC': '$mgr_run edit postconf exit',
 		'iem': '$mgr_run edit manager',
 		'iev': '$mgr_run edit vi3m',
 		'ieV': '$mgr_run edit vars',
+		'iEc': '$mgr_run edit preconf exit',
+		'iEC': '$mgr_run edit postconf',
+		'iEm': '$mgr_run edit manager exit',
+		'iEv': '$mgr_run edit vi3m exit',
+		'iEV': '$mgr_run edit vars exit',
 		'ii': E('i3-input'),
 		'il': E(I('autolock_locker.sh')),
 		'iL': E(I('autolock_locker.sh' + ' & ' + S('sleep 60 && xset dpms force off'))),
@@ -100,20 +109,31 @@ binds = { # {{{
 		'ibh': L('bar_hide'),
 		'ibk': L('bar_key'),
 		'ibt': L('tray'),
-#		'ig': L('gaps'),
+		'ig': L('gaps'),
 		'it': L('titlebars'),
+		# wallpaper
 		'iw': E('i3-input '
 			+ '-P "set_wallpaper.sh " -F "$exec $i3b/set_wallpaper.sh %s"'),
 	# }}}
+	# {{{ music
+		'ste': E('mpc repeat'),
+		'str': E('mpc random'),
+		'sts': E('mpc single'),
+		'stc': E('mpc consume'),
+		'sz': E('espeak "update this"'),
+	# }}}
 	# {{{ utilities
-		'uc':  WR('cal -3'),
-		'uC1': WR('cal -1'),
-		'uCo': WR('cal -1'),
-		'uCy': WR('cal -y'),
+		'uc':  WR('cal -m -3'),
+		'uC1': WR('cal -m -1'),
+		'uCo': WR('cal -m -1'),
+		'uCy': WR('cal -m -y'),
 		'up': E(T('pulsemixer')),
 		'uP': E('pavucontrol'),
 		'uf': E(B('feshot')),
 		'uF': E(B('feshot all')),
+		'us': E(T('ssh-add')),
+		'ut': E(T('top')),
+		'uzc': WR('fortune | cowsay -n'),
 	# }}}
 	# {{{ misc
 		'zd': E(I('date_notify.sh fuzzy')),
@@ -132,23 +152,26 @@ binds = { # {{{
 			'zpsK': E(I('clipsync.sh k v')),
 			'zpsx': E(I('clipsync.sh x')),
 			'zpsX': E(I('clipsync.sh x v')),
+			'zpss': E(I('clipsync.sh s')),
+			'zpsS': E(I('clipsync.sh s v')),
 		# }}}
 		'zfs': E(I('web_search.sh')),
 		'zfSi': E(I('web_search.sh \'!ddgi\'')),
-		'zfd': E('firefox --new-window https://github.com/nejni-marji/Dotfiles'),
-		'zfw': E('firefox --new-window wolframalpha.com'),
-		'zfW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla Firefox$')
+		'zfd': E('GTK_THEME=Arc firefox --new-window https://github.com/nejni-marji/Dotfiles'),
+		'zfw': E('GTK_THEME=Arc firefox --new-window wolframalpha.com'),
+		'zfW': F('title', 'Wolfram\\|Alpha(: Computational Intelligence)? - Mozilla GTK_THEME=Arc Firefox$')
 			+ '; '
-			+ E('firefox wolframalpha.com'),
+			+ E('GTK_THEME=Arc firefox wolframalpha.com'),
+		'zfyt': E('GTK_THEME=Arc firefox --new-window youtube.com'),
 	# }}}
 } # }}}
 
 configs = [
 	{
-		'mod': 'Return',
+		# 'mod': 'Return',
 		# The presence of 'mod' overrides 'key' and 'sym'
-		#'key': '$mod+Return',
-		#'sym': 'R-',
+		'key': '$mod+Return',
+		'sym': 'R-',
 		'binds': binds
 	}
 ]
