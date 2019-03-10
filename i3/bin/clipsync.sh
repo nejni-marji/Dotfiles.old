@@ -22,8 +22,10 @@ case $1 in
 		xsel -po | xsel -pi
 		xsel -po | xsel -bi
 	;;
-	2|s|secondary)
-		espeak "no action"
+	2|s|secondary|swap|exchange)
+		# this one is different because nothing uses SECONDARY
+		espeak "swap buffers"
+		xsel -x
 	;;
 	3|0|c|b|cb|clip|clipboard|ctrlv)
 		espeak "clipboard to primary"
@@ -48,5 +50,7 @@ case $1 in
 esac
 
 if [[ $verb == v ]]; then
+	display
+elif [[ $verb == verbose ]]; then
 	display
 fi
